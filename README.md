@@ -6,10 +6,15 @@ PSMN HPC tools for everyday sysadmin
 
 - [ClusterSSH](https://github.com/duncs/clusterssh)
 
-- [ClusterShell](https://github.com/cea-hpc/clustershell) and NodeSet (python module) from CEA
+- [ClusterShell](https://github.com/cea-hpc/clustershell) python module, with 
+  NodeSet, from CEA
 
-- [execo](http://execo.gforge.inria.fr/doc/latest-stable/) (python module) from 
+- [execo](http://execo.gforge.inria.fr/doc/latest-stable/) python module, from 
   INRIA, also [execo-g5k-tools](https://github.com/lpouillo/execo-g5k-tools)
+
+- [shellcheck](https://github.com/koalaman/shellcheck) linter for bash scripts
+
+- [milkcheck](https://github.com/cea-hpc/milkcheck) ansible/salt-like from CEA
 
 ## other tools
 
