@@ -1,14 +1,14 @@
 #!/usr/bin/env python3
 # coding: utf-8
 
-# $Id: ask_infiniband.py 2810 2020-02-13 13:45:40Z ltaulell $
+# $Id: ask_infiniband.py 2811 2020-02-14 09:11:20Z ltaulell $
 # SPDX-License-Identifier: CECILL-B
 
 """
     Ask nodes for fw rev and PSID
     make a nice table
     if filename, save in as csv
-    else save in default filename
+    else save in default filename as csv
 
     hostname,fw_ver,board_id
     ibv_devinfo | grep fw_ver
@@ -23,14 +23,14 @@ import execo
 from ClusterShell.NodeSet import NodeSet
 
 
-entetes = ['hostname', 'fw_ver', 'board_id']
+entetes = ['hostname', 'fw_ver', 'board_id']  # french for headers
 outlist = []
 
 
 def main():
-    """ pour chaque node, dans nodes, execo.Ssh
-        rempli une liste de liste
-        écrit ça dans un csv
+    """ for each node, execo.Ssh for info
+        fill a list of list (outlist)
+        write that outlist to csv
     """
     args = get_options()
     # debug
@@ -68,7 +68,7 @@ def write_csv_file(data, outfile):
             writer.writerows(data)
 
     except IOError:
-        execo.log.logger.error("Impossible d'ouvrir le fichier : " + csvfile.name)
+        execo.log.logger.error("Unable to open file: " + csvfile.name)
         sys.exit(1)
 
 
@@ -89,7 +89,7 @@ def ask_node(cmd, host, debug=False):
         cmd be like:
             ibv_devinfo | grep fw_ver   => '\tfw_ver:\t\t\t\t2.11.310\r\n'
             ibv_devinfo | grep board_id => '\tboard_id:\t\t\tHP_0280210019\r\n'
-        return the second element, as a str
+        return the second element of stdout, as a str
     """
     process = execo.SshProcess(cmd, host, {'user': 'root'}).run()
     return str(process.stdout.split()[1])
