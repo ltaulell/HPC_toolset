@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # coding: utf-8
 
-# $Id: ask_infiniband.py 2818 2020-02-21 11:13:34Z ltaulell $
+# $Id: ask_infiniband.py 2819 2020-02-21 15:01:19Z ltaulell $
 # SPDX-License-Identifier: CECILL-B
 
 """
@@ -91,10 +91,13 @@ def ask_node(cmd, host, debug=False):
         cmd be like:
             ibv_devinfo | grep fw_ver   => '\tfw_ver:\t\t\t\t2.11.310\r\n'
             ibv_devinfo | grep board_id => '\tboard_id:\t\t\tHP_0280210019\r\n'
-        return the second element of stdout, as a str
+        return the last element of stdout, as a str
     """
     process = execo.SshProcess(cmd, host, {'user': 'root'}).run()
-    return str(process.stdout.split()[-1])
+    if process.stdout == "":
+        return "No connection"
+    else:
+        return str(process.stdout.split()[-1])
 
 
 if __name__ == '__main__':
