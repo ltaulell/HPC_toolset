@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # coding: utf-8
 
-# $Id: ask_infiniband.py 2811 2020-02-14 09:11:20Z ltaulell $
+# $Id: ask_infiniband.py 2818 2020-02-21 11:13:34Z ltaulell $
 # SPDX-License-Identifier: CECILL-B
 
 """
@@ -23,7 +23,7 @@ import execo
 from ClusterShell.NodeSet import NodeSet
 
 
-entetes = ['hostname', 'fw_ver', 'board_id']  # french for headers
+entetes = ['hostname', 'fw_ver', 'board_id', 'serial_number']  # french for headers
 outlist = []
 
 
@@ -49,7 +49,9 @@ def main():
         res_fw = ask_node(cmd_fw, node, debug)
         cmd_id = 'ibv_devinfo | grep board_id'
         res_id = ask_node(cmd_id, node, debug)
-        outlist.append([node, res_fw, res_id])
+        cmd_sn = 'lspci -vvv | grep -e "\[SN\] Serial number"'
+        res_sn = ask_node(cmd_sn, node, debug)
+        outlist.append([node, res_fw, res_id, res_sn])
 
     if debug:
         print(outlist)
@@ -92,7 +94,7 @@ def ask_node(cmd, host, debug=False):
         return the second element of stdout, as a str
     """
     process = execo.SshProcess(cmd, host, {'user': 'root'}).run()
-    return str(process.stdout.split()[1])
+    return str(process.stdout.split()[-1])
 
 
 if __name__ == '__main__':
