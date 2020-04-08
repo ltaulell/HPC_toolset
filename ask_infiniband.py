@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # coding: utf-8
 
-# $Id: ask_infiniband.py 2819 2020-02-21 15:01:19Z ltaulell $
+# $Id: ask_infiniband.py 2852 2020-04-08 12:00:55Z ltaulell $
 # SPDX-License-Identifier: CECILL-B
 
 """
@@ -23,7 +23,7 @@ import execo
 from ClusterShell.NodeSet import NodeSet
 
 
-entetes = ['hostname', 'fw_ver', 'board_id', 'serial_number']  # french for headers
+entetes = ['hostname', 'fw_ver', 'board_id', 'serial_number', 'FDR10']  # french for headers
 outlist = []
 
 
@@ -51,7 +51,8 @@ def main():
         res_id = ask_node(cmd_id, node, debug)
         cmd_sn = 'lspci -vvv | grep -e "\[SN\] Serial number"'
         res_sn = ask_node(cmd_sn, node, debug)
-        outlist.append([node, res_fw, res_id, res_sn])
+        res_rate = ask_ibrate(node, debug)
+        outlist.append([node, res_fw, res_id, res_sn, res_rate])
 
     if debug:
         print(outlist)
@@ -94,10 +95,37 @@ def ask_node(cmd, host, debug=False):
         return the last element of stdout, as a str
     """
     process = execo.SshProcess(cmd, host, {'user': 'root'}).run()
-    if process.stdout == "":
-        return "No connection"
+    if process.stdout == '':
+        return 'No connection'
     else:
-        return str(process.stdout.split()[-1])
+        return str(process.stdout.split()[-1])  # last of list
+
+
+def ask_ibrate(host, debug=False):
+    """ same as ask_node(), but filter for IB '40' or '56' only
+
+    builtin cmd: 'ibstat | grep Rate'
+
+    return 'FDR10', 'FDR56' or 'No connection'
+    """
+    cmd = 'ibstat | grep Rate'
+    process = execo.SshProcess(cmd, host, {'user': 'root'}).run()
+    if process.stdout == '':
+        return 'No connection'
+    else:
+        result = False
+        attendu = ['40', 'FDR10']
+        retour = process.stdout.split()
+        # parcours de liste (for i in ... if i in) en intension
+        # for elt in retour:
+            # if elt in attendu:
+                # result = True
+        result = [True for x in retour if str(x) in attendu]
+
+        if result:
+            return '<= FDR10 !!'
+        else:
+            return 'FDR56'
 
 
 if __name__ == '__main__':
