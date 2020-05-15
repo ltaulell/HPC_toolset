@@ -23,4 +23,13 @@ PSMN HPC tools for everyday sysadmin
 build a CSV list, from cluster's nodes, of firmware revisions and PSIDs, when 
 upgrade time as come... Ease the choice of firmware images for download and burn.
 
+### map_GUID.py
+
+Create a 'GUID hostname' map file, for use with Infiniband topological tools.
+
+### add_newhosts
+
+two script used to add batch of hosts to general config(s).
+
+
 ## More to come...
