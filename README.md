@@ -27,6 +27,8 @@ upgrade time as come... Ease the choice of firmware images for download and burn
 
 Create a 'GUID hostname' map file, for use with Infiniband topological tools.
 
+See [https://github.com/cuveland/ibtopviz](https://github.com/cuveland/ibtopviz)
+
 ### add_newhosts
 
 two script used to add batch of hosts to general config(s).

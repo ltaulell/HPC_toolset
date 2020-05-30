@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
 # coding: utf-8
 #
-# $Id: update_to_v0.5.py 1075 2019-07-18 14:45:39Z gruiick $
+# $Id: map_GUID.py 2911 2020-05-30 08:40:24Z ltaulell $
 # SPDX-License-Identifier: BSD-2-Clause
 #
 
 """
-create a "GUID hostname" map
+create a "GUID hostname" map for DOT visualisation
 """
 
 import argparse
@@ -43,6 +43,6 @@ if __name__ == '__main__':
         if process.stdout == '':
             print('No connection {}'.format(node))
         else:
-            # only need short GUID, might redond with awk
-            print('{} {}'.format(process.stdout.split('0x')[-1].strip(), node))
+            # only need short GUID, might be redundant with awk
+            print('H-{} {}'.format(process.stdout.split('0x')[-1].strip(), node))
 
