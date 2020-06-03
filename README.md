@@ -29,6 +29,12 @@ Create a 'GUID hostname' map file, for use with Infiniband topological tools.
 
 See [https://github.com/cuveland/ibtopviz](https://github.com/cuveland/ibtopviz)
 
+### ibmapviz.py
+
+(Rewrite of ibtopviz, with more options, colors, speeds, to suits Boss needs.)
+
+Create a colored infiniband map (graphviz DOT format). Usefull to spot cabling problems. See dedicated README.
+
 ### add_newhosts
 
 two script used to add batch of hosts to general config(s).
