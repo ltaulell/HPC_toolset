@@ -5,6 +5,8 @@ plan couleurs pour InfiniBand
 
 Permet de repérer les câbles défectueux, les erreurs de câblage, etc.
 
+Pré-requis :
+
 .. code-block:: bash
 
     apt install graphviz
@@ -54,11 +56,11 @@ Ce qui donne, exemple :
 fichier de spine (optionnel)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Pour différencier les switches de niveau 0 (ou d'épine dorsale en langue perfide), des switchs de niveau 1.
+Pour différencier les switches de niveau 0 (ou d'épine dorsale en langue perfide), des switchs de niveau 1 (feuilles).
 
 Repérer les GUID de switches, dans le ibtopofile.$cluster, qui ne sont connectés qu'a d'autres switchs.
 
-créer un fichier 'spine.$cluster' qui contient juste les GUID, un par ligne. Exemple :
+Créer un fichier 'spine.$cluster' qui contient juste les GUID, un par ligne. Exemple :
 
 .. code-block:: bash
 
@@ -73,10 +75,10 @@ Génération de la carte infiniband
 
 .. code-block:: bash
 
-    python3 ibmapviz.py [-d, -h] -m map.$cluster -s spine.$cluster -o $cluster.dot ibtopofile.$cluster
+    python3 ibmapviz.py [-d, -h] [-m map.$cluster] [-s spine.$cluster] [-o $cluster.dot] ibtopofile.$cluster
 
 
-"et voilà"
+"Et voilà !"
 
 Visualisation directe avec xdot : ``xdot -f [dot, neato, twopi, circo, fdp] $cluster.dot``
 
