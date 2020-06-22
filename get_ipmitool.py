@@ -1,14 +1,10 @@
 #!/usr/bin/env python3
 # coding: utf-8
 
-# PSMN: $Id: test_ipmitool.py 2933 2020-06-18 13:37:27Z ltaulell $
+# PSMN: $Id: get_ipmitool.py 2938 2020-06-22 07:44:14Z ltaulell $
 # SPDX-License-Identifier: CECILL-B OR BSD-2-Clause
 
-""" use ipmitool to get data from BMC interface 
-
-this is a POC, output to a CSV file, for some metrology
-
-"""
+""" use ipmitool to get data from BMC interface """
 
 # import sys
 import argparse
@@ -59,6 +55,7 @@ if __name__ == '__main__':
     sensors = get_data(args.host[0], args.user[0], args.password[0], debug=debug)
     for ligne in sensors:
         if ligne.split('|')[0] == 'Temp             ':
+            # attention aux réponses vides ou 'na'
             result.append(ligne.split('|')[1].strip())
         if ligne.split('|')[0] == 'Pwr Consumption  ':
             result.append(ligne.split('|')[1].strip())

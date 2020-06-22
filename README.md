@@ -39,5 +39,8 @@ Create a colored infiniband map (graphviz DOT format). Usefull to spot cabling p
 
 two script used to add batch of hosts to general config(s).
 
+### get_ipmitool.py & plot_metrology.py
+
+two scripts to get data from ipmitool, save in CSV file, then plot. Usefull when a node may have problem(s) (T°C, power consumption, memory fault, fans, ...)
 
 ## More to come...
