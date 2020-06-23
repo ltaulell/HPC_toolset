@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # coding: utf-8
 
-# PSMN: $Id: get_ipmitool.py 2940 2020-06-23 11:36:55Z ltaulell $
+# PSMN: $Id: get_ipmitool.py 2941 2020-06-23 11:48:31Z ltaulell $
 # SPDX-License-Identifier: CECILL-B OR BSD-2-Clause
 
 """ POC: use ipmitool to get data from BMC interface
@@ -59,11 +59,11 @@ if __name__ == '__main__':
     for ligne in sensors:
         # we care about first column's value
         clef = ligne.split('|')[0].strip()
-        valeur = ligne.split('|')[1].strip()
 
         # adapt matching to what you want
         # if clef == 'Memory':  # test for 'na'
         if clef == 'Temp':  # original one
+            valeur = ligne.split('|')[1].strip()
             # beware of 'na' values
             if valeur == 'na':
                 result.append(0)
@@ -71,6 +71,7 @@ if __name__ == '__main__':
                 result.append(valeur)
 
         if clef == 'Pwr Consumption':
+            valeur = ligne.split('|')[1].strip()
             if valeur == 'na':
                 result.append(0)
             else:
