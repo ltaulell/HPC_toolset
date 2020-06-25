@@ -1,6 +1,8 @@
 # HPC toolset
 
-PSMN HPC tools for everyday sysadmin
+PSMN HPC tools for everyday sysadmin.
+
+[PSMN](http://www.ens-lyon.fr/PSMN/) is "Pôle Scientifique de Modélisation Numérique", the Computing Center and "MesoCentre" of [École Normale Supérieure de Lyon](http://www.ens-lyon.fr/en/).
 
 ## usefull tools
 
