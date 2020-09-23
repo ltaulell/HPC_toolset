@@ -45,4 +45,8 @@ two script used to add batch of hosts to general config(s).
 
 two scripts to get data from ipmitool, save in CSV file, then plot. Usefull when a node may have problem(s) (T°C, power consumption, memory fault, fans, ...)
 
+### get_serial.py
+
+get serial number from host(s). For maintenance contracts purposes.
+
 ## More to come...
