@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # coding: utf-8
 #
-# $Id: ibmapviz.py 2913 2020-06-02 09:37:05Z ltaulell $
+# $Id: ibmapviz.py 3040 2020-11-16 16:48:18Z ltaulell $
 # SPDX-License-Identifier: BSD-2-Clause
 #
 
@@ -17,6 +17,9 @@ forget graphviz, pydot, pygraphviz or networkx and other *[dot,viz]*-libs:
     None have full & complete DOT format support.
 
 DOT format is not that complicated AND fully-documented, write it 'manually'.
+
+TODO: explain all data structures
+
 """
 
 import argparse
@@ -128,25 +131,36 @@ def read_topology(topology_file, hostmap=None, spinemap=None, debug=None):
                     topology[current_node] = {}
                     topology[current_node]['number_of_ports'] = int(m.groups()[1])
                     topology[current_node]['label'] = m.groups()[3]
+
                     if m.groups()[0] == 'Switch':
                         topology[current_node]['node_type'] = 'switch'
+                        topology[current_node]['label'] = current_node
+
                         if spinemap:
                             # mark if switch is a spine one
                             if current_node in spinemap:
                                 topology[current_node]['switch_type'] = 'spine'
                             else:
-                                topology[current_node]['switch_type'] = ''
-                        # if no spinemap, we still need the empty switch_type
+                                topology[current_node]['switch_type'] = 'leaf'
+                        # if no spinemap, we still need an empty switch_type
                         else:
                                 topology[current_node]['switch_type'] = ''
+
                     else:
                         topology[current_node]['node_type'] = 'hca'
+
                         if hostmap:
                             # if hca in mapfile, use hostname
                             if current_node in hostmap.keys():
                                 hostname = hostmap[current_node]
+                                # keep the HBA model
                                 label = hostname + " " + m.groups()[3].split()[0]
                                 topology[current_node]['label'] = label
+                            else:
+                                topology[current_node]['label'] = current_node
+                        else:
+                            topology[current_node]['label'] = current_node
+
                     topology[current_node]['ports'] = []
 
                 # Read the port lines
@@ -181,7 +195,6 @@ def node_label(label, number_of_ports, debug=None):
     """
     long_string = []
     # name = re.sub(r"[;: ]+", "\\\\n", label)  # LF do not work in HTML-like
-    # TODO: simplify the name
     name = re.sub(r'[;: ]+', ' ', label)
     port_range = range(1, number_of_ports + 1)
     long_string.append('<<TABLE ALIGN="CENTER">')
@@ -256,8 +269,8 @@ def prepare_dot_structure(topology, debug=None):
         attr_str = ''.join([attr_tmp, ', label=', label])
         # append to list:
         dot_structure.extend(['  "', node, '" ', ' [', attr_str, '];\n'])
-        # if debug:
-            # pprint(dot_structure)
+        if debug:
+            pprint(dot_structure)
 
     # spines: minimum rank
     dot_structure.append('{rank="min" ;\n')
