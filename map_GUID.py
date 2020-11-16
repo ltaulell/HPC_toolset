@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # coding: utf-8
 #
-# $Id: map_GUID.py 2911 2020-05-30 08:40:24Z ltaulell $
+# $Id: map_GUID.py 3038 2020-11-16 09:16:19Z ltaulell $
 # SPDX-License-Identifier: BSD-2-Clause
 #
 
@@ -41,7 +41,7 @@ if __name__ == '__main__':
             execo.log.logger.exception('Process error')
             sys.exit(1)
         if process.stdout == '':
-            print('No connection {}'.format(node))
+            print('# No connection {}'.format(node))
         else:
             # only need short GUID, might be redundant with awk
             print('H-{} {}'.format(process.stdout.split('0x')[-1].strip(), node))
