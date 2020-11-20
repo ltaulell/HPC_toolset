@@ -1,32 +1,43 @@
 #!/bin/bash
-# PSMN: $Id: maj_ib_fw.sh 3046 2020-11-20 08:02:51Z ltaulell $
+# PSMN: $Id: maj_ib_fw.sh 3047 2020-11-20 08:41:27Z ltaulell $
+
+# script to mass-update infiniband card firmware
+#
+# depending on your config, you may have to change MAC0 replacement
+# and/or firmware images (FWIMG)
+#
 
 # set's
 set -euo pipefail # strict mode
-set -vx # Trace each command
+#set -vx # Trace each command
 
 BASEPATH="/applis/PSMN/Staff/Maintenance/Mellanox"
 PCI=$(lspci | grep -i ella | awk '{ print $1 }')
 FLINT="${BASEPATH}/mstflint-3.7.0/flint/mstflint"
 GUID=$("${FLINT}" -d "${PCI}" query | grep GUIDs: | awk '{ print $2 }')
 
-cd ${BASEPATH} || { echo "cannot cd to ${BASEPATH}"; exit 1; }
+# shellcheck disable=SC1117
+cd ${BASEPATH} || { echo -e "\nE: cannot cd to ${BASEPATH}"; exit 1; }
 
-# GUID contain '0300' or 'ffff'
+# GUID contain '0300', 'ffff' or 'e0000'
 if [[ "${GUID}" =~ "0300" ]]
 then
+    # shellcheck disable=SC2001
     MAC0=$(echo "${GUID}" | sed -e "s/0300//g")
 
 elif [[ "${GUID}" =~ "ffff" ]]
 then
+    # shellcheck disable=SC2001
     MAC0=$(echo "${GUID}" | sed -e "s/ffff//g")
 
 elif [[ "${GUID}" =~ "e0000" ]]
 then
+    # shellcheck disable=SC2001
     MAC0=$(echo "${GUID}" | sed -e "s/e0000/e/g")
 
 else
-    echo "GUID mismatch !"
+    # shellcheck disable=SC1117
+    echo -e "\nE: GUID mismatch!"
     exit 1
 fi
 
@@ -44,7 +55,8 @@ case "${PSID}" in
     ;;
 
     ISL1090110018 )
-        echo "W: FDR10 card !"
+        # shellcheck disable=SC1117
+        echo -e "\nW: FDR10 card !"
         FWIMG="MT27500/fw-ConnectX3-rel-2_42_5000-MCX354A-QCB_Ax-FlexBoot-3.4.752.bin"
     ;;
 
@@ -53,7 +65,8 @@ case "${PSID}" in
     ;;
 
     * )
-        echo "unrecognized PSID!"
+        # shellcheck disable=SC1117
+        echo -e "\nE: unrecognized PSID!"
         exit 1
     ;;
 
