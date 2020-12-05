@@ -20,10 +20,16 @@ PSMN HPC tools for everyday sysadmin.
 
 ## other tools
 
+These are small scripts and sets of scripts we use on a regular basis.
+
 ### ask_infiniband.py
 
 build a CSV list, from cluster's nodes, of firmware revisions and PSIDs, when 
 upgrade time as come... Ease the choice of firmware images for download and burn.
+
+### maj_ib_fw.sh
+
+flash infiniband firmware, based on PSID.
 
 ### map_GUID.py
 
@@ -35,11 +41,11 @@ See [https://github.com/cuveland/ibtopviz](https://github.com/cuveland/ibtopviz)
 
 (Rewrite of ibtopviz, with more options, colors, speeds, to suits Boss needs.)
 
-Create a colored infiniband map (graphviz DOT format). Usefull to spot cabling problems. See dedicated README.
+Create a colored infiniband map (graphviz DOT format). Usefull to spot cabling problems. See dedicated README (README-[en|fr]-ibmapviz.rst).
 
-### add_newhosts
+### add new hosts
 
-two script used to add batch of hosts to general config(s).
+two script used to add batch of hosts to general config(s). First, use `add_newhosts.py`, then `add-newhosts-03-pxelinks.sh`
 
 ### get_ipmitool.py & plot_metrology.py
 
