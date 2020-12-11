@@ -1,5 +1,5 @@
 #!/bin/bash
-# PSMN: $Id: maj_ib_fw.sh 3047 2020-11-20 08:41:27Z ltaulell $
+# PSMN: $Id: maj_fw_ib_FDR.sh 3121 2020-12-11 09:52:34Z ltaulell $
 
 # script to mass-update infiniband card firmware
 #
