@@ -1,5 +1,5 @@
 #!/bin/bash
-# PSMN: $Id: maj_fw_ib_FDR.sh 3121 2020-12-11 09:52:34Z ltaulell $
+# PSMN: $Id: maj_fw_ib_FDR.sh 3129 2020-12-14 09:01:00Z ltaulell $
 
 # script to mass-update infiniband card firmware
 #
@@ -72,4 +72,5 @@ case "${PSID}" in
 
 esac
 
+echo -e "Processing device: ${PCI}"
 ${FLINT} -d "${PCI}" --allow_psid_change --guid "${GUID}" --mac "${MAC}" -i "${FWIMG}" b
