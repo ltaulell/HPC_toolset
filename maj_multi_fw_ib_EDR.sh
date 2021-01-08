@@ -1,5 +1,5 @@
 #!/bin/bash
-# PSMN: $Id: maj_multi_fw_ib_EDR.sh 3131 2020-12-14 14:00:02Z ltaulell $
+# PSMN: $Id: maj_multi_fw_ib_EDR.sh 3147 2021-01-08 10:45:13Z ltaulell $
 
 # script to mass-update EDR infiniband card firmware
 #
@@ -40,7 +40,7 @@ do
 
     # get latest versions https://www.mellanox.com/support/firmware/connectx4ib
     case "${PSID}" in
-        MT_2190110032 )
+        MT_2190110032 | HP_2190110032 )
             FWIMG="MT27700_EDR/fw-ConnectX4-rel-12_28_2006-MCX456A-ECA_Ax-UEFI-14.21.17-FlexBoot-3.6.102.bin"
         ;;
 
@@ -59,5 +59,5 @@ do
 
     echo -e "Processing device: ${PCI}"
     # ${FLINT} -d "${PCI}" --allow_psid_change --guid "${GUID}" --mac "${MAC}" -i "${FWIMG}" b
-    ${FLINT} -d "${PCI}" -i "${FWIMG}" b
+    ${FLINT} -d "${PCI}" --allow_psid_change -i "${FWIMG}" b
 done
