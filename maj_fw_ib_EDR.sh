@@ -1,5 +1,5 @@
 #!/bin/bash
-# PSMN: $Id: maj_fw_ib_EDR.sh 3148 2021-01-09 13:38:52Z ltaulell $
+# PSMN: $Id: maj_fw_ib_EDR.sh 3149 2021-01-09 13:52:54Z ltaulell $
 
 # script to mass-update EDR infiniband card firmware
 #
@@ -49,4 +49,4 @@ case "${PSID}" in
 esac
 
 echo -e "Processing device: ${PCI}"
-${FLINT} -d "${PCI}" -i "${FWIMG}" b
+${FLINT} -d "${PCI}" --allow_psid_change -i "${FWIMG}" b
