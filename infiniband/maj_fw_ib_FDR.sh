@@ -1,5 +1,5 @@
 #!/bin/bash
-# PSMN: $Id: maj_fw_ib_FDR.sh 3146 2021-01-08 10:42:44Z ltaulell $
+# PSMN: $Id: maj_fw_ib_FDR.sh 3386 2021-09-28 06:57:59Z ltaulell $
 
 # script to mass-update infiniband card firmware
 #
@@ -62,6 +62,10 @@ case "${PSID}" in
 
     DEL1100001019 )
         FWIMG="MT27500/fw-ConnectX3-rel-2_42_5000-079DJ3-FlexBoot-3.4.752.bin"
+    ;;
+
+    DEL0A30000019 )
+        FWIMG="MT27500/fw-ConnectX3-rel-2_42_5000-0T483W-FlexBoot-3.4.752.bin"
     ;;
 
     HP_1370110017 )
