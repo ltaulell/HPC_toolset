@@ -2,7 +2,7 @@
 Génération du topology.conf pour slurm
 ======================================
 
-Permet de générer tout ou partie du fichier ``topology.conf`` pour slurm.
+Permet de générer tout, ou partie, du fichier ``topology.conf`` pour slurm.
 
 Pré-requis :
 
@@ -21,7 +21,7 @@ Sur un noeud de l'arbre infiniband (n'importe lequel).
 
 .. code-block:: bash
 
-    ibnetdiscover > ibtopofile.$cluster
+    ibnetdiscover > $cluster.topofile
 
 
 fichier map hostname (optionnel)
@@ -33,7 +33,7 @@ Sur une machine ayant accés à tous les noeuds du cluster, en ssh (utilise exec
 
 .. code-block:: bash
 
-    python3 map_GUID.py @clusternodes >> map.$cluster
+    python3 map_GUID.py @clusternodes >> $cluster.map
 
 
 Ce qui donne, exemple :
@@ -51,9 +51,9 @@ fichier de spine (optionnel)
 
 Pour différencier les switches de niveau 0 (ou d'épine dorsale en langue perfide), des switchs de niveau 1 (feuilles).
 
-Repérer les GUID de switches, dans le ibtopofile.$cluster, qui ne sont connectés qu'a d'autres switchs.
+Repérer les GUID de switches, dans le fichier '$cluster.topofile', qui ne sont connectés qu'a d'autres switchs.
 
-Créer un fichier 'spine.$cluster' qui contient juste les GUID, un par ligne. Exemple :
+Créer un fichier '$cluster.spine' qui contient seulement les GUID, un par ligne. Exemple :
 
 .. code-block:: bash
 
@@ -66,8 +66,13 @@ Génération des snippets topology.conf
 
 .. code-block:: bash
 
-    python3 ibmap2slurm.py [-d, -h] [-m map.$cluster] [-s spine.$cluster] [-o $file] ibtopofile.$cluster
+    python3 ibmap2slurm.py [-d, -h] [-m $cluster.map] [-s $cluster.spine] [-o $file] $cluster.topofile
 
 "Et voilà !"
 
 Vérifiez et propagez sur vos clusters.
+
+Exemple
+=======
+
+Voir les fichiers 'X5' dans le dépôt (cluster X5 du PSMN).

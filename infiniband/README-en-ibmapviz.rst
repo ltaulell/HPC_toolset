@@ -28,7 +28,7 @@ On a node (server) from the infiniband tree (any of them).
 
 .. code-block:: bash
 
-    ibnetdiscover > ibtopofile.$cluster
+    ibnetdiscover > $cluster.topofile
 
 
 hostname map file (optional)
@@ -40,7 +40,7 @@ On a server with SSH access to all of cluster's nodes (using execo python module
 
 .. code-block:: bash
 
-    python3 map_GUID.py @clusternodes >> map.$cluster
+    python3 map_GUID.py @clusternodes >> $cluster.map
 
 
 Which gives, example:
@@ -58,9 +58,9 @@ spine file (optional)
 
 Level 0 switches (known as 'spine' switchs), to differentiate them from the level 1 (leaf) switchs.
 
-Manually edit ``ibtopofile.$cluster``, search for switches only connected to switches, that's your spines.
+Manually edit ``$cluster.topofile``, search for switches only connected to switches, that's your spines.
 
-Create a file (spine.$cluster, for example), which only contains GUID, one by line. For example:
+Create a file ($cluster.spine, for example), which only contains GUID, one by line. For example:
 
 .. code-block:: bash
 
@@ -75,7 +75,7 @@ Color map generation
 
 .. code-block:: bash
 
-    python3 ibmapviz.py [-d, -h] [-m map.$cluster] [-s spine.$cluster] [-o $cluster.dot] ibtopofile.$cluster
+    python3 ibmapviz.py [-d, -h] [-m $cluster.map] [-s $cluster.spine] [-o $cluster.dot] $cluster.topofile
 
 
 "Et voilà!"
@@ -85,4 +85,9 @@ Direct visualization, with xdot: ``xdot -f [dot, neato, twopi, circo, fdp] $clus
 PDF file generation (often more legiable): ``neato -Goverlap=false -Tpdf $cluster.dot -o $cluster.pdf``
 
 dot, neato, twopi, circo and fdp are graphviz commands. Theses are differents ''placement/routing'' algorithms. They all have their pros and cons. You'll have to try.
+
+Examples
+========
+
+See ``X5`` files in repository (from X5 PSMN's cluster).
 

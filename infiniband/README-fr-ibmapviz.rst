@@ -28,7 +28,7 @@ Sur un noeud de l'arbre infiniband (n'importe lequel).
 
 .. code-block:: bash
 
-    ibnetdiscover > ibtopofile.$cluster
+    ibnetdiscover > $cluster.topofile
 
 
 fichier map hostname (optionnel)
@@ -40,7 +40,7 @@ Sur une machine ayant accés à tous les noeuds du cluster, en ssh (utilise exec
 
 .. code-block:: bash
 
-    python3 map_GUID.py @clusternodes >> map.$cluster
+    python3 map_GUID.py @clusternodes >> $cluster.map
 
 
 Ce qui donne, exemple :
@@ -58,9 +58,9 @@ fichier de spine (optionnel)
 
 Pour différencier les switches de niveau 0 (ou d'épine dorsale en langue perfide), des switchs de niveau 1 (feuilles).
 
-Repérer les GUID de switches, dans le ibtopofile.$cluster, qui ne sont connectés qu'a d'autres switchs.
+Repérer les GUID de switches, dans le $cluster.topofile, qui ne sont connectés qu'a d'autres switchs.
 
-Créer un fichier 'spine.$cluster' qui contient juste les GUID, un par ligne. Exemple :
+Créer un fichier '$cluster.spine' qui contient juste les GUID, un par ligne. Exemple :
 
 .. code-block:: bash
 
@@ -75,7 +75,7 @@ Génération de la carte infiniband
 
 .. code-block:: bash
 
-    python3 ibmapviz.py [-d, -h] [-m map.$cluster] [-s spine.$cluster] [-o $cluster.dot] ibtopofile.$cluster
+    python3 ibmapviz.py [-d, -h] [-m $cluster.map] [-s $cluster.spine] [-o $cluster.dot] $cluster.topofile
 
 
 "Et voilà !"
@@ -86,3 +86,7 @@ Génération d'un fichier pdf (parfois plus lisible) : ``neato -Goverlap=false -
 
 dot, neato, twopi, circo et fdp sont des commandes qui viennent avec graphviz. Ce sont différent algorithmes de ''placement/routage''. Ils ont tous leurs avantages et inconvénients. Faut essayer.
 
+Exemples
+========
+
+Voir les fichiers 'X5' dans le dépôt (cluster X5 du PSMN).

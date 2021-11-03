@@ -1,0 +1,922 @@
+#
+# Topology file: generated on Wed May 13 14:36:33 2020
+#
+# Initiated from node 0002c90300080e84 port 0002c90300080e85
+
+vendid=0x8f1
+devid=0x5a5a
+sysimgguid=0x8f10500200b51
+switchguid=0x8f10500200b50(8f10500200b50)
+Switch	36 "S-0008f10500200b50"		# "Voltaire 4036 - 36 QDR ports switch" enhanced port 0 lid 9 lmc 0
+[1]	"S-0008f10500108c5c"[15]		# "Voltaire 4036 # 4036-8C5C" lid 16 4xQDR
+[2]	"S-0008f10500108c5c"[14]		# "Voltaire 4036 # 4036-8C5C" lid 16 4xQDR
+[3]	"S-0008f10500108c5c"[13]		# "Voltaire 4036 # 4036-8C5C" lid 16 4xQDR
+[4]	"H-003048c749cd0000"[1](3048c749cd0001) 		# "MT25408 ConnectX Mellanox Technologies" lid 72 4xDDR
+[5]	"H-003048c749bb0000"[1](3048c749bb0001) 		# "MT25408 ConnectX Mellanox Technologies" lid 79 4xDDR
+[6]	"H-003048c74abf0000"[1](3048c74abf0001) 		# "MT25408 ConnectX Mellanox Technologies" lid 88 4xDDR
+[7]	"H-003048c748c70000"[1](3048c748c70001) 		# "MT25408 ConnectX Mellanox Technologies" lid 95 4xDDR
+[8]	"H-003048c74ea50000"[1](3048c74ea50001) 		# "MT25408 ConnectX Mellanox Technologies" lid 92 4xDDR
+[9]	"H-003048c74ae20000"[1](3048c74ae20001) 		# "MT25408 ConnectX Mellanox Technologies" lid 100 4xDDR
+[10]	"H-003048c749450000"[1](3048c749450001) 		# "MT25408 ConnectX Mellanox Technologies" lid 101 4xDDR
+[11]	"H-003048c749190000"[1](3048c749190001) 		# "MT25408 ConnectX Mellanox Technologies" lid 82 4xDDR
+[12]	"H-003048c74a320000"[1](3048c74a320001) 		# "MT25408 ConnectX Mellanox Technologies" lid 85 4xDDR
+[13]	"H-003048c74a650000"[1](3048c74a650001) 		# "MT25408 ConnectX Mellanox Technologies" lid 87 4xDDR
+[14]	"H-003048c749000000"[1](3048c749000001) 		# "MT25408 ConnectX Mellanox Technologies" lid 96 4xDDR
+[15]	"H-003048c707c20000"[1](3048c707c20001) 		# "MT25408 ConnectX Mellanox Technologies" lid 99 4xDDR
+[16]	"S-0008f10500108098"[8]		# "Voltaire 4036 - 36 QDR ports switch" lid 20 4xQDR
+[17]	"S-0008f10500108098"[25]		# "Voltaire 4036 - 36 QDR ports switch" lid 20 4xQDR
+[18]	"S-0008f10500108098"[26]		# "Voltaire 4036 - 36 QDR ports switch" lid 20 4xQDR
+[19]	"S-0008f10500108098"[10]		# "Voltaire 4036 - 36 QDR ports switch" lid 20 4xQDR
+[20]	"S-0008f10500108098"[11]		# "Voltaire 4036 - 36 QDR ports switch" lid 20 4xQDR
+[21]	"S-0008f10500108098"[29]		# "Voltaire 4036 - 36 QDR ports switch" lid 20 4xQDR
+[22]	"H-003048c74ed00000"[1](3048c74ed00001) 		# "MT25408 ConnectX Mellanox Technologies" lid 80 4xDDR
+[23]	"H-003048c74a280000"[1](3048c74a280001) 		# "MT25408 ConnectX Mellanox Technologies" lid 84 4xDDR
+[24]	"H-003048c747c60000"[1](3048c747c60001) 		# "MT25408 ConnectX Mellanox Technologies" lid 90 4xDDR
+[26]	"H-003048c748b00000"[1](3048c748b00001) 		# "MT25408 ConnectX Mellanox Technologies" lid 98 4xDDR
+[28]	"H-003048c749820000"[1](3048c749820001) 		# "MT25408 ConnectX Mellanox Technologies" lid 71 4xDDR
+[29]	"H-003048c749ba0000"[1](3048c749ba0001) 		# "MT25408 ConnectX Mellanox Technologies" lid 81 4xDDR
+[30]	"H-003048c74bb20000"[1](3048c74bb20001) 		# "MT25408 ConnectX Mellanox Technologies" lid 91 4xDDR
+[31]	"H-003048c748c60000"[1](3048c748c60001) 		# "MT25408 ConnectX Mellanox Technologies" lid 94 4xDDR
+[32]	"H-003048c707b60000"[1](3048c707b60001) 		# "MT25408 ConnectX Mellanox Technologies" lid 93 4xDDR
+[34]	"S-0008f10500108c5c"[7]		# "Voltaire 4036 # 4036-8C5C" lid 16 4xQDR
+[35]	"S-0008f10500108c5c"[8]		# "Voltaire 4036 # 4036-8C5C" lid 16 4xQDR
+[36]	"S-0008f10500108c5c"[26]		# "Voltaire 4036 # 4036-8C5C" lid 16 4xQDR
+
+vendid=0x2c9
+devid=0xbd36
+sysimgguid=0x2c90200417673
+switchguid=0x2c90200417670(2c90200417670)
+Switch	36 "S-0002c90200417670"		# "Infiniscale-IV Mellanox Technologies" base port 0 lid 18 lmc 0
+[1]	"H-78e7d10300229794"[1](78e7d10300229795) 		# "MT25408 ConnectX Mellanox Technologies" lid 23 4xQDR
+[2]	"H-78e7d1030022977c"[1](78e7d1030022977d) 		# "MT25408 ConnectX Mellanox Technologies" lid 49 4xQDR
+[3]	"H-78e7d10300227e64"[1](78e7d10300227e65) 		# "MT25408 ConnectX Mellanox Technologies" lid 65 4xQDR
+[4]	"H-78e7d1030022a91c"[1](78e7d1030022a91d) 		# "MT25408 ConnectX Mellanox Technologies" lid 59 4xQDR
+[5]	"H-78e7d1030022a954"[1](78e7d1030022a955) 		# "MT25408 ConnectX Mellanox Technologies" lid 55 4xQDR
+[6]	"H-78e7d10300227d14"[1](78e7d10300227d15) 		# "MT25408 ConnectX Mellanox Technologies" lid 63 4xQDR
+[7]	"S-0008f10500108098"[34]		# "Voltaire 4036 - 36 QDR ports switch" lid 20 4xQDR
+[8]	"S-0008f10500108c5c"[35]		# "Voltaire 4036 # 4036-8C5C" lid 16 4xQDR
+[9]	"S-0008f10500108098"[36]		# "Voltaire 4036 - 36 QDR ports switch" lid 20 4xQDR
+[10]	"S-0008f10500108c5c"[36]		# "Voltaire 4036 # 4036-8C5C" lid 16 4xQDR
+[11]	"S-0008f10500108098"[35]		# "Voltaire 4036 - 36 QDR ports switch" lid 20 4xQDR
+[12]	"S-0008f10500108c5c"[34]		# "Voltaire 4036 # 4036-8C5C" lid 16 4xQDR
+[13]	"S-0008f1050010851e"[30]		# "Voltaire 4036 - 36 QDR ports switch" lid 6 4xQDR
+[14]	"S-0008f10500108530"[33]		# "Voltaire 4036 - 36 QDR ports switch" lid 8 4xQDR
+[15]	"S-0008f1050010851e"[29]		# "Voltaire 4036 - 36 QDR ports switch" lid 6 4xQDR
+[16]	"S-0008f10500108530"[31]		# "Voltaire 4036 - 36 QDR ports switch" lid 8 4xQDR
+[17]	"S-0008f1050010851e"[28]		# "Voltaire 4036 - 36 QDR ports switch" lid 6 4xQDR
+[18]	"S-0008f10500108530"[32]		# "Voltaire 4036 - 36 QDR ports switch" lid 8 4xQDR
+[19]	"H-78e7d1030022cb74"[1](78e7d1030022cb75) 		# "MT25408 ConnectX Mellanox Technologies" lid 26 4xQDR
+[20]	"H-78e7d1030022ccb4"[1](78e7d1030022ccb5) 		# "MT25408 ConnectX Mellanox Technologies" lid 53 4xQDR
+[21]	"H-78e7d10300229e94"[1](78e7d10300229e95) 		# "MT25408 ConnectX Mellanox Technologies" lid 69 4xQDR
+[22]	"H-78e7d103002297fc"[1](78e7d103002297fd) 		# "MT25408 ConnectX Mellanox Technologies" lid 40 4xQDR
+[23]	"H-78e7d10300223514"[1](78e7d10300223515) 		# "MT25408 ConnectX Mellanox Technologies" lid 37 4xQDR
+[24]	"H-78e7d103002296ec"[1](78e7d103002296ed) 		# "MT25408 ConnectX Mellanox Technologies" lid 68 4xQDR
+[25]	"H-78e7d10300229634"[1](78e7d10300229635) 		# "MT25408 ConnectX Mellanox Technologies" lid 45 4xQDR
+[26]	"H-78e7d103002296cc"[1](78e7d103002296cd) 		# "MT25408 ConnectX Mellanox Technologies" lid 57 4xQDR
+[27]	"H-78e7d10300228e94"[1](78e7d10300228e95) 		# "MT25408 ConnectX Mellanox Technologies" lid 27 4xQDR
+[28]	"H-78e7d1030022a914"[1](78e7d1030022a915) 		# "MT25408 ConnectX Mellanox Technologies" lid 64 4xQDR
+[29]	"H-78e7d1030022cb84"[1](78e7d1030022cb85) 		# "MT25408 ConnectX Mellanox Technologies" lid 36 4xQDR
+[30]	"H-78e7d1030022a83c"[1](78e7d1030022a83d) 		# "MT25408 ConnectX Mellanox Technologies" lid 25 4xQDR
+[31]	"H-78e7d1030022a0dc"[1](78e7d1030022a0dd) 		# "MT25408 ConnectX Mellanox Technologies" lid 62 4xQDR
+[32]	"H-78e7d1030022964c"[1](78e7d1030022964d) 		# "MT25408 ConnectX Mellanox Technologies" lid 54 4xQDR
+[33]	"H-78e7d1030022805c"[1](78e7d1030022805d) 		# "MT25408 ConnectX Mellanox Technologies" lid 52 4xQDR
+[34]	"H-78e7d10300227744"[1](78e7d10300227745) 		# "MT25408 ConnectX Mellanox Technologies" lid 41 4xQDR
+[35]	"H-78e7d103002276bc"[1](78e7d103002276bd) 		# "MT25408 ConnectX Mellanox Technologies" lid 50 4xQDR
+[36]	"H-78e7d1030022cae4"[1](78e7d1030022cae5) 		# "MT25408 ConnectX Mellanox Technologies" lid 48 4xQDR
+
+vendid=0x8f1
+devid=0x5a5a
+sysimgguid=0x8f105002036b5
+switchguid=0x8f105002036b4(8f105002036b4)
+Switch	36 "S-0008f105002036b4"		# "Voltaire 4036 # hoibp0013" enhanced port 0 lid 10 lmc 0
+[1]	"S-0008f10500108c5c"[21]		# "Voltaire 4036 # 4036-8C5C" lid 16 4xQDR
+[2]	"S-0008f10500108098"[21]		# "Voltaire 4036 - 36 QDR ports switch" lid 20 4xQDR
+[3]	"S-0008f10500108098"[3]		# "Voltaire 4036 - 36 QDR ports switch" lid 20 4xQDR
+[4]	"S-0008f10500108530"[35]		# "Voltaire 4036 - 36 QDR ports switch" lid 8 4xQDR
+[5]	"S-0008f1050010851e"[14]		# "Voltaire 4036 - 36 QDR ports switch" lid 6 4xQDR
+[6]	"S-0008f1050010851e"[13]		# "Voltaire 4036 - 36 QDR ports switch" lid 6 4xQDR
+[7]	"H-78e7d10300229674"[1](78e7d10300229675) 		# "MT25408 ConnectX Mellanox Technologies" lid 29 4xQDR
+[8]	"H-78e7d10300229bfc"[1](78e7d10300229bfd) 		# "MT25408 ConnectX Mellanox Technologies" lid 51 4xQDR
+[9]	"H-78e7d103002297ec"[1](78e7d103002297ed) 		# "MT25408 ConnectX Mellanox Technologies" lid 28 4xQDR
+[10]	"H-78e7d1030022ce2c"[1](78e7d1030022ce2d) 		# "MT25408 ConnectX Mellanox Technologies" lid 15 4xQDR
+[11]	"H-78e7d10300229bcc"[1](78e7d10300229bcd) 		# "MT25408 ConnectX Mellanox Technologies" lid 43 4xQDR
+[12]	"H-78e7d1030022c77c"[1](78e7d1030022c77d) 		# "MT25408 ConnectX Mellanox Technologies" lid 21 4xQDR
+[13]	"H-78e7d10300229724"[1](78e7d10300229725) 		# "MT25408 ConnectX Mellanox Technologies" lid 30 4xQDR
+[14]	"H-78e7d10300229b14"[1](78e7d10300229b15) 		# "MT25408 ConnectX Mellanox Technologies" lid 58 4xQDR
+[15]	"H-78e7d1030022a47c"[1](78e7d1030022a47d) 		# "MT25408 ConnectX Mellanox Technologies" lid 33 4xQDR
+[16]	"H-78e7d1030022a474"[1](78e7d1030022a475) 		# "MT25408 ConnectX Mellanox Technologies" lid 32 4xQDR
+[17]	"H-78e7d1030022c6a4"[1](78e7d1030022c6a5) 		# "MT25408 ConnectX Mellanox Technologies" lid 12 4xQDR
+[18]	"H-78e7d1030022a46c"[1](78e7d1030022a46d) 		# "MT25408 ConnectX Mellanox Technologies" lid 38 4xQDR
+[19]	"S-0008f10500108c5c"[4]		# "Voltaire 4036 # 4036-8C5C" lid 16 4xQDR
+[20]	"S-0008f10500108c5c"[3]		# "Voltaire 4036 # 4036-8C5C" lid 16 4xQDR
+[21]	"S-0008f10500108098"[4]		# "Voltaire 4036 - 36 QDR ports switch" lid 20 4xQDR
+[22]	"S-0008f10500108530"[18]		# "Voltaire 4036 - 36 QDR ports switch" lid 8 4xQDR
+[23]	"S-0008f10500108530"[17]		# "Voltaire 4036 - 36 QDR ports switch" lid 8 4xQDR
+[24]	"S-0008f1050010851e"[15]		# "Voltaire 4036 - 36 QDR ports switch" lid 6 4xQDR
+[25]	"H-78e7d10300229bd4"[1](78e7d10300229bd5) 		# "MT25408 ConnectX Mellanox Technologies" lid 42 4xQDR
+[26]	"H-78e7d1030022c76c"[1](78e7d1030022c76d) 		# "MT25408 ConnectX Mellanox Technologies" lid 56 4xQDR
+[27]	"H-78e7d10300229714"[1](78e7d10300229715) 		# "MT25408 ConnectX Mellanox Technologies" lid 22 4xQDR
+[28]	"H-78e7d1030022972c"[1](78e7d1030022972d) 		# "MT25408 ConnectX Mellanox Technologies" lid 44 4xQDR
+[29]	"H-78e7d1030022971c"[1](78e7d1030022971d) 		# "MT25408 ConnectX Mellanox Technologies" lid 60 4xQDR
+[30]	"H-78e7d10300229c24"[1](78e7d10300229c25) 		# "MT25408 ConnectX Mellanox Technologies" lid 31 4xQDR
+[31]	"H-78e7d103002297f4"[1](78e7d103002297f5) 		# "MT25408 ConnectX Mellanox Technologies" lid 47 4xQDR
+[32]	"H-78e7d10300229694"[1](78e7d10300229695) 		# "MT25408 ConnectX Mellanox Technologies" lid 46 4xQDR
+[33]	"H-78e7d103002301dc"[1](78e7d103002301dd) 		# "MT25408 ConnectX Mellanox Technologies" lid 14 4xQDR
+[34]	"H-78e7d10300229bdc"[1](78e7d10300229bdd) 		# "MT25408 ConnectX Mellanox Technologies" lid 24 4xQDR
+[35]	"H-78e7d10300229be4"[1](78e7d10300229be5) 		# "MT25408 ConnectX Mellanox Technologies" lid 39 4xQDR
+[36]	"H-78e7d1030022c7d4"[1](78e7d1030022c7d5) 		# "MT25408 ConnectX Mellanox Technologies" lid 35 4xQDR
+
+vendid=0x8f1
+devid=0x5a5a
+sysimgguid=0x8f1050020369d
+switchguid=0x8f1050020369c(8f1050020369c)
+Switch	36 "S-0008f1050020369c"		# "Voltaire 4036 # 4036-369C" enhanced port 0 lid 19 lmc 0
+[1]	"S-0008f10500108530"[29]		# "Voltaire 4036 - 36 QDR ports switch" lid 8 4xQDR
+[2]	"S-0008f10500108530"[28]		# "Voltaire 4036 - 36 QDR ports switch" lid 8 4xQDR
+[3]	"S-0008f10500108530"[30]		# "Voltaire 4036 - 36 QDR ports switch" lid 8 4xQDR
+[4]	"S-0008f10500108c5c"[17]		# "Voltaire 4036 # 4036-8C5C" lid 16 4xQDR
+[5]	"S-0008f10500108c5c"[18]		# "Voltaire 4036 # 4036-8C5C" lid 16 4xQDR
+[6]	"S-0008f10500108c5c"[16]		# "Voltaire 4036 # 4036-8C5C" lid 16 4xQDR
+[15]	"H-78e7d1030022804c"[1](78e7d1030022804d) 		# "MT25408 ConnectX Mellanox Technologies" lid 66 4xQDR
+[18]	"H-78e7d1030022cc4c"[1](78e7d1030022cc4d) 		# "MT25408 ConnectX Mellanox Technologies" lid 34 4xQDR
+[19]	"S-0008f1050010851e"[12]		# "Voltaire 4036 - 36 QDR ports switch" lid 6 4xQDR
+[20]	"S-0008f1050010851e"[11]		# "Voltaire 4036 - 36 QDR ports switch" lid 6 4xQDR
+[21]	"S-0008f1050010851e"[10]		# "Voltaire 4036 - 36 QDR ports switch" lid 6 4xQDR
+[22]	"S-0008f10500108098"[16]		# "Voltaire 4036 - 36 QDR ports switch" lid 20 4xQDR
+[23]	"S-0008f10500108098"[18]		# "Voltaire 4036 - 36 QDR ports switch" lid 20 4xQDR
+[24]	"S-0008f10500108098"[17]		# "Voltaire 4036 - 36 QDR ports switch" lid 20 4xQDR
+[33]	"H-78e7d10300228ce4"[1](78e7d10300228ce5) 		# "MT25408 ConnectX Mellanox Technologies" lid 61 4xQDR
+[34]	"H-78e7d1030024535c"[1](78e7d1030024535d) 		# "MT25408 ConnectX Mellanox Technologies" lid 67 4xQDR
+[36]	"H-78e7d1030022773c"[1](78e7d1030022773d) 		# "MT25408 ConnectX Mellanox Technologies" lid 70 4xQDR
+
+vendid=0x8f1
+devid=0x5a5a
+sysimgguid=0x8f105001086a3
+switchguid=0x8f105001086a2(8f105001086a2)
+Switch	36 "S-0008f105001086a2"		# "Voltaire 4036 # 4036-86A2" enhanced port 0 lid 11 lmc 0
+[1]	"S-0008f10500108530"[6]		# "Voltaire 4036 - 36 QDR ports switch" lid 8 4xQDR
+[2]	"S-0008f10500108530"[4]		# "Voltaire 4036 - 36 QDR ports switch" lid 8 4xQDR
+[3]	"S-0008f10500108530"[5]		# "Voltaire 4036 - 36 QDR ports switch" lid 8 4xQDR
+[19]	"S-0008f1050010851e"[4]		# "Voltaire 4036 - 36 QDR ports switch" lid 6 4xQDR
+[20]	"S-0008f1050010851e"[6]		# "Voltaire 4036 - 36 QDR ports switch" lid 6 4xQDR
+[21]	"S-0008f1050010851e"[5]		# "Voltaire 4036 - 36 QDR ports switch" lid 6 4xQDR
+
+vendid=0x2c9
+devid=0xbd36
+sysimgguid=0x2c902004827b3
+switchguid=0x2c902004827b0(2c902004827b0)
+Switch	36 "S-0002c902004827b0"		# "Infiniscale-IV Mellanox Technologies" base port 0 lid 13 lmc 0
+[1]	"S-0008f1050010851e"[1]		# "Voltaire 4036 - 36 QDR ports switch" lid 6 4xQDR
+[2]	"S-0008f10500108530"[2]		# "Voltaire 4036 - 36 QDR ports switch" lid 8 4xQDR
+[3]	"S-0008f1050010851e"[3]		# "Voltaire 4036 - 36 QDR ports switch" lid 6 4xQDR
+[4]	"S-0008f10500108530"[3]		# "Voltaire 4036 - 36 QDR ports switch" lid 8 4xQDR
+[5]	"S-0008f1050010851e"[2]		# "Voltaire 4036 - 36 QDR ports switch" lid 6 4xQDR
+[6]	"S-0008f10500108530"[1]		# "Voltaire 4036 - 36 QDR ports switch" lid 8 4xQDR
+[7]	"H-0002c90300048288"[1](2c90300048289) 		# "MT25408 ConnectX Mellanox Technologies" lid 75 4xQDR
+[8]	"H-0002c903000482d4"[1](2c903000482d5) 		# "MT25408 ConnectX Mellanox Technologies" lid 73 4xQDR
+[9]	"H-0002c9030004829c"[1](2c9030004829d) 		# "MT25408 ConnectX Mellanox Technologies" lid 78 4xQDR
+[10]	"H-0002c90300048208"[1](2c90300048209) 		# "MT25408 ConnectX Mellanox Technologies" lid 83 4xQDR
+[13]	"H-0002c90300048eba"[1](2c90300048ebb) 		# "MT25408 ConnectX Mellanox Technologies" lid 97 4xQDR
+[14]	"H-0002c903000482cc"[1](2c903000482cd) 		# "MT25408 ConnectX Mellanox Technologies" lid 77 4xQDR
+[23]	"H-0002c9030004823c"[1](2c9030004823d) 		# "MT25408 ConnectX Mellanox Technologies" lid 102 4xQDR
+[24]	"H-0002c903000482f8"[1](2c903000482f9) 		# "MT25408 ConnectX Mellanox Technologies" lid 76 4xQDR
+[26]	"H-0002c90300048248"[1](2c90300048249) 		# "MT25408 ConnectX Mellanox Technologies" lid 86 4xQDR
+[31]	"S-0008f10500108c5c"[33]		# "Voltaire 4036 # 4036-8C5C" lid 16 4xQDR
+[32]	"S-0008f10500108098"[27]		# "Voltaire 4036 - 36 QDR ports switch" lid 20 4xQDR
+[33]	"S-0008f10500108c5c"[31]		# "Voltaire 4036 # 4036-8C5C" lid 16 4xQDR
+[34]	"S-0008f10500108098"[9]		# "Voltaire 4036 - 36 QDR ports switch" lid 20 4xQDR
+[35]	"S-0008f10500108c5c"[32]		# "Voltaire 4036 # 4036-8C5C" lid 16 4xQDR
+[36]	"S-0008f10500108098"[28]		# "Voltaire 4036 - 36 QDR ports switch" lid 20 4xQDR
+
+vendid=0x8f1
+devid=0x5a5a
+sysimgguid=0x8f10500108099
+switchguid=0x8f10500108098(8f10500108098)
+Switch	36 "S-0008f10500108098"		# "Voltaire 4036 - 36 QDR ports switch" enhanced port 0 lid 20 lmc 0
+[3]	"S-0008f105002036b4"[3]		# "Voltaire 4036 # hoibp0013" lid 10 4xQDR
+[4]	"S-0008f105002036b4"[21]		# "Voltaire 4036 # hoibp0013" lid 10 4xQDR
+[8]	"S-0008f10500200b50"[16]		# "Voltaire 4036 - 36 QDR ports switch" lid 9 4xQDR
+[9]	"S-0002c902004827b0"[34]		# "Infiniscale-IV Mellanox Technologies" lid 13 4xQDR
+[10]	"S-0008f10500200b50"[19]		# "Voltaire 4036 - 36 QDR ports switch" lid 9 4xQDR
+[11]	"S-0008f10500200b50"[20]		# "Voltaire 4036 - 36 QDR ports switch" lid 9 4xQDR
+[16]	"S-0008f1050020369c"[22]		# "Voltaire 4036 # 4036-369C" lid 19 4xQDR
+[17]	"S-0008f1050020369c"[24]		# "Voltaire 4036 # 4036-369C" lid 19 4xQDR
+[18]	"S-0008f1050020369c"[23]		# "Voltaire 4036 # 4036-369C" lid 19 4xQDR
+[19]	"S-0008f10500108bba"[33]		# "Voltaire 4036 # 4036-8BBA" lid 7 4xQDR
+[21]	"S-0008f105002036b4"[2]		# "Voltaire 4036 # hoibp0013" lid 10 4xQDR
+[25]	"S-0008f10500200b50"[17]		# "Voltaire 4036 - 36 QDR ports switch" lid 9 4xQDR
+[26]	"S-0008f10500200b50"[18]		# "Voltaire 4036 - 36 QDR ports switch" lid 9 4xQDR
+[27]	"S-0002c902004827b0"[32]		# "Infiniscale-IV Mellanox Technologies" lid 13 4xQDR
+[28]	"S-0002c902004827b0"[36]		# "Infiniscale-IV Mellanox Technologies" lid 13 4xQDR
+[29]	"S-0008f10500200b50"[21]		# "Voltaire 4036 - 36 QDR ports switch" lid 9 4xQDR
+[34]	"S-0002c90200417670"[7]		# "Infiniscale-IV Mellanox Technologies" lid 18 4xQDR
+[35]	"S-0002c90200417670"[11]		# "Infiniscale-IV Mellanox Technologies" lid 18 4xQDR
+[36]	"S-0002c90200417670"[9]		# "Infiniscale-IV Mellanox Technologies" lid 18 4xQDR
+
+vendid=0x8f1
+devid=0x5a5a
+sysimgguid=0x8f10500108c5d
+switchguid=0x8f10500108c5c(8f10500108c5c)
+Switch	36 "S-0008f10500108c5c"		# "Voltaire 4036 # 4036-8C5C" enhanced port 0 lid 16 lmc 0
+[3]	"S-0008f105002036b4"[20]		# "Voltaire 4036 # hoibp0013" lid 10 4xQDR
+[4]	"S-0008f105002036b4"[19]		# "Voltaire 4036 # hoibp0013" lid 10 4xQDR
+[7]	"S-0008f10500200b50"[34]		# "Voltaire 4036 - 36 QDR ports switch" lid 9 4xQDR
+[8]	"S-0008f10500200b50"[35]		# "Voltaire 4036 - 36 QDR ports switch" lid 9 4xQDR
+[13]	"S-0008f10500200b50"[3]		# "Voltaire 4036 - 36 QDR ports switch" lid 9 4xQDR
+[14]	"S-0008f10500200b50"[2]		# "Voltaire 4036 - 36 QDR ports switch" lid 9 4xQDR
+[15]	"S-0008f10500200b50"[1]		# "Voltaire 4036 - 36 QDR ports switch" lid 9 4xQDR
+[16]	"S-0008f1050020369c"[6]		# "Voltaire 4036 # 4036-369C" lid 19 4xQDR
+[17]	"S-0008f1050020369c"[4]		# "Voltaire 4036 # 4036-369C" lid 19 4xQDR
+[18]	"S-0008f1050020369c"[5]		# "Voltaire 4036 # 4036-369C" lid 19 4xQDR
+[19]	"S-0008f10500108bba"[32]		# "Voltaire 4036 # 4036-8BBA" lid 7 4xQDR
+[21]	"S-0008f105002036b4"[1]		# "Voltaire 4036 # hoibp0013" lid 10 4xQDR
+[26]	"S-0008f10500200b50"[36]		# "Voltaire 4036 - 36 QDR ports switch" lid 9 4xQDR
+[31]	"S-0002c902004827b0"[33]		# "Infiniscale-IV Mellanox Technologies" lid 13 4xQDR
+[32]	"S-0002c902004827b0"[35]		# "Infiniscale-IV Mellanox Technologies" lid 13 4xQDR
+[33]	"S-0002c902004827b0"[31]		# "Infiniscale-IV Mellanox Technologies" lid 13 4xQDR
+[34]	"S-0002c90200417670"[12]		# "Infiniscale-IV Mellanox Technologies" lid 18 4xQDR
+[35]	"S-0002c90200417670"[8]		# "Infiniscale-IV Mellanox Technologies" lid 18 4xQDR
+[36]	"S-0002c90200417670"[10]		# "Infiniscale-IV Mellanox Technologies" lid 18 4xQDR
+
+vendid=0x8f1
+devid=0x5a5a
+sysimgguid=0x8f10500108531
+switchguid=0x8f10500108530(8f10500108530)
+Switch	36 "S-0008f10500108530"		# "Voltaire 4036 - 36 QDR ports switch" enhanced port 0 lid 8 lmc 0
+[1]	"S-0002c902004827b0"[6]		# "Infiniscale-IV Mellanox Technologies" lid 13 4xQDR
+[2]	"S-0002c902004827b0"[2]		# "Infiniscale-IV Mellanox Technologies" lid 13 4xQDR
+[3]	"S-0002c902004827b0"[4]		# "Infiniscale-IV Mellanox Technologies" lid 13 4xQDR
+[4]	"S-0008f105001086a2"[2]		# "Voltaire 4036 # 4036-86A2" lid 11 4xQDR
+[5]	"S-0008f105001086a2"[3]		# "Voltaire 4036 # 4036-86A2" lid 11 4xQDR
+[6]	"S-0008f105001086a2"[1]		# "Voltaire 4036 # 4036-86A2" lid 11 4xQDR
+[17]	"S-0008f105002036b4"[23]		# "Voltaire 4036 # hoibp0013" lid 10 4xQDR
+[18]	"S-0008f105002036b4"[22]		# "Voltaire 4036 # hoibp0013" lid 10 4xQDR
+[28]	"S-0008f1050020369c"[2]		# "Voltaire 4036 # 4036-369C" lid 19 4xQDR
+[29]	"S-0008f1050020369c"[1]		# "Voltaire 4036 # 4036-369C" lid 19 4xQDR
+[30]	"S-0008f1050020369c"[3]		# "Voltaire 4036 # 4036-369C" lid 19 4xQDR
+[31]	"S-0002c90200417670"[16]		# "Infiniscale-IV Mellanox Technologies" lid 18 4xQDR
+[32]	"S-0002c90200417670"[18]		# "Infiniscale-IV Mellanox Technologies" lid 18 4xQDR
+[33]	"S-0002c90200417670"[14]		# "Infiniscale-IV Mellanox Technologies" lid 18 4xQDR
+[35]	"S-0008f105002036b4"[4]		# "Voltaire 4036 # hoibp0013" lid 10 4xQDR
+[36]	"S-0008f10500108bba"[14]		# "Voltaire 4036 # 4036-8BBA" lid 7 4xQDR
+
+vendid=0x8f1
+devid=0x5a5a
+sysimgguid=0x8f1050010851f
+switchguid=0x8f1050010851e(8f1050010851e)
+Switch	36 "S-0008f1050010851e"		# "Voltaire 4036 - 36 QDR ports switch" enhanced port 0 lid 6 lmc 0
+[1]	"S-0002c902004827b0"[1]		# "Infiniscale-IV Mellanox Technologies" lid 13 4xQDR
+[2]	"S-0002c902004827b0"[5]		# "Infiniscale-IV Mellanox Technologies" lid 13 4xQDR
+[3]	"S-0002c902004827b0"[3]		# "Infiniscale-IV Mellanox Technologies" lid 13 4xQDR
+[4]	"S-0008f105001086a2"[19]		# "Voltaire 4036 # 4036-86A2" lid 11 4xQDR
+[5]	"S-0008f105001086a2"[21]		# "Voltaire 4036 # 4036-86A2" lid 11 4xQDR
+[6]	"S-0008f105001086a2"[20]		# "Voltaire 4036 # 4036-86A2" lid 11 4xQDR
+[10]	"S-0008f1050020369c"[21]		# "Voltaire 4036 # 4036-369C" lid 19 4xQDR
+[11]	"S-0008f1050020369c"[20]		# "Voltaire 4036 # 4036-369C" lid 19 4xQDR
+[12]	"S-0008f1050020369c"[19]		# "Voltaire 4036 # 4036-369C" lid 19 4xQDR
+[13]	"S-0008f105002036b4"[6]		# "Voltaire 4036 # hoibp0013" lid 10 4xQDR
+[14]	"S-0008f105002036b4"[5]		# "Voltaire 4036 # hoibp0013" lid 10 4xQDR
+[15]	"S-0008f105002036b4"[24]		# "Voltaire 4036 # hoibp0013" lid 10 4xQDR
+[28]	"S-0002c90200417670"[17]		# "Infiniscale-IV Mellanox Technologies" lid 18 4xQDR
+[29]	"S-0002c90200417670"[15]		# "Infiniscale-IV Mellanox Technologies" lid 18 4xQDR
+[30]	"S-0002c90200417670"[13]		# "Infiniscale-IV Mellanox Technologies" lid 18 4xQDR
+[36]	"S-0008f10500108bba"[13]		# "Voltaire 4036 # 4036-8BBA" lid 7 4xQDR
+
+vendid=0x8f1
+devid=0x5a5a
+sysimgguid=0x8f10500108bbb
+switchguid=0x8f10500108bba(8f10500108bba)
+Switch	36 "S-0008f10500108bba"		# "Voltaire 4036 # 4036-8BBA" enhanced port 0 lid 7 lmc 0
+[9]	"H-0002c90300080d58"[1](2c90300080d59) 		# "MT25408 ConnectX Mellanox Technologies" lid 1 4xQDR
+[10]	"H-0002c90300080d3c"[1](2c90300080d3d) 		# "MT25408 ConnectX Mellanox Technologies" lid 5 4xQDR
+[11]	"H-003048c74e4a0000"[1](3048c74e4a0001) 		# "MT25408 ConnectX Mellanox Technologies" lid 2 4xDDR
+[13]	"S-0008f1050010851e"[36]		# "Voltaire 4036 - 36 QDR ports switch" lid 6 4xQDR
+[14]	"S-0008f10500108530"[36]		# "Voltaire 4036 - 36 QDR ports switch" lid 8 4xQDR
+[27]	"H-0002c90300080e84"[1](2c90300080e85) 		# "MT25408 ConnectX Mellanox Technologies" lid 17 4xQDR
+[28]	"H-0002c90300080d28"[1](2c90300080d29) 		# "MT25408 ConnectX Mellanox Technologies" lid 4 4xQDR
+[29]	"H-003048c7488b0000"[1](3048c7488b0001) 		# "MT25408 ConnectX Mellanox Technologies" lid 3 4xDDR
+[32]	"S-0008f10500108c5c"[19]		# "Voltaire 4036 # 4036-8C5C" lid 16 4xQDR
+[33]	"S-0008f10500108098"[19]		# "Voltaire 4036 - 36 QDR ports switch" lid 20 4xQDR
+
+vendid=0x2c9
+devid=0x6732
+sysimgguid=0x3048c707b60003
+caguid=0x3048c707b60000
+Ca	1 "H-003048c707b60000"		# "MT25408 ConnectX Mellanox Technologies"
+[1](3048c707b60001) 	"S-0008f10500200b50"[32]		# lid 93 lmc 0 "Voltaire 4036 - 36 QDR ports switch" lid 9 4xDDR
+
+vendid=0x2c9
+devid=0x6732
+sysimgguid=0x3048c748c60003
+caguid=0x3048c748c60000
+Ca	1 "H-003048c748c60000"		# "MT25408 ConnectX Mellanox Technologies"
+[1](3048c748c60001) 	"S-0008f10500200b50"[31]		# lid 94 lmc 0 "Voltaire 4036 - 36 QDR ports switch" lid 9 4xDDR
+
+vendid=0x2c9
+devid=0x6732
+sysimgguid=0x3048c74bb20003
+caguid=0x3048c74bb20000
+Ca	1 "H-003048c74bb20000"		# "MT25408 ConnectX Mellanox Technologies"
+[1](3048c74bb20001) 	"S-0008f10500200b50"[30]		# lid 91 lmc 0 "Voltaire 4036 - 36 QDR ports switch" lid 9 4xDDR
+
+vendid=0x2c9
+devid=0x6732
+sysimgguid=0x3048c749820003
+caguid=0x3048c749820000
+Ca	1 "H-003048c749820000"		# "MT25408 ConnectX Mellanox Technologies"
+[1](3048c749820001) 	"S-0008f10500200b50"[28]		# lid 71 lmc 0 "Voltaire 4036 - 36 QDR ports switch" lid 9 4xDDR
+
+vendid=0x2c9
+devid=0x6732
+sysimgguid=0x3048c749ba0003
+caguid=0x3048c749ba0000
+Ca	1 "H-003048c749ba0000"		# "MT25408 ConnectX Mellanox Technologies"
+[1](3048c749ba0001) 	"S-0008f10500200b50"[29]		# lid 81 lmc 0 "Voltaire 4036 - 36 QDR ports switch" lid 9 4xDDR
+
+vendid=0x2c9
+devid=0x6732
+sysimgguid=0x3048c748b00003
+caguid=0x3048c748b00000
+Ca	1 "H-003048c748b00000"		# "MT25408 ConnectX Mellanox Technologies"
+[1](3048c748b00001) 	"S-0008f10500200b50"[26]		# lid 98 lmc 0 "Voltaire 4036 - 36 QDR ports switch" lid 9 4xDDR
+
+vendid=0x2c9
+devid=0x6732
+sysimgguid=0x3048c747c60003
+caguid=0x3048c747c60000
+Ca	1 "H-003048c747c60000"		# "MT25408 ConnectX Mellanox Technologies"
+[1](3048c747c60001) 	"S-0008f10500200b50"[24]		# lid 90 lmc 0 "Voltaire 4036 - 36 QDR ports switch" lid 9 4xDDR
+
+vendid=0x2c9
+devid=0x6732
+sysimgguid=0x3048c74a280003
+caguid=0x3048c74a280000
+Ca	1 "H-003048c74a280000"		# "MT25408 ConnectX Mellanox Technologies"
+[1](3048c74a280001) 	"S-0008f10500200b50"[23]		# lid 84 lmc 0 "Voltaire 4036 - 36 QDR ports switch" lid 9 4xDDR
+
+vendid=0x2c9
+devid=0x6732
+sysimgguid=0x3048c74ed00003
+caguid=0x3048c74ed00000
+Ca	1 "H-003048c74ed00000"		# "MT25408 ConnectX Mellanox Technologies"
+[1](3048c74ed00001) 	"S-0008f10500200b50"[22]		# lid 80 lmc 0 "Voltaire 4036 - 36 QDR ports switch" lid 9 4xDDR
+
+vendid=0x2c9
+devid=0x6732
+sysimgguid=0x3048c707c20003
+caguid=0x3048c707c20000
+Ca	1 "H-003048c707c20000"		# "MT25408 ConnectX Mellanox Technologies"
+[1](3048c707c20001) 	"S-0008f10500200b50"[15]		# lid 99 lmc 0 "Voltaire 4036 - 36 QDR ports switch" lid 9 4xDDR
+
+vendid=0x2c9
+devid=0x6732
+sysimgguid=0x3048c749000003
+caguid=0x3048c749000000
+Ca	1 "H-003048c749000000"		# "MT25408 ConnectX Mellanox Technologies"
+[1](3048c749000001) 	"S-0008f10500200b50"[14]		# lid 96 lmc 0 "Voltaire 4036 - 36 QDR ports switch" lid 9 4xDDR
+
+vendid=0x2c9
+devid=0x6732
+sysimgguid=0x3048c74a650003
+caguid=0x3048c74a650000
+Ca	1 "H-003048c74a650000"		# "MT25408 ConnectX Mellanox Technologies"
+[1](3048c74a650001) 	"S-0008f10500200b50"[13]		# lid 87 lmc 0 "Voltaire 4036 - 36 QDR ports switch" lid 9 4xDDR
+
+vendid=0x2c9
+devid=0x6732
+sysimgguid=0x3048c74a320003
+caguid=0x3048c74a320000
+Ca	1 "H-003048c74a320000"		# "MT25408 ConnectX Mellanox Technologies"
+[1](3048c74a320001) 	"S-0008f10500200b50"[12]		# lid 85 lmc 0 "Voltaire 4036 - 36 QDR ports switch" lid 9 4xDDR
+
+vendid=0x2c9
+devid=0x6732
+sysimgguid=0x3048c749190003
+caguid=0x3048c749190000
+Ca	1 "H-003048c749190000"		# "MT25408 ConnectX Mellanox Technologies"
+[1](3048c749190001) 	"S-0008f10500200b50"[11]		# lid 82 lmc 0 "Voltaire 4036 - 36 QDR ports switch" lid 9 4xDDR
+
+vendid=0x2c9
+devid=0x6732
+sysimgguid=0x3048c749450003
+caguid=0x3048c749450000
+Ca	1 "H-003048c749450000"		# "MT25408 ConnectX Mellanox Technologies"
+[1](3048c749450001) 	"S-0008f10500200b50"[10]		# lid 101 lmc 0 "Voltaire 4036 - 36 QDR ports switch" lid 9 4xDDR
+
+vendid=0x2c9
+devid=0x6732
+sysimgguid=0x3048c74ae20003
+caguid=0x3048c74ae20000
+Ca	1 "H-003048c74ae20000"		# "MT25408 ConnectX Mellanox Technologies"
+[1](3048c74ae20001) 	"S-0008f10500200b50"[9]		# lid 100 lmc 0 "Voltaire 4036 - 36 QDR ports switch" lid 9 4xDDR
+
+vendid=0x2c9
+devid=0x6732
+sysimgguid=0x3048c74ea50003
+caguid=0x3048c74ea50000
+Ca	1 "H-003048c74ea50000"		# "MT25408 ConnectX Mellanox Technologies"
+[1](3048c74ea50001) 	"S-0008f10500200b50"[8]		# lid 92 lmc 0 "Voltaire 4036 - 36 QDR ports switch" lid 9 4xDDR
+
+vendid=0x2c9
+devid=0x6732
+sysimgguid=0x3048c748c70003
+caguid=0x3048c748c70000
+Ca	1 "H-003048c748c70000"		# "MT25408 ConnectX Mellanox Technologies"
+[1](3048c748c70001) 	"S-0008f10500200b50"[7]		# lid 95 lmc 0 "Voltaire 4036 - 36 QDR ports switch" lid 9 4xDDR
+
+vendid=0x2c9
+devid=0x6732
+sysimgguid=0x3048c74abf0003
+caguid=0x3048c74abf0000
+Ca	1 "H-003048c74abf0000"		# "MT25408 ConnectX Mellanox Technologies"
+[1](3048c74abf0001) 	"S-0008f10500200b50"[6]		# lid 88 lmc 0 "Voltaire 4036 - 36 QDR ports switch" lid 9 4xDDR
+
+vendid=0x2c9
+devid=0x6732
+sysimgguid=0x3048c749bb0003
+caguid=0x3048c749bb0000
+Ca	1 "H-003048c749bb0000"		# "MT25408 ConnectX Mellanox Technologies"
+[1](3048c749bb0001) 	"S-0008f10500200b50"[5]		# lid 79 lmc 0 "Voltaire 4036 - 36 QDR ports switch" lid 9 4xDDR
+
+vendid=0x2c9
+devid=0x6732
+sysimgguid=0x3048c749cd0003
+caguid=0x3048c749cd0000
+Ca	1 "H-003048c749cd0000"		# "MT25408 ConnectX Mellanox Technologies"
+[1](3048c749cd0001) 	"S-0008f10500200b50"[4]		# lid 72 lmc 0 "Voltaire 4036 - 36 QDR ports switch" lid 9 4xDDR
+
+vendid=0x2c9
+devid=0x6746
+sysimgguid=0x78e7d1030022cae7
+caguid=0x78e7d1030022cae4
+Ca	1 "H-78e7d1030022cae4"		# "MT25408 ConnectX Mellanox Technologies"
+[1](78e7d1030022cae5) 	"S-0002c90200417670"[36]		# lid 48 lmc 0 "Infiniscale-IV Mellanox Technologies" lid 18 4xQDR
+
+vendid=0x2c9
+devid=0x6746
+sysimgguid=0x78e7d103002276bf
+caguid=0x78e7d103002276bc
+Ca	1 "H-78e7d103002276bc"		# "MT25408 ConnectX Mellanox Technologies"
+[1](78e7d103002276bd) 	"S-0002c90200417670"[35]		# lid 50 lmc 0 "Infiniscale-IV Mellanox Technologies" lid 18 4xQDR
+
+vendid=0x2c9
+devid=0x6746
+sysimgguid=0x78e7d10300227747
+caguid=0x78e7d10300227744
+Ca	1 "H-78e7d10300227744"		# "MT25408 ConnectX Mellanox Technologies"
+[1](78e7d10300227745) 	"S-0002c90200417670"[34]		# lid 41 lmc 0 "Infiniscale-IV Mellanox Technologies" lid 18 4xQDR
+
+vendid=0x2c9
+devid=0x6746
+sysimgguid=0x78e7d1030022a0df
+caguid=0x78e7d1030022a0dc
+Ca	1 "H-78e7d1030022a0dc"		# "MT25408 ConnectX Mellanox Technologies"
+[1](78e7d1030022a0dd) 	"S-0002c90200417670"[31]		# lid 62 lmc 0 "Infiniscale-IV Mellanox Technologies" lid 18 4xQDR
+
+vendid=0x2c9
+devid=0x6746
+sysimgguid=0x78e7d1030022805f
+caguid=0x78e7d1030022805c
+Ca	1 "H-78e7d1030022805c"		# "MT25408 ConnectX Mellanox Technologies"
+[1](78e7d1030022805d) 	"S-0002c90200417670"[33]		# lid 52 lmc 0 "Infiniscale-IV Mellanox Technologies" lid 18 4xQDR
+
+vendid=0x2c9
+devid=0x6746
+sysimgguid=0x78e7d1030022964f
+caguid=0x78e7d1030022964c
+Ca	1 "H-78e7d1030022964c"		# "MT25408 ConnectX Mellanox Technologies"
+[1](78e7d1030022964d) 	"S-0002c90200417670"[32]		# lid 54 lmc 0 "Infiniscale-IV Mellanox Technologies" lid 18 4xQDR
+
+vendid=0x2c9
+devid=0x6746
+sysimgguid=0x78e7d1030022a83f
+caguid=0x78e7d1030022a83c
+Ca	1 "H-78e7d1030022a83c"		# "MT25408 ConnectX Mellanox Technologies"
+[1](78e7d1030022a83d) 	"S-0002c90200417670"[30]		# lid 25 lmc 0 "Infiniscale-IV Mellanox Technologies" lid 18 4xQDR
+
+vendid=0x2c9
+devid=0x6746
+sysimgguid=0x78e7d1030022cb87
+caguid=0x78e7d1030022cb84
+Ca	1 "H-78e7d1030022cb84"		# "MT25408 ConnectX Mellanox Technologies"
+[1](78e7d1030022cb85) 	"S-0002c90200417670"[29]		# lid 36 lmc 0 "Infiniscale-IV Mellanox Technologies" lid 18 4xQDR
+
+vendid=0x2c9
+devid=0x6746
+sysimgguid=0x78e7d1030022a917
+caguid=0x78e7d1030022a914
+Ca	1 "H-78e7d1030022a914"		# "MT25408 ConnectX Mellanox Technologies"
+[1](78e7d1030022a915) 	"S-0002c90200417670"[28]		# lid 64 lmc 0 "Infiniscale-IV Mellanox Technologies" lid 18 4xQDR
+
+vendid=0x2c9
+devid=0x6746
+sysimgguid=0x78e7d10300228e97
+caguid=0x78e7d10300228e94
+Ca	1 "H-78e7d10300228e94"		# "MT25408 ConnectX Mellanox Technologies"
+[1](78e7d10300228e95) 	"S-0002c90200417670"[27]		# lid 27 lmc 0 "Infiniscale-IV Mellanox Technologies" lid 18 4xQDR
+
+vendid=0x2c9
+devid=0x6746
+sysimgguid=0x78e7d103002296cf
+caguid=0x78e7d103002296cc
+Ca	1 "H-78e7d103002296cc"		# "MT25408 ConnectX Mellanox Technologies"
+[1](78e7d103002296cd) 	"S-0002c90200417670"[26]		# lid 57 lmc 0 "Infiniscale-IV Mellanox Technologies" lid 18 4xQDR
+
+vendid=0x2c9
+devid=0x6746
+sysimgguid=0x78e7d10300229637
+caguid=0x78e7d10300229634
+Ca	1 "H-78e7d10300229634"		# "MT25408 ConnectX Mellanox Technologies"
+[1](78e7d10300229635) 	"S-0002c90200417670"[25]		# lid 45 lmc 0 "Infiniscale-IV Mellanox Technologies" lid 18 4xQDR
+
+vendid=0x2c9
+devid=0x6746
+sysimgguid=0x78e7d103002296ef
+caguid=0x78e7d103002296ec
+Ca	1 "H-78e7d103002296ec"		# "MT25408 ConnectX Mellanox Technologies"
+[1](78e7d103002296ed) 	"S-0002c90200417670"[24]		# lid 68 lmc 0 "Infiniscale-IV Mellanox Technologies" lid 18 4xQDR
+
+vendid=0x2c9
+devid=0x6746
+sysimgguid=0x78e7d10300223517
+caguid=0x78e7d10300223514
+Ca	1 "H-78e7d10300223514"		# "MT25408 ConnectX Mellanox Technologies"
+[1](78e7d10300223515) 	"S-0002c90200417670"[23]		# lid 37 lmc 0 "Infiniscale-IV Mellanox Technologies" lid 18 4xQDR
+
+vendid=0x2c9
+devid=0x6746
+sysimgguid=0x78e7d10300229e97
+caguid=0x78e7d10300229e94
+Ca	1 "H-78e7d10300229e94"		# "MT25408 ConnectX Mellanox Technologies"
+[1](78e7d10300229e95) 	"S-0002c90200417670"[21]		# lid 69 lmc 0 "Infiniscale-IV Mellanox Technologies" lid 18 4xQDR
+
+vendid=0x2c9
+devid=0x6746
+sysimgguid=0x78e7d103002297ff
+caguid=0x78e7d103002297fc
+Ca	1 "H-78e7d103002297fc"		# "MT25408 ConnectX Mellanox Technologies"
+[1](78e7d103002297fd) 	"S-0002c90200417670"[22]		# lid 40 lmc 0 "Infiniscale-IV Mellanox Technologies" lid 18 4xQDR
+
+vendid=0x2c9
+devid=0x6746
+sysimgguid=0x78e7d1030022ccb7
+caguid=0x78e7d1030022ccb4
+Ca	1 "H-78e7d1030022ccb4"		# "MT25408 ConnectX Mellanox Technologies"
+[1](78e7d1030022ccb5) 	"S-0002c90200417670"[20]		# lid 53 lmc 0 "Infiniscale-IV Mellanox Technologies" lid 18 4xQDR
+
+vendid=0x2c9
+devid=0x6746
+sysimgguid=0x78e7d1030022cb77
+caguid=0x78e7d1030022cb74
+Ca	1 "H-78e7d1030022cb74"		# "MT25408 ConnectX Mellanox Technologies"
+[1](78e7d1030022cb75) 	"S-0002c90200417670"[19]		# lid 26 lmc 0 "Infiniscale-IV Mellanox Technologies" lid 18 4xQDR
+
+vendid=0x2c9
+devid=0x6746
+sysimgguid=0x78e7d10300227d17
+caguid=0x78e7d10300227d14
+Ca	1 "H-78e7d10300227d14"		# "MT25408 ConnectX Mellanox Technologies"
+[1](78e7d10300227d15) 	"S-0002c90200417670"[6]		# lid 63 lmc 0 "Infiniscale-IV Mellanox Technologies" lid 18 4xQDR
+
+vendid=0x2c9
+devid=0x6746
+sysimgguid=0x78e7d1030022a957
+caguid=0x78e7d1030022a954
+Ca	1 "H-78e7d1030022a954"		# "MT25408 ConnectX Mellanox Technologies"
+[1](78e7d1030022a955) 	"S-0002c90200417670"[5]		# lid 55 lmc 0 "Infiniscale-IV Mellanox Technologies" lid 18 4xQDR
+
+vendid=0x2c9
+devid=0x6746
+sysimgguid=0x78e7d10300227e67
+caguid=0x78e7d10300227e64
+Ca	1 "H-78e7d10300227e64"		# "MT25408 ConnectX Mellanox Technologies"
+[1](78e7d10300227e65) 	"S-0002c90200417670"[3]		# lid 65 lmc 0 "Infiniscale-IV Mellanox Technologies" lid 18 4xQDR
+
+vendid=0x2c9
+devid=0x6746
+sysimgguid=0x78e7d1030022a91f
+caguid=0x78e7d1030022a91c
+Ca	1 "H-78e7d1030022a91c"		# "MT25408 ConnectX Mellanox Technologies"
+[1](78e7d1030022a91d) 	"S-0002c90200417670"[4]		# lid 59 lmc 0 "Infiniscale-IV Mellanox Technologies" lid 18 4xQDR
+
+vendid=0x2c9
+devid=0x6746
+sysimgguid=0x78e7d1030022977f
+caguid=0x78e7d1030022977c
+Ca	1 "H-78e7d1030022977c"		# "MT25408 ConnectX Mellanox Technologies"
+[1](78e7d1030022977d) 	"S-0002c90200417670"[2]		# lid 49 lmc 0 "Infiniscale-IV Mellanox Technologies" lid 18 4xQDR
+
+vendid=0x2c9
+devid=0x6746
+sysimgguid=0x78e7d10300229797
+caguid=0x78e7d10300229794
+Ca	1 "H-78e7d10300229794"		# "MT25408 ConnectX Mellanox Technologies"
+[1](78e7d10300229795) 	"S-0002c90200417670"[1]		# lid 23 lmc 0 "Infiniscale-IV Mellanox Technologies" lid 18 4xQDR
+
+vendid=0x2c9
+devid=0x6746
+sysimgguid=0x78e7d1030022c7d7
+caguid=0x78e7d1030022c7d4
+Ca	1 "H-78e7d1030022c7d4"		# "MT25408 ConnectX Mellanox Technologies"
+[1](78e7d1030022c7d5) 	"S-0008f105002036b4"[36]		# lid 35 lmc 0 "Voltaire 4036 # hoibp0013" lid 10 4xQDR
+
+vendid=0x2c9
+devid=0x6746
+sysimgguid=0x78e7d10300229be7
+caguid=0x78e7d10300229be4
+Ca	1 "H-78e7d10300229be4"		# "MT25408 ConnectX Mellanox Technologies"
+[1](78e7d10300229be5) 	"S-0008f105002036b4"[35]		# lid 39 lmc 0 "Voltaire 4036 # hoibp0013" lid 10 4xQDR
+
+vendid=0x2c9
+devid=0x6746
+sysimgguid=0x78e7d10300229bdf
+caguid=0x78e7d10300229bdc
+Ca	1 "H-78e7d10300229bdc"		# "MT25408 ConnectX Mellanox Technologies"
+[1](78e7d10300229bdd) 	"S-0008f105002036b4"[34]		# lid 24 lmc 0 "Voltaire 4036 # hoibp0013" lid 10 4xQDR
+
+vendid=0x2c9
+devid=0x6746
+sysimgguid=0x78e7d103002301df
+caguid=0x78e7d103002301dc
+Ca	1 "H-78e7d103002301dc"		# "MT25408 ConnectX Mellanox Technologies"
+[1](78e7d103002301dd) 	"S-0008f105002036b4"[33]		# lid 14 lmc 0 "Voltaire 4036 # hoibp0013" lid 10 4xQDR
+
+vendid=0x2c9
+devid=0x6746
+sysimgguid=0x78e7d10300229697
+caguid=0x78e7d10300229694
+Ca	1 "H-78e7d10300229694"		# "MT25408 ConnectX Mellanox Technologies"
+[1](78e7d10300229695) 	"S-0008f105002036b4"[32]		# lid 46 lmc 0 "Voltaire 4036 # hoibp0013" lid 10 4xQDR
+
+vendid=0x2c9
+devid=0x6746
+sysimgguid=0x78e7d103002297f7
+caguid=0x78e7d103002297f4
+Ca	1 "H-78e7d103002297f4"		# "MT25408 ConnectX Mellanox Technologies"
+[1](78e7d103002297f5) 	"S-0008f105002036b4"[31]		# lid 47 lmc 0 "Voltaire 4036 # hoibp0013" lid 10 4xQDR
+
+vendid=0x2c9
+devid=0x6746
+sysimgguid=0x78e7d10300229c27
+caguid=0x78e7d10300229c24
+Ca	1 "H-78e7d10300229c24"		# "MT25408 ConnectX Mellanox Technologies"
+[1](78e7d10300229c25) 	"S-0008f105002036b4"[30]		# lid 31 lmc 0 "Voltaire 4036 # hoibp0013" lid 10 4xQDR
+
+vendid=0x2c9
+devid=0x6746
+sysimgguid=0x78e7d1030022971f
+caguid=0x78e7d1030022971c
+Ca	1 "H-78e7d1030022971c"		# "MT25408 ConnectX Mellanox Technologies"
+[1](78e7d1030022971d) 	"S-0008f105002036b4"[29]		# lid 60 lmc 0 "Voltaire 4036 # hoibp0013" lid 10 4xQDR
+
+vendid=0x2c9
+devid=0x6746
+sysimgguid=0x78e7d1030022972f
+caguid=0x78e7d1030022972c
+Ca	1 "H-78e7d1030022972c"		# "MT25408 ConnectX Mellanox Technologies"
+[1](78e7d1030022972d) 	"S-0008f105002036b4"[28]		# lid 44 lmc 0 "Voltaire 4036 # hoibp0013" lid 10 4xQDR
+
+vendid=0x2c9
+devid=0x6746
+sysimgguid=0x78e7d10300229717
+caguid=0x78e7d10300229714
+Ca	1 "H-78e7d10300229714"		# "MT25408 ConnectX Mellanox Technologies"
+[1](78e7d10300229715) 	"S-0008f105002036b4"[27]		# lid 22 lmc 0 "Voltaire 4036 # hoibp0013" lid 10 4xQDR
+
+vendid=0x2c9
+devid=0x6746
+sysimgguid=0x78e7d1030022c76f
+caguid=0x78e7d1030022c76c
+Ca	1 "H-78e7d1030022c76c"		# "MT25408 ConnectX Mellanox Technologies"
+[1](78e7d1030022c76d) 	"S-0008f105002036b4"[26]		# lid 56 lmc 0 "Voltaire 4036 # hoibp0013" lid 10 4xQDR
+
+vendid=0x2c9
+devid=0x6746
+sysimgguid=0x78e7d10300229bd7
+caguid=0x78e7d10300229bd4
+Ca	1 "H-78e7d10300229bd4"		# "MT25408 ConnectX Mellanox Technologies"
+[1](78e7d10300229bd5) 	"S-0008f105002036b4"[25]		# lid 42 lmc 0 "Voltaire 4036 # hoibp0013" lid 10 4xQDR
+
+vendid=0x2c9
+devid=0x6746
+sysimgguid=0x78e7d1030022a46f
+caguid=0x78e7d1030022a46c
+Ca	1 "H-78e7d1030022a46c"		# "MT25408 ConnectX Mellanox Technologies"
+[1](78e7d1030022a46d) 	"S-0008f105002036b4"[18]		# lid 38 lmc 0 "Voltaire 4036 # hoibp0013" lid 10 4xQDR
+
+vendid=0x2c9
+devid=0x6746
+sysimgguid=0x78e7d1030022c6a7
+caguid=0x78e7d1030022c6a4
+Ca	1 "H-78e7d1030022c6a4"		# "MT25408 ConnectX Mellanox Technologies"
+[1](78e7d1030022c6a5) 	"S-0008f105002036b4"[17]		# lid 12 lmc 0 "Voltaire 4036 # hoibp0013" lid 10 4xQDR
+
+vendid=0x2c9
+devid=0x6746
+sysimgguid=0x78e7d1030022a477
+caguid=0x78e7d1030022a474
+Ca	1 "H-78e7d1030022a474"		# "MT25408 ConnectX Mellanox Technologies"
+[1](78e7d1030022a475) 	"S-0008f105002036b4"[16]		# lid 32 lmc 0 "Voltaire 4036 # hoibp0013" lid 10 4xQDR
+
+vendid=0x2c9
+devid=0x6746
+sysimgguid=0x78e7d1030022a47f
+caguid=0x78e7d1030022a47c
+Ca	1 "H-78e7d1030022a47c"		# "MT25408 ConnectX Mellanox Technologies"
+[1](78e7d1030022a47d) 	"S-0008f105002036b4"[15]		# lid 33 lmc 0 "Voltaire 4036 # hoibp0013" lid 10 4xQDR
+
+vendid=0x2c9
+devid=0x6746
+sysimgguid=0x78e7d10300229b17
+caguid=0x78e7d10300229b14
+Ca	1 "H-78e7d10300229b14"		# "MT25408 ConnectX Mellanox Technologies"
+[1](78e7d10300229b15) 	"S-0008f105002036b4"[14]		# lid 58 lmc 0 "Voltaire 4036 # hoibp0013" lid 10 4xQDR
+
+vendid=0x2c9
+devid=0x6746
+sysimgguid=0x78e7d10300229727
+caguid=0x78e7d10300229724
+Ca	1 "H-78e7d10300229724"		# "MT25408 ConnectX Mellanox Technologies"
+[1](78e7d10300229725) 	"S-0008f105002036b4"[13]		# lid 30 lmc 0 "Voltaire 4036 # hoibp0013" lid 10 4xQDR
+
+vendid=0x2c9
+devid=0x6746
+sysimgguid=0x78e7d1030022c77f
+caguid=0x78e7d1030022c77c
+Ca	1 "H-78e7d1030022c77c"		# "MT25408 ConnectX Mellanox Technologies"
+[1](78e7d1030022c77d) 	"S-0008f105002036b4"[12]		# lid 21 lmc 0 "Voltaire 4036 # hoibp0013" lid 10 4xQDR
+
+vendid=0x2c9
+devid=0x6746
+sysimgguid=0x78e7d10300229bcf
+caguid=0x78e7d10300229bcc
+Ca	1 "H-78e7d10300229bcc"		# "MT25408 ConnectX Mellanox Technologies"
+[1](78e7d10300229bcd) 	"S-0008f105002036b4"[11]		# lid 43 lmc 0 "Voltaire 4036 # hoibp0013" lid 10 4xQDR
+
+vendid=0x2c9
+devid=0x6746
+sysimgguid=0x78e7d1030022ce2f
+caguid=0x78e7d1030022ce2c
+Ca	1 "H-78e7d1030022ce2c"		# "MT25408 ConnectX Mellanox Technologies"
+[1](78e7d1030022ce2d) 	"S-0008f105002036b4"[10]		# lid 15 lmc 0 "Voltaire 4036 # hoibp0013" lid 10 4xQDR
+
+vendid=0x2c9
+devid=0x6746
+sysimgguid=0x78e7d103002297ef
+caguid=0x78e7d103002297ec
+Ca	1 "H-78e7d103002297ec"		# "MT25408 ConnectX Mellanox Technologies"
+[1](78e7d103002297ed) 	"S-0008f105002036b4"[9]		# lid 28 lmc 0 "Voltaire 4036 # hoibp0013" lid 10 4xQDR
+
+vendid=0x2c9
+devid=0x6746
+sysimgguid=0x78e7d10300229bff
+caguid=0x78e7d10300229bfc
+Ca	1 "H-78e7d10300229bfc"		# "MT25408 ConnectX Mellanox Technologies"
+[1](78e7d10300229bfd) 	"S-0008f105002036b4"[8]		# lid 51 lmc 0 "Voltaire 4036 # hoibp0013" lid 10 4xQDR
+
+vendid=0x2c9
+devid=0x6746
+sysimgguid=0x78e7d10300229677
+caguid=0x78e7d10300229674
+Ca	1 "H-78e7d10300229674"		# "MT25408 ConnectX Mellanox Technologies"
+[1](78e7d10300229675) 	"S-0008f105002036b4"[7]		# lid 29 lmc 0 "Voltaire 4036 # hoibp0013" lid 10 4xQDR
+
+vendid=0x2c9
+devid=0x6746
+sysimgguid=0x78e7d1030022773f
+caguid=0x78e7d1030022773c
+Ca	1 "H-78e7d1030022773c"		# "MT25408 ConnectX Mellanox Technologies"
+[1](78e7d1030022773d) 	"S-0008f1050020369c"[36]		# lid 70 lmc 0 "Voltaire 4036 # 4036-369C" lid 19 4xQDR
+
+vendid=0x2c9
+devid=0x6746
+sysimgguid=0x78e7d1030024535f
+caguid=0x78e7d1030024535c
+Ca	1 "H-78e7d1030024535c"		# "MT25408 ConnectX Mellanox Technologies"
+[1](78e7d1030024535d) 	"S-0008f1050020369c"[34]		# lid 67 lmc 0 "Voltaire 4036 # 4036-369C" lid 19 4xQDR
+
+vendid=0x2c9
+devid=0x6746
+sysimgguid=0x78e7d10300228ce7
+caguid=0x78e7d10300228ce4
+Ca	1 "H-78e7d10300228ce4"		# "MT25408 ConnectX Mellanox Technologies"
+[1](78e7d10300228ce5) 	"S-0008f1050020369c"[33]		# lid 61 lmc 0 "Voltaire 4036 # 4036-369C" lid 19 4xQDR
+
+vendid=0x2c9
+devid=0x6746
+sysimgguid=0x78e7d1030022804f
+caguid=0x78e7d1030022804c
+Ca	1 "H-78e7d1030022804c"		# "MT25408 ConnectX Mellanox Technologies"
+[1](78e7d1030022804d) 	"S-0008f1050020369c"[15]		# lid 66 lmc 0 "Voltaire 4036 # 4036-369C" lid 19 4xQDR
+
+vendid=0x2c9
+devid=0x6746
+sysimgguid=0x78e7d1030022cc4f
+caguid=0x78e7d1030022cc4c
+Ca	1 "H-78e7d1030022cc4c"		# "MT25408 ConnectX Mellanox Technologies"
+[1](78e7d1030022cc4d) 	"S-0008f1050020369c"[18]		# lid 34 lmc 0 "Voltaire 4036 # 4036-369C" lid 19 4xQDR
+
+vendid=0x2c9
+devid=0x673c
+sysimgguid=0x2c9030004824b
+caguid=0x2c90300048248
+Ca	1 "H-0002c90300048248"		# "MT25408 ConnectX Mellanox Technologies"
+[1](2c90300048249) 	"S-0002c902004827b0"[26]		# lid 86 lmc 0 "Infiniscale-IV Mellanox Technologies" lid 13 4xQDR
+
+vendid=0x2c9
+devid=0x673c
+sysimgguid=0x2c9030004823f
+caguid=0x2c9030004823c
+Ca	1 "H-0002c9030004823c"		# "MT25408 ConnectX Mellanox Technologies"
+[1](2c9030004823d) 	"S-0002c902004827b0"[23]		# lid 102 lmc 0 "Infiniscale-IV Mellanox Technologies" lid 13 4xQDR
+
+vendid=0x2c9
+devid=0x673c
+sysimgguid=0x2c903000482fb
+caguid=0x2c903000482f8
+Ca	1 "H-0002c903000482f8"		# "MT25408 ConnectX Mellanox Technologies"
+[1](2c903000482f9) 	"S-0002c902004827b0"[24]		# lid 76 lmc 0 "Infiniscale-IV Mellanox Technologies" lid 13 4xQDR
+
+vendid=0x2c9
+devid=0x673c
+sysimgguid=0x2c90300048ebd
+caguid=0x2c90300048eba
+Ca	1 "H-0002c90300048eba"		# "MT25408 ConnectX Mellanox Technologies"
+[1](2c90300048ebb) 	"S-0002c902004827b0"[13]		# lid 97 lmc 0 "Infiniscale-IV Mellanox Technologies" lid 13 4xQDR
+
+vendid=0x2c9
+devid=0x673c
+sysimgguid=0x2c903000482cf
+caguid=0x2c903000482cc
+Ca	1 "H-0002c903000482cc"		# "MT25408 ConnectX Mellanox Technologies"
+[1](2c903000482cd) 	"S-0002c902004827b0"[14]		# lid 77 lmc 0 "Infiniscale-IV Mellanox Technologies" lid 13 4xQDR
+
+vendid=0x2c9
+devid=0x673c
+sysimgguid=0x2c9030004820b
+caguid=0x2c90300048208
+Ca	1 "H-0002c90300048208"		# "MT25408 ConnectX Mellanox Technologies"
+[1](2c90300048209) 	"S-0002c902004827b0"[10]		# lid 83 lmc 0 "Infiniscale-IV Mellanox Technologies" lid 13 4xQDR
+
+vendid=0x2c9
+devid=0x673c
+sysimgguid=0x2c9030004829f
+caguid=0x2c9030004829c
+Ca	1 "H-0002c9030004829c"		# "MT25408 ConnectX Mellanox Technologies"
+[1](2c9030004829d) 	"S-0002c902004827b0"[9]		# lid 78 lmc 0 "Infiniscale-IV Mellanox Technologies" lid 13 4xQDR
+
+vendid=0x2c9
+devid=0x673c
+sysimgguid=0x2c903000482d7
+caguid=0x2c903000482d4
+Ca	1 "H-0002c903000482d4"		# "MT25408 ConnectX Mellanox Technologies"
+[1](2c903000482d5) 	"S-0002c902004827b0"[8]		# lid 73 lmc 0 "Infiniscale-IV Mellanox Technologies" lid 13 4xQDR
+
+vendid=0x2c9
+devid=0x673c
+sysimgguid=0x2c9030004828b
+caguid=0x2c90300048288
+Ca	1 "H-0002c90300048288"		# "MT25408 ConnectX Mellanox Technologies"
+[1](2c90300048289) 	"S-0002c902004827b0"[7]		# lid 75 lmc 0 "Infiniscale-IV Mellanox Technologies" lid 13 4xQDR
+
+vendid=0x2c9
+devid=0x673c
+sysimgguid=0x2c90300080d2b
+caguid=0x2c90300080d28
+Ca	1 "H-0002c90300080d28"		# "MT25408 ConnectX Mellanox Technologies"
+[1](2c90300080d29) 	"S-0008f10500108bba"[28]		# lid 4 lmc 0 "Voltaire 4036 # 4036-8BBA" lid 7 4xQDR
+
+vendid=0x2c9
+devid=0x6732
+sysimgguid=0x3048c7488b0003
+caguid=0x3048c7488b0000
+Ca	1 "H-003048c7488b0000"		# "MT25408 ConnectX Mellanox Technologies"
+[1](3048c7488b0001) 	"S-0008f10500108bba"[29]		# lid 3 lmc 0 "Voltaire 4036 # 4036-8BBA" lid 7 4xDDR
+
+vendid=0x2c9
+devid=0x6732
+sysimgguid=0x3048c74e4a0003
+caguid=0x3048c74e4a0000
+Ca	1 "H-003048c74e4a0000"		# "MT25408 ConnectX Mellanox Technologies"
+[1](3048c74e4a0001) 	"S-0008f10500108bba"[11]		# lid 2 lmc 0 "Voltaire 4036 # 4036-8BBA" lid 7 4xDDR
+
+vendid=0x2c9
+devid=0x673c
+sysimgguid=0x2c90300080d3f
+caguid=0x2c90300080d3c
+Ca	1 "H-0002c90300080d3c"		# "MT25408 ConnectX Mellanox Technologies"
+[1](2c90300080d3d) 	"S-0008f10500108bba"[10]		# lid 5 lmc 0 "Voltaire 4036 # 4036-8BBA" lid 7 4xQDR
+
+vendid=0x2c9
+devid=0x673c
+sysimgguid=0x2c90300080d5b
+caguid=0x2c90300080d58
+Ca	1 "H-0002c90300080d58"		# "MT25408 ConnectX Mellanox Technologies"
+[1](2c90300080d59) 	"S-0008f10500108bba"[9]		# lid 1 lmc 0 "Voltaire 4036 # 4036-8BBA" lid 7 4xQDR
+
+vendid=0x2c9
+devid=0x673c
+sysimgguid=0x2c90300080e87
+caguid=0x2c90300080e84
+Ca	1 "H-0002c90300080e84"		# "MT25408 ConnectX Mellanox Technologies"
+[1](2c90300080e85) 	"S-0008f10500108bba"[27]		# lid 17 lmc 0 "Voltaire 4036 # 4036-8BBA" lid 7 4xQDR
