@@ -56,7 +56,7 @@ Which gives, example:
 spine file (optional)
 ~~~~~~~~~~~~~~~~~~~~~
 
-Level 0 switches (known as 'spine' switchs), to differentiate them from the level 1 (leaf) switchs.
+Level 0 switches (known as 'spine' switchs), to differentiate them from the level 1 (leaf) switches.
 
 Manually edit ``$cluster.topofile``, search for switches only connected to switches, that's your spines.
 

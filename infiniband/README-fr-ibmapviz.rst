@@ -56,9 +56,9 @@ Ce qui donne, exemple :
 fichier de spine (optionnel)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Pour différencier les switches de niveau 0 (ou d'épine dorsale en langue perfide), des switchs de niveau 1 (feuilles).
+Pour différencier les switchs de niveau 0 (ou d'épine dorsale en langue perfide), des switchs de niveau 1 (feuilles).
 
-Repérer les GUID de switches, dans le $cluster.topofile, qui ne sont connectés qu'a d'autres switchs.
+Repérer les GUID de switchs, dans le $cluster.topofile, qui ne sont connectés qu'a d'autres switchs.
 
 Créer un fichier '$cluster.spine' qui contient juste les GUID, un par ligne. Exemple :
 
@@ -84,9 +84,9 @@ Visualisation directe avec xdot : ``xdot -f [dot, neato, twopi, circo, fdp] $clu
 
 Génération d'un fichier pdf (parfois plus lisible) : ``neato -Goverlap=false -Tpdf $cluster.dot -o $cluster.pdf``
 
-dot, neato, twopi, circo et fdp sont des commandes qui viennent avec graphviz. Ce sont différent algorithmes de ''placement/routage''. Ils ont tous leurs avantages et inconvénients. Faut essayer.
+dot, neato, twopi, circo et fdp sont des commandes qui viennent avec graphviz. Ce sont différent algorithmes de ''placement/routage''. Ils ont tous leurs avantages et inconvénients. Il faut essayer.
 
 Exemples
 ========
 
-Voir les fichiers 'X5' dans le dépôt (cluster X5 du PSMN).
+Voir les fichiers ``X5`` dans le dépôt (cluster X5 du PSMN).
