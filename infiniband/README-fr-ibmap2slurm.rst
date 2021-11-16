@@ -54,9 +54,9 @@ fichier de spine (optionnel)
 
 Pour différencier les switchs de niveau 0 (ou d'épine dorsale en langue perfide), des switchs de niveau 1 (feuilles).
 
-Repérer les GUID de switchs, dans le fichier '$cluster.topofile', qui ne sont connectés qu'a d'autres switchs.
+Repérer les GUID de switchs, dans le fichier ``$cluster.topofile``, qui ne sont connectés qu'a d'autres switchs.
 
-Créer un fichier '$cluster.spine' qui contient seulement les GUID, un par ligne. Exemple :
+Créer un fichier ``$cluster.spine`` qui contient seulement les GUID, un par ligne. Exemple :
 
 .. code-block:: bash
 
@@ -81,4 +81,4 @@ Vérifiez et propagez sur vos clusters.
 Exemple
 =======
 
-Voir les fichiers 'X5' dans le dépôt (cluster X5 du PSMN).
+Voir les fichiers ``X5`` dans le dépôt (cluster X5 du PSMN).
