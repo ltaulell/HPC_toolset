@@ -1,0 +1,185 @@
+
+Depuis la doc à Manu :
+http://www.cbp.ens-lyon.fr/doku.php?do=&id=developpement%3Aproductions%3Asidus4bullseye
+
+sur workstation
+export TOOLS="~/Code/tools4psmn"
+
+sur root@vm-nodes-kvh2
+mkdir -p /data/hosts/node11
+
+export HTTP="http://www.cbp.ens-lyon.fr/sidus/bullseye"
+export SIDUS="/data/hosts/node11"
+alias sidus="DEBIAN_FRONTEND=noninteractive chroot ${SIDUS} $@"
+export ARCH="amd64"
+
+debootstrap --arch "${ARCH}" --components='main,contrib,non-free' bullseye "${SIDUS}" http://mirror.ens-lyon.fr/debian
+
+dans $SIDUS:
+"${SIDUS}"/usr/sbin/policy-rc.d :
+
+#!/bin/sh
+exit 101
+
+chmod +x "${SIDUS}"/usr/sbin/policy-rc.d
+
+sidus mount -t proc none /proc
+sidus mount -t sysfs sys /sys
+mount --bind /dev/pts "${SIDUS}"/dev/pts
+
+sidus passwd
+
+**MODIF PSMN**
+    sidus touch /root/master.node11
+    # depuis workstation
+    scp $TOOLS/debian/serveurs/root/$CONFIG -> root@vm-nodes-kvh2:/data/hosts/node11/root/
+
+vi "${SIDUS}"/etc/apt/sources.list
+
+sidus apt-get update
+
+sidus apt-get -y install aptitude dselect dracut dracut-core dracut-network isc-dhcp-common isc-dhcp-client openssh-server locales firmware-linux-nonfree bridge-utils firmware-linux firmware-bnx2 firmware-bnx2x amd64-microcode intel-microcode dstat sysstat iftop htop iotop emacs lsof tshark mbw strace memtest86 dbench iozone3 psmisc console-setup less vim rsync unscd nfs-common stressapptest net-tools hwloc time ssh bash-completion man-db
+
+sidus apt-get -y install linux-image-${ARCH} linux-headers-${ARCH}
+
+mv ${SIDUS}/etc/locale.gen ${SIDUS}/etc/locale.gen.orig
+mv ${SIDUS}/etc/timezone ${SIDUS}/etc/timezone.orig
+mv ${SIDUS}/etc/default/keyboard ${SIDUS}/etc/default/keyboard.orig
+cp /etc/locale.gen ${SIDUS}/etc/locale.gen
+cp /etc/timezone ${SIDUS}/etc/timezone
+cp /etc/default/keyboard ${SIDUS}/etc/default/keyboard
+sidus locale-gen
+sidus dpkg-reconfigure tzdata
+sidus dpkg-reconfigure locales (?)
+sidus apt-get purge -y nano vim-tiny open-iscsi
+
+===============================
+PSMN: **avoid desktop for now**
+
+sidus tasksel install desktop
+sidus tasksel install xfce-desktop
+sidus apt-get purge -y network-manager modemmanager gdm3 gnome-session gnome-terminal vim-tiny pipewire pulseaudio
+sidus apt-get autoremove
+sidus apt-get clean
+
+**avoid desktop for now**
+=========================
+
+mkdir ${SIDUS}/usr/lib/dracut/modules.d/90sidus
+wget -O ${SIDUS}/usr/lib/dracut/modules.d/90sidus/module-setup.sh ${HTTP}/module-setup.sh
+wget -O ${SIDUS}/usr/lib/dracut/modules.d/90sidus/sidus-mount.sh ${HTTP}/sidus-mount.sh
+chmod a+rwx,g-w,o-w ${SIDUS}/usr/lib/dracut/modules.d/90sidus/*.sh
+# chmod u=rwx,g=rx,o=rx ${SIDUS}/usr/lib/dracut/modules.d/90sidus/*.sh
+
+sed -i "s/=\$new_dhcp_lease_time/=forever/" ${SIDUS}/usr/lib/dracut/modules.d/35network-legacy/dhclient-script.sh
+
+sidus dpkg-reconfigure dracut
+
+sidus ls /boot/ | grep initrd | tail -1 | while read INITRD ; do sidus lsinitrd /boot/$INITRD | egrep '(sidus|overlay|aufs)'; done
+
+sidus rm /etc/hostname
+
+vi ${SIDUS}/etc/network/interfaces
+
+auto lo
+iface lo inet loopback
+
+wget -O ${SIDUS}/etc/resolv.conf $HTTP/resolv.conf.sidus    <- PSMN **modifié**
+wget -O ${SIDUS}/etc/sysctl.d/gc.conf $HTTP/gc.conf         <- PSMN **modifié**
+
+# mv ${SIDUS}/etc/security/limits.conf ${SIDUS}/etc/security/limits.conf.orig
+# wget -O ${SIDUS}/etc/security/limits.conf $HTTP/limits.conf <- PSMN **modifié**, revenir à orig
+    <- $TOOLS/debian/node11/security/limits.d/psmn.conf
+
+sidus apt-get install nfs-common
+    <- $TOOLS/debian/node11/etc/default/nfs-common
+    <- $TOOLS/debian/node11/etc/idmapd.conf
+    <- $TOOLS/debian/node11/etc/fstab
+
+**MODIF PSMN**
+    $TOOLS/debian/node11/etc/rc.local     <- *à modifier* -> OK
+    *mode minimal*
+    echo -e '#!/bin/sh -e\n\n# mode minimal\n\nexit 0' > ${SIDUS}/etc/rc.local
+    sidus chmod +x /etc/rc.local
+    $TOOLS/debian/node11/etc/systemd/system/rc-local.service
+    sidus systemctl enable rc-local
+        PSMN **modifié**
+        le rc.local deb9 utilisait chrony
+        basculer sur timesyncd -> refaire config rc.local -> OK
+        disable apparmor.service -> purge ?
+        <- $TOOLS/debian/node11/etc/rc.local
+
+**INSERT PSMN**
+auth selon PSMN (ldap)
+    voir sidus11_ldap.txt
+automount selon PSMN (via ldap)
+    voir sidus11_ldap.txt
+
+**MODIF PSMN**
+/etc/updatedb.conf      -> sidus apt purge mlocate
+/etc/security/group.conf    <- $TOOLS/debian/node11/etc/security/group.conf
+
+**INSERT PSMN**
+    # gestion aliases et emails
+    /etc/mailname <- $TOOLS/debian/etc/mailname "sidus11"
+    apt install msmtp-mta bsd-mailx
+    <- $TOOLS/debian/node11/etc/msmtprc
+    <- $TOOLS/debian/node11/etc/aliases
+
+sidus umount -l /proc
+sidus umount -l /sys            # <- msg d'erreur ? -> ignore
+umount -l /data/hosts/node11/sys
+sidus umount -l /dev/pts        # <- msg d'erreur ? -> ignore
+umount -l /data/hosts/node11/dev/pts
+sidus dpkg-reconfigure dracut   # <- msg d'erreur ? -> ignore
+
+(en fait, si je démonte pas, y'a plus de msg d'erreur...)
+
+copie node11/boot/vmlinuz-5.10.0-8-amd64, node11/boot/initrd.img-5.10.0-8-amd64 root@pxe:/srv/tftp/sidus/$.current
+
+sur serveur pxe
+===============
+
+* dans /srv/tftp/sidus/ et /srv/tftp/efi64
+ln -s vmlinuz-5.10.0-8-amd64.current vmlinuz-5.10.0-S-amd64
+ln -s initrd.img-5.10.0-8-amd64.current initrd.img-5.10.0-S-amd64
+
+* dans /srv/tftp/efi64, mettre à jour syslinux.efi depuis /usr/lib/SYSLINUX.EFI/efi64/syslinux.efi  OK (+syslinux.efi.orig)
+
+new masternode11 (vm readonly) = 92:5F:FB:B1:C7:46   **OK**
+
+chaine de liens doux (std node):
+MAC -> /srv/tftp/pxelinux.cfg/01-MAC-avec-tirets 
+    -> /srv/tftp/pxelinux.cfg/nodes/$HOSTNAME 
+    -> /srv/tftp/pxelinux.cfg/nodes/$GROUP.config -> /srv/tftp/pxelinux.cfg/sidus11.cfg
+
+  * sidus11.cfg
+
+# $Id: sidus11.cfg 3394 2021-09-28 09:05:03Z ltaulell $
+default menu.c32
+
+MENU title Boot PSMN
+timeout 80
+prompt 0
+noescape 1
+
+LABEL Toolbox
+  MENU LABEL ToolBox =>
+  KERNEL menu.c32
+  APPEND toolbox/menutools.cfg
+
+LABEL bullseye
+  MENU LABEL NODE11
+  MENU default
+  KERNEL sidus/vmlinuz-5.10.0-S-amd64
+  # master lecture seule, mise à jour dans le chroot !
+  APPEND console=tty1 initrd=sidus/initrd.img-5.10.0-S-amd64 rd.shell sidus=overlay ip=dhcp root=nfs:172.16.1.61:/data/hosts/node11:vers=3,ro,rsize=1048576,wsize=1048576,tcp,nolock,noatime net.ifnames=0 edd=off modprobe.blacklist=nouveau,nvidia,acpi_pad iomem=relaxed kernel.unprivileged_userns_clone=1 intel_idle.max_cstate=1 ipv6.disable=1 sky2.disable_msi=1 bnx2.disable_msi=1 intel_pstate=disable kernel.dmesg_restrict=0
+
+
+/!\ si le boot PXE boucle sur le chargement de vmlinuz, vérifier les droits read de initrd.img...
+(auto-boulet! je me fais avoir à CHAQUE fois !!)
+
+à **chaque** installation/modification sur le chroot, il faut "mount -o remount /" sur **TOUS** les nodes sidus -> refresh.sh
+
+ça boot, yapluka installer les configs PSMN et des paquets...
+
