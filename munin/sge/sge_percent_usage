@@ -1,0 +1,97 @@
+#!/bin/bash
+# -*- sh -*-
+#
+# Copyright (C) 2011 PSMN / ENS de Lyon - LT
+# $Id: sge_percent_usage 2791 2020-01-27 15:29:44Z ltaulell $
+#
+# Abstract
+# Script to monitor SGE work, by cpu
+#
+# Authors
+#  . Loïs Taulelle <lois dot taulelle at ens-lyon dot fr>
+#
+# Parameters understood:
+#
+# 	config   (required)
+# 	autoconf (optional - used by munin-config)
+#
+
+if [[ -e "/etc/munin/plugins/sge_common" ]]; then
+  source /etc/munin/plugins/sge_common
+else
+  echo "no common config"
+  exit 1
+fi
+
+#
+# Configuration:
+# add /etc/munin/plugin-conf.d/munin-node
+# [sge_*]
+# user root
+#
+# Magic markers (optional - used by munin-config and installation
+# scripts):
+#
+#%# family=auto
+#%# capabilities=autoconf
+
+if [ "$1" = "autoconf" ]; then
+  if [ -x $(which qstat) ]; then
+    echo yes
+    exit 0
+  else
+    echo "no (qstat not found)"
+    exit 1
+  fi
+fi
+
+if [ "$1" = "config" ]; then
+  echo "graph_title SGE clusters usage rate"
+  echo "graph_args --base 1000 -l 0 --lower-limit 0 --upper-limit 100"
+  echo "graph_vlabel global usage (%)"
+  echo "graph_category sge"
+
+  echo "sge_unavail.draw LINE2"
+  echo "sge_unavail.label Global non usable rate"
+  echo "sge_raw.draw LINE2"
+  echo "sge_raw.label Global raw utilization rate"
+  echo "sge_corrected.draw LINE2"
+  echo "sge_corrected.label Global corrected utilization rate"
+  # echo "sge_unavail_meso.draw LINE1"
+  # echo "sge_unavail_meso.label Equip@Meso non usable rate"
+  # echo "sge_raw_meso.draw LINE1"
+  # echo "sge_raw_meso.label Equip@Meso raw utilization rate"
+  # echo "sge_corrected_meso.draw LINE1"
+  # echo "sge_corrected_meso.label Equip@Meso corrected utilization rate"
+  exit 0
+fi
+
+# les valeurs brutes et corrigées ne peuvent dépasser 100%
+# taux panne
+#PANNE=$(qstat -g c | grep -vi -e "test" | tail -n +3 | awk '{total+=$6} {panne+=$8} END {print panne/total*100}')
+# correction HG
+PANNE=$(qstat -g c | grep -vi -e "test" | tail -n +3 | awk '{total+=$6*($6-$8)/($6-$8+1)} {panne+=$8*($6-$8)/($6-$8+1)} END {print (panne/total*100 > 100) ? "100" : panne/total*100 }')
+#PANNE=$(qstat -g c | grep -vi -e "test" -e "cssiod" | tail -n +3 | awk '{total+=$6} {panne+=$8} END {print (panne/total*100 > 100) ? "100" : panne/total*100 }')
+echo "sge_unavail.value $PANNE"
+# usage brut
+BRUT=$(qstat -g c | grep -vi -e "test" | tail -n +3 | awk '{total+=$6*($6-$8)/($6-$8+1)} {used+=$3*($6-$8)/($6-$8+1)} END {print (used/total*100 > 100) ? "100" : used/total*100}')
+#BRUT=$(qstat -g c | grep -vi -e "test" -e "cssiod" | tail -n +3 | awk '{total+=$6} {used+=$3} END {print (used/total*100 > 100) ? "100" : used/total*100 }')
+echo "sge_raw.value $BRUT"
+# usage corrigé
+CORRECTED=$(qstat -g c | grep -vi -e "test" | tail -n +3 | awk '{total+=$6-$8} {used+=$3*($6-$8)/($6-$8+1)} END {print (used/total*100 > 100) ? "100" : used/total*100}')
+#CORRECTED=$(qstat -g c | grep -vi -e "test" -e "cssiod" | tail -n +3 | awk '{total+=$6-$8} {used+=$3} END {print (used/total*100 > 100) ? "100" : used/total*100 }')
+echo "sge_corrected.value $CORRECTED"
+
+# equip@meso
+#PANNEMESO=$(qstat -g c | grep -e "E5-2670" | grep -vi -e "test" | awk '{total+=$6} {panne+=$8} END {print panne/total*100}')
+# test HG
+# PANNEMESO=$(qstat -g c | grep -e "E5-2670" | grep -vi -e "test" | awk '{total+=$6*($6-$8)/($6-$8+1)} {panne+=$8*($6-$8)/($6-$8+1)} END {print (panne/total*100 > 100) ? "100" : panne/total*100 }')
+#PANNEMESO=$(qstat -g c | grep -e "E5-2670" | grep -vi -e "test" -e "cssiod" | awk '{total+=$6} {panne+=$8} END {print (panne/total*100 > 100) ? "100" : panne/total*100 }')
+# echo "sge_unavail_meso.value $PANNEMESO"
+# BRUTMESO=$(qstat -g c | grep -e "E5-2670" | grep -vi -e "test" | awk '{total+=$6*($6-$8)/($6-$8+1)} {used+=$3*($6-$8)/($6-$8+1)} END {print (used/total*100 > 100) ? "100" : used/total*100}')
+#BRUTMESO=$(qstat -g c | grep -e "E5-2670" | grep -vi -e "test" -e "cssiod" | awk '{total+=$6} {used+=$3} END {print (used/total*100 > 100) ? "100" : used/total*100 }')
+# echo "sge_raw_meso.value $BRUTMESO"
+# CORRECTEDMESO=$(qstat -g c | grep -e "E5-2670" | grep -vi -e "test" | awk '{total+=$6-$8} {used+=$3*($6-$8)/($6-$8+1)} END {print (used/total*100 > 100) ? "100" : used/total*100}')
+#CORRECTEDMESO=$(qstat -g c | grep -e "E5-2670" | grep -vi -e "test" -e "cssiod" | awk '{total+=$6-$8} {used+=$3} END {print (used/total*100 > 100) ? "100" : used/total*100 }')
+# echo "sge_corrected_meso.value $CORRECTEDMESO"
+

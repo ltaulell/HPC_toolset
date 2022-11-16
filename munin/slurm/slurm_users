@@ -1,0 +1,50 @@
+#!/bin/bash
+# -*- sh -*-
+#
+# Copyright (C) 2022 PSMN / ENS de Lyon - LT
+# $Id: slurm_users 3832 2022-11-14 09:42:26Z ltaulell $
+#
+# Abstract
+# Script to monitor slurm global usage, by users
+#
+# Authors
+#  . Loïs Taulelle <lois dot taulelle at ens-lyon dot fr>
+#
+# Parameters understood:
+#
+#   config   (required)
+#   autoconf (optional - used by munin-config)
+#
+
+#
+#%# family=auto
+#%# capabilities=autoconf
+
+# slurm
+case $1 in
+    autoconf)
+        echo yes
+        exit 0
+        ;;
+
+    config)
+        echo graph_title "Clusters users activity"
+        echo graph_vlabel "number of users"
+        echo graph_category Slurm
+        echo graph_args "--base 1000 -l 0 --lower-limit 0"
+        echo slurm_users_pending.label "Pending users"
+        echo slurm_users_running.label "Running users"
+        echo slurm_users_total.label "Total"
+
+        exit 0
+        ;;
+esac
+
+USER_RUN=$(squeue -h -O UserName -t R | sort | uniq | wc -l)
+echo slurm_users_running.value "${USER_RUN}"
+
+USER_PEND=$(squeue -h -O UserName -t PD | sort | uniq | wc -l)
+echo slurm_users_pending.value "${USER_PEND}"
+
+USER_ALL=$(squeue -h -O UserName -t all | sort | uniq | wc -l)
+echo slurm_users_total.value "${USER_ALL}"

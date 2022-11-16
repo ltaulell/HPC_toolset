@@ -1,0 +1,81 @@
+#!/bin/sh
+# -*- sh -*-
+# $Id: slurm_jobs 3801 2022-10-28 14:17:00Z ltaulell $
+
+: << =cut
+
+=head1 NAME
+
+slurm_jobs - Plugin to measure the number of jobs in SLURM queue.
+
+=head1 NOTES
+
+Especially the average and max values on the bigger graphs (yearly) can be interesting.
+
+=head1 AUTHOR
+
+Contributed by Rael Garcia Arnes (raelga@gmail.com)
+Modified for PSMN by Loïs Taulelle (ltaulell@psmn.ens-lyon)
+
+=head1 LICENSE
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License 
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+=head1 MAGIC MARKERS
+
+#%# family=auto
+#%# capabilities=autoconf
+
+=cut
+
+# . $MUNIN_LIBDIR/plugins/plugin.sh
+
+case $1 in
+    autoconf)
+        echo yes 
+        exit 0
+        ;;
+
+    config)
+        echo graph_title "Overall Jobs in slurm queue"
+        echo graph_vlabel "Jobs"
+        echo graph_args "--base 1000 -l 0 --lower-limit 0"
+        echo graph_category Slurm
+
+        echo slurm_jobs_pending.label "pending"
+        echo slurm_jobs_running.label "running"
+        echo slurm_jobs_suspended.label "suspended"
+        echo slurm_jobs_cancelled.label "cancelled"
+        echo slurm_jobs_completing.label "completing"
+        echo slurm_jobs_completed.label "completed"
+        echo slurm_jobs_configuring.label "configuring"
+        echo slurm_jobs_failed.label "failed"
+        echo slurm_jobs_timeout.label "timeout"
+        echo slurm_jobs_node_fail.label "node fail"
+
+        exit 0
+        ;;
+esac
+
+squeue_out=$(squeue -h -o "%T")
+echo "$squeue_out" | awk 'BEGIN {c=0} /PENDING/ {c++} END {print "slurm_jobs_pending.value " c}'
+echo "$squeue_out" | awk 'BEGIN {c=0} /RUNNING/ {c++} END {print "slurm_jobs_running.value " c}'
+echo "$squeue_out" | awk 'BEGIN {c=0} /SUSPENDED/ {c++} END {print "slurm_jobs_suspended.value " c}'
+echo "$squeue_out" | awk 'BEGIN {c=0} /CANCELLED/ {c++} END {print "slurm_jobs_cancelled.value " c}'
+echo "$squeue_out" | awk 'BEGIN {c=0} /COMPLETING/ {c++} END {print "slurm_jobs_completing.value " c}'
+echo "$squeue_out" | awk 'BEGIN {c=0} /COMPLETED/ {c++} END {print "slurm_jobs_completed.value " c}'
+echo "$squeue_out" | awk 'BEGIN {c=0} /CONFIGURING/ {c++} END {print "slurm_jobs_configuring.value " c}'
+echo "$squeue_out" | awk 'BEGIN {c=0} /FAILED/ {c++} END {print "slurm_jobs_failed.value " c}'
+echo "$squeue_out" | awk 'BEGIN {c=0} /TIMEOUT/ {c++} END {print "slurm_jobs_timeout.value " c}'
+echo "$squeue_out" | awk 'BEGIN {c=0} /NODE_FAIL/ {c++} END {print "slurm_jobs_node_fail.value " c}'

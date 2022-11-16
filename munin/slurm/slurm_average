@@ -1,0 +1,83 @@
+#!/bin/bash
+# -*- sh -*-
+#
+# Copyright (C) 2022 PSMN / ENS de Lyon - LT
+# $Id: slurm_percent_usage 3831 2022-11-14 09:40:54Z ltaulell $
+#
+# Abstract
+# monitor slurm global usage (average %)
+#
+# Authors
+#  . Loïs Taulelle <lois dot taulelle at ens-lyon dot fr>
+#
+# Parameters understood:
+#
+#   config   (required)
+#   autoconf (optional - used by munin-config)
+#
+
+#
+#%# family=auto
+#%# capabilities=autoconf
+
+# slurm
+case $1 in
+    autoconf)
+        if [ -x "$(which bc)" ]; then
+            echo yes
+            exit 0
+        else
+            echo "no (bc not found)"
+            exit 1
+        fi
+        ;;
+
+    config)
+        echo graph_title "Clusters activity (average cores by jobs)"
+        echo graph_vlabel "average cores by jobs"
+        echo graph_category Slurm
+        echo graph_args "--base 1000 -l 0 --lower-limit 0"
+
+        for i in $(sinfo -h -o "%R")
+        # by partitions
+        do
+            echo slurm_wait_avg_"${i}".label "${i} average rate (pending)"
+            echo slurm_run_avg_"${i}".label "${i} average rate (running)"
+        done
+
+        # global
+        echo slurm_global_wait_avg.label "Global average (pending)"
+        echo slurm_global_run_avg.label "Global average (running)"
+        echo slurm_global_wait_avg.draw "LINE2"
+        echo slurm_global_run_avg.draw "LINE2"
+
+        exit 0
+        ;;
+esac
+
+
+for i in $(sinfo -h -o "%R")
+# by partitions
+do
+    PENDCORES=$(squeue -h -p "${i}" -o "%t %C" -t PD | awk 'BEGIN {somme=0} {somme+=($2)} END {print somme}')
+    PENDJOBS=$(squeue -h -p "${i}" -t PD | wc -l)
+    AVGPEND=$(echo "scale=2;${PENDCORES}/${PENDJOBS}" | bc -l)
+    echo slurm_wait_avg_"${i}".value "${AVGPEND}"
+
+    RUNCORES=$(squeue -h -p "${i}" -o "%t %C" -t R | awk 'BEGIN {somme=0} {somme+=($2)} END {print somme}')
+    RUNJOBS=$(squeue -h -p "${i}" -t R | wc -l)
+    AVGRUN=$(echo "scale=2;${RUNCORES}/${RUNJOBS}" | bc -l)
+    echo slurm_run_avg_"${i}".value "${AVGRUN}"
+done
+
+# global
+PENDCORES=$(squeue -h -o "%t %C" -t PD | awk 'BEGIN {somme=0} {somme+=($2)} END {print somme}')
+PENDJOBS=$(squeue -h -t PD | wc -l)
+AVGPEND=$(echo "scale=2;${PENDCORES}/${PENDJOBS}" | bc -l)
+
+RUNCORES=$(squeue -h -o "%t %C" -t R | awk 'BEGIN {somme=0} {somme+=($2)} END {print somme}')
+RUNJOBS=$(squeue -h -t R | wc -l)
+AVGRUN=$(echo "scale=2;${RUNCORES}/${RUNJOBS}" | bc -l)
+
+echo slurm_global_wait_avg.value "${AVGPEND}"
+echo slurm_global_run_avg.value "${AVGRUN}"

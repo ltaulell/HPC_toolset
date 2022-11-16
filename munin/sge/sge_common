@@ -1,0 +1,14 @@
+#!/bin/bash
+# -*- sh -*-
+#
+# PSMN: $Id: sge_common 2028 2017-12-26 14:10:02Z ltaulell $
+
+# SGE Environment:
+SGE_ROOT="/var/lib/gridengine"
+ARCH="lx-amd64"
+SGE_QMASTER_PORT="6444"
+SGE_EXECD_PORT="6445"
+SGE_CELL="default"
+SGE_CLUSTER_NAME="psmn"
+PATH="$SGE_ROOT/bin/$ARCH:$PATH"
+export PATH SGE_ROOT SGE_QMASTER_PORT SGE_EXECD_PORT SGE_CELL SGE_CLUSTER_NAME

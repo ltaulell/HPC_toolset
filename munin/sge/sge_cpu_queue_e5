@@ -1,0 +1,92 @@
+#!/bin/bash
+# -*- sh -*-
+#
+# Copyright (C) 2011 PSMN / ENS de Lyon - LT
+# $Id: sge_cpu_queue_e5 2794 2020-01-29 11:10:34Z ltaulell $
+#
+# Abstract
+# Script to monitor SGE work, cpu by queue
+#
+# Authors
+#  . Loïs Taulelle <lois dot taulelle at ens-lyon dot fr>
+#
+# Parameters understood:
+#
+# 	config   (required)
+# 	autoconf (optional - used by munin-config)
+#
+
+if [[ -e "/etc/munin/plugins/sge_common" ]]; then
+  source /etc/munin/plugins/sge_common
+else
+  echo "no common config"
+  exit 1
+fi
+
+#
+# Configuration:
+# add /etc/munin/plugin-conf.d/munin-node
+# [sge_*]
+# user root
+#
+# Magic markers (optional - used by munin-config and installation
+# scripts):
+#
+#%# family=auto
+#%# capabilities=autoconf
+
+#set -x # trace each command
+
+declare -a QUEUE
+declare -a NCPU
+declare -i i
+
+CMD1=$(qstat -g c | grep -i -e "E5-26" -e "r820" -e "r720" -e "celera" -e "monointeldeb128" | awk '{print $1}' | xargs)
+CMD2=$(qstat -g c | grep -i -e "E5-26" -e "r820" -e "r720" -e "celera" -e "monointeldeb128" | awk '{print $3}' | xargs)
+
+# $QUEUE <= $CMD1
+(( i = 0 ))
+for j in $CMD1
+do
+  QUEUE[$i]=$j
+  (( i++ ))
+done
+
+NBUNIT=${#QUEUE[*]}
+
+# $NCPU <= $CMD2
+(( i = 0 ))
+for j in $CMD2
+do
+  NCPU[$i]=$j
+  (( i++ ))
+done
+
+if [ "$1" = "autoconf" ]; then
+  if [ -x $(which qstat) ]; then
+    echo yes
+    exit 0
+  else
+    echo "no (qstat not found)"
+    exit 1
+  fi
+fi
+
+if [ "$1" = "config" ]; then
+  echo "graph_title SGE cores used by queue (E5 cluster)"
+  echo "graph_args --base 1000 -l 0 --lower-limit 0"
+  echo "graph_vlabel number of cores"
+  echo "graph_category sge"
+
+  for i in $(seq 0 $NBUNIT)
+  do
+    echo "sge_queue_e5_$i.label ${QUEUE[$i]}"
+  done
+  exit 0
+fi
+
+for i in $(seq 0 $NBUNIT)
+do
+  echo "sge_queue_e5_$i.value ${NCPU[$i]}"
+done
+

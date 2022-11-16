@@ -1,0 +1,66 @@
+#!/bin/bash
+# -*- sh -*-
+#
+# Copyright (C) 2022 PSMN / ENS de Lyon - LT
+# $Id: slurm_percent_usage 3834 2022-11-14 09:59:26Z ltaulell $
+#
+# Abstract
+# Script to monitor slurm global usage (%)
+#
+# Authors
+#  . Loïs Taulelle <lois dot taulelle at ens-lyon dot fr>
+#
+# Parameters understood:
+#
+#   config   (required)
+#   autoconf (optional - used by munin-config)
+#
+
+#
+#%# family=auto
+#%# capabilities=autoconf
+
+# slurm
+case $1 in
+    autoconf)
+        echo yes
+        exit 0
+        ;;
+
+    config)
+        echo graph_title "Clusters usage rates"
+        echo graph_vlabel "partitions usage (%)"
+        echo graph_category Slurm
+        echo graph_args "--base 1000 -l 0 --lower-limit 0 --upper-limit 100"
+
+        for i in $(sinfo -h -o "%R")
+        # by partitions
+        do
+            echo slurm_usage_rate_"${i}".label "${i} usage rate"
+        done
+
+        # global
+        echo slurm_global_rate.label "Global utilization rate"
+        echo slurm_global_rate.draw "LINE2"
+
+        exit 0
+        ;;
+esac
+
+
+for i in $(sinfo -h -o "%R")
+# by partitions
+do
+    RUNNING=$(squeue -h -p "${i}" -o "%t %C" -t R | awk 'BEGIN {somme=0} /R/ {somme+=($2)} END {print somme}')
+    TOTAL=$(sinfo -h -p "${i}" -e -o '%C' | awk -F'/' 'BEGIN {somme=0} {somme+=($4)} END {print somme}')
+    UNAVAIL=$(sinfo -h -p "${i}" -e -o '%C' | awk -F'/' 'BEGIN {somme=0} {somme+=($3)} END {print somme}')
+    PERCENT=$(((RUNNING * 100) / (TOTAL-UNAVAIL)))
+    echo slurm_usage_rate_"${i}".value "${PERCENT}"
+done
+
+# global
+RUNNING=$(squeue -h -o "%t %C" -t R | awk 'BEGIN {somme=0} /R/ {somme+=($2)} END {print somme}')
+TOTAL=$(sinfo -h -e -o '%C' | awk -F'/' 'BEGIN {somme=0} {somme+=($4)} END {print somme}')
+UNAVAIL=$(sinfo -h -e -o '%C' | awk -F'/' 'BEGIN {somme=0} {somme+=($3)} END {print somme}')
+PERCENT=$(((RUNNING * 100) / (TOTAL-UNAVAIL)))
+echo slurm_global_rate.value "${PERCENT}"
