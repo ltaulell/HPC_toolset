@@ -1,14 +1,17 @@
 #!/usr/bin/env python3
 # coding: utf-8
 
-# PSMN: $Id: get_acct_group.py 4150 2023-09-21 14:24:26Z ltaulell $
+# PSMN: $Id: get_acct_group.py 4169 2023-10-02 13:16:16Z ltaulell $
 # SPDX-License-Identifier: CECILL-B OR BSD-2-Clause
 
 """
-Sur la base de get_acct_group.sh
+Sur la base de get_acct_group.sh, remplace get_acct_group.sh
 slurmdbd n'arrive pas à fournir les jobs sur l'année, il faut traiter mois par mois
 
-for i in $(sacctmgr -nP list account format=account | xargs); do sreport -n job sizes printjobcount Start=2022-01-01 End=2023-01-01 Accounts="${i}" | awk -F" " '{ SUM +=$3+$4+$5+$6+$7} END {print $2" "SUM}' ;
+for i in $(sacctmgr -nP list account format=account | xargs);
+do sreport -n job sizes printjobcount Start=2022-01-01 End=2023-01-01 Accounts="${i}" | \
+awk -F" " '{ SUM +=$3+$4+$5+$6+$7} END {print $2" "SUM}' ;
+done
 
 output CSV annuel
 group,jobs,hours
@@ -103,16 +106,18 @@ def get_hours(MASTER_D, YEAR, debug=False):
 
 def get_jobs_sum(MASTER_D, YEAR, debug=False):
     """ get and compute accounted number of jobs """
-    """ loop de janvier à décembre autour de start=2022-$month-01 end=2022-$month+1-01
-    if month = 12 ; year +1, month = 01 (2022-12-31T23:59:00 == 2023-01-01T00:00:00)
+    """ loop de janvier à décembre autour de start=$year-$month-01 end=$year-$month+1-01
     hint: start sous-entend T00:00:00, end-> T23:59:00
 
-    for i in $(sacctmgr -nP list account format=account | xargs); do sreport -n job sizes printjobcount Start=2022-01-01 End=2023-01-01 Accounts="${i}" | awk -F" " '{ SUM +=$3+$4+$5+$6+$7} END {print $2" "SUM}' ;
+    for i in $(sacctmgr -nP list account format=account | xargs); do 
+    sreport -n job sizes printjobcount Start=2022-01-01 End=2023-01-01 Accounts="${i}" | \
+    awk -F" " '{ SUM +=$3+$4+$5+$6+$7} END {print $2" "SUM}' ;
+    done
     """
 
     for key in MASTER_D.keys():
         j_key = 0
-        for mois in range(1, 13):  # range non-inclusif, remember?
+        for mois in range(1, 13):  # range est non-inclusif, remember?
             debut = datetime.date(YEAR, mois, 1)
             # calendar.monthrange(YEAR, mois)[1] -> dernier jour du mois en cours
             fin = datetime.date(YEAR, mois, calendar.monthrange(YEAR, mois)[1])
@@ -140,8 +145,7 @@ def get_jobs_sum(MASTER_D, YEAR, debug=False):
 
 
 def write_csv_file(outfile):
-    """ write a csv file, with headers
-    """
+    """ write a csv file, with headers """
 
     for k in MASTER_D.keys():
         print(MASTER_D[k].values())
@@ -173,12 +177,13 @@ if __name__ == '__main__':
 
     if 'all' in args.g:
         accounts = get_accounts(debug)
-    else:  # all
+    else:
         accounts = args.g
 
     MASTER_D = create_dict(accounts, debug)
 
     get_hours(MASTER_D, YEAR, debug)
+
     get_jobs_sum(MASTER_D, YEAR, debug)
 
     if debug:
