@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # coding: utf-8
 
-# PSMN: $Id: get_acct_group.py 4169 2023-10-02 13:16:16Z ltaulell $
+# PSMN: $Id: get_acct_group.py 4174 2023-10-04 13:36:05Z ltaulell $
 # SPDX-License-Identifier: CECILL-B OR BSD-2-Clause
 
 """
@@ -50,7 +50,7 @@ def get_accounts(debug=False):
     CMD = "sacctmgr -nP list account format=account | xargs"
     acc_out = subprocess.check_output(CMD, shell=True, text=True)
     acc_out = str(acc_out)
-    acc_clean = str(acc_out.strip("b'").strip('\\n')).split()
+    acc_clean = str(acc_out.strip('\\n')).split()
 
     # nettoyer la liste d'accounts
     for elt in EXCLUDES:
