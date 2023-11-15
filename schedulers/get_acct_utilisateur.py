@@ -2,9 +2,10 @@
 # coding: utf-8
 
 # PSMN: $Id: get_acct_utilisateur.py 4175 2023-10-04 15:32:51Z ltaulell $
-# SPDX-License-Identifier: CECILL-B OR BSD-2-Clause
-
-# travail réalisé par Jessica Barilone (2023)
+# Authors: J.Barilone
+# Copyright J.Barilone 2023
+# Proofreader: L.Taulelle
+# SPDX-License-Identifier: MIT
 
 """
 Sur la base de get_acct_group.sh, remplace get_acct_group.sh
