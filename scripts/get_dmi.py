@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+# PSMN: $Id: get_dmi.py 4259 2023-12-11 08:53:59Z ltaulell $
 
 # Authors: J.Barilone
 # Copyright J.Barilone 2023
@@ -11,7 +12,7 @@ POC: use subprocess, ClusterShell  py-dmidecode
 This program can be used to retrieve information from dmidecode
 on remote servers.
 
-usage: PROGRAM [-n] [-c] [-C] [-d][-f] [-h][-H] [-m]][-M] [-n][-p] [-r] {-s}
+usage: PROGRAM [-d] [-c] [-C] [-f] [-m] [-M] [-p] [-r] [-s] -H hostname/nodeset
 """
 
 import argparse
@@ -31,10 +32,9 @@ def get_args():
     parser.add_argument('-C', '--total_enabled_cores', action='store_true', help="Affiche nombre de coeur")
     parser.add_argument('-d', '--debug', action='store_true', help='Active le debug')
     parser.add_argument('-f', '--firmware', action='store_true', help="Affiche firmware")
-    parser.add_argument('-H', '--host', action='store_true', help='hostname')
+    parser.add_argument('-H', '--host', nargs=1, type=str, required=True, help='hostname (or nodeset)')
     parser.add_argument('-m', '--manufacturer', action='store_true', help="Affiche manufacturer")
     parser.add_argument('-M', '--model', action='store_true', help="Affiche model")
-    parser.add_argument('-n', nargs=1, type=str, required=True, help="select nodeset")
     parser.add_argument('-p', '--cpu_type', action='store_true', help="Affiche type de CPU")
     parser.add_argument('-r', '--total_ram', action='store_true', help="Affiche RAM")
     parser.add_argument('-s', '--serial_number', action='store_true', help="serial number")
@@ -58,10 +58,10 @@ if __name__ == '__main__':
         print(args)
     else:
         debug = False
-    if args.n:
+    if args.host:
         if debug:
-            print(args.n)
-        nodeset = NodeSet(args.n[0])
+            print(args.host)
+        nodeset = NodeSet(args.host[0])
     if debug:
         print(nodeset)
 
