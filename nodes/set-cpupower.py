@@ -21,27 +21,26 @@ si @comp et @visu doivent être en 'powersave' :
 
 """
 
-GOVERNORS="powersave ondemand performance"
+# GOVERNORS = "powersave ondemand performance"
 
 
-def apply_governor(governor, freqs, host, debug=False):
+def apply_governor(governor, freqs, host, debug):
     """
         apply chosen governor, with related freqs
     """
+    cmd = ""
     match governor:
-        case "ondemand":
+        case "ondemand" | "performance":
             cmd = f"ssh root@{host} cpupower -c all frequency-set -g {governor} --related --min {freqs['min']}MHz --max {freqs['max']}MHz"
-
-        case "performance":
-            cmd = f"ssh root@{host} cpupower -c all frequency-set -g {governor} --related --min {freqs['min']}MHz --max {freqs['max']}MHz"
-
+            print(cmd)
+        # case "performance":
+        #    cmd = f"ssh root@{host} cpupower -c all frequency-set -g {governor} --related --min {freqs['min']}MHz --max {freqs['max']}MHz"
+        #    print(cmd)
         case "powersave":
             cmd = f"ssh root@{host} cpupower -c all frequency-set -g {governor} --related --min {freqs['min']}MHz --max {freqs['min']}MHz"
+            print(cmd)
 
-    if debug:
-        print(cmd)
-
-    subprocess.run(cmd, capture_output=False, shell=False, check=False, text=False)
+    return cmd
 
 
 def get_args():
@@ -121,7 +120,7 @@ def set_freqs(host):
             # flix ! no min
             frequencies['min'] = "2300"
             frequencies['max'] = "2300"
-        case host if host in NodeSet('s92node[02-40,53-78,81-84,87-90,109-112,121-126,145-150,163-192]'):
+        case host if host in NodeSet('s92node[01-40,53-78,81-84,87-90,109-112,121-126,145-150,163-192]'):
             # Intel Platinum 9242
             frequencies['min'] = "1000"
             frequencies['max'] = "2300"
@@ -132,6 +131,7 @@ def set_freqs(host):
             return False
 
     return frequencies
+
 
 if __name__ == '__main__':
     """ """
@@ -154,6 +154,14 @@ if __name__ == '__main__':
             if debug:
                 print(f"{freqs}")
 
-            gov = args.governor[0]
+            gov = args.governor
+            if debug:
+                print(gov)
 
-            apply_governor(gov, freqs, node, debug=debug)
+            cmd = apply_governor(gov, freqs, node, debug)
+
+            if debug:
+                print(cmd)
+
+            print(f"subprocess.run({cmd}, capture_output=False, shell=True, check=False, text=False)")
+
