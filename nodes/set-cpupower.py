@@ -6,16 +6,12 @@
 #
 
 import argparse
+import subprocess
 
 from ClusterShell.NodeSet import NodeSet
 
 """
-
-NOT DONE YET!!
-
-
-
-
+TODO/FIXME:
 si @comp et @visu doivent être en 'powersave' :
         # cluster X5
         case hosts if hosts in NodeSet('x5570comp[1-2]'):
@@ -30,31 +26,29 @@ GOVERNORS="powersave ondemand performance"
 
 def apply_governor(governor, freqs, debug=False):
     """
-        apply chosen governor, with freqs, if needed
+        apply chosen governor, with related freqs
     """
     match governor:
         case "ondemand":
-            if debug:
-                print("cpupower -c all frequency-set -g ondemand")
-            # cpupower -c all frequency-set -g ondemand
-            pass
+            cmd = f"cpupower -c all frequency-set -g {governor} --related --min {freqs['min']}MHz --max {freqs['max']}MHz"
+
         case "performance":
-            if debug:
-                print("cpupower -c all frequency-set -g performance")
-            # cpupower -c all frequency-set -g performance
-            pass
+            cmd = f"cpupower -c all frequency-set -g {governor} --related --min {freqs['min']}MHz --max {freqs['max']}MHz"
+
         case "powersave":
-            if debug:
-                print(f"cpupower -c all frequency-set --related --min {freqs['min']}Mhz --max {freqs['min']}Mhz")
-            # cmd = f"cpupower -c all frequency-set --related --min {freqs['min']}Mhz --max {freqs['min']}Mhz"
-            pass
+            cmd = f"cpupower -c all frequency-set -g {governor} --related --min {freqs['min']}MHz --max {freqs['min']}MHz"
+
+    if debug:
+        print(cmd)
+
+    subprocess.run(cmd, capture_output=False, shell=False, check=False, text=False)
 
 
 def get_args():
     """
         read parser and return args (as args namespace)
     """
-    parser = argparse.ArgumentParser(description='Set cpupower governor (and cpu min/max frequencies)')
+    parser = argparse.ArgumentParser(description='Set CPU governor (with min/max frequencies)')
     parser.add_argument('-d', '--debug', action='store_true', help='toggle debug')
     parser.add_argument('-g', '--governor', nargs=1, type=str, choices=['powersave', 'ondemand', 'performance'], help='governor to apply (default: ondemand)', default='ondemand')
     parser.add_argument('nodes', type=str, help='host(s), nodeset syntax')
@@ -65,7 +59,7 @@ def get_args():
 def set_freqs(hosts):
     """
         set min/max frequencies according to CPU family
-        return a dict{'min': int, 'max': int}
+        return a dict{'min': int, 'max': int} or False
     """
     frequencies = {}
     match hosts:
@@ -134,7 +128,8 @@ def set_freqs(hosts):
 
         # None of the above
         case _:
-            raise ValueError(f"Host not found in CPU tree: {hosts}")
+            print(f"Host not found in CPU tree: {hosts}")
+            return False
 
     return frequencies
 
@@ -153,9 +148,11 @@ if __name__ == '__main__':
         print(f"{nodes}")
 
     freqs = set_freqs(nodes)
-    if debug:
-        print(f"{freqs}")
 
-    gov = args.governor[0]
-    if gov in GOVERNORS:
+    if freqs:
+        if debug:
+            print(f"{freqs}")
+
+        gov = args.governor[0]
+
         apply_governor(gov, freqs, debug=debug)
