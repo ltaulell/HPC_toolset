@@ -2,7 +2,7 @@
 # -*- sh -*-
 #
 # Copyright (C) 2022 PSMN / ENS de Lyon - LT
-# $Id: slurm_percent_usage 3834 2022-11-14 09:59:26Z ltaulell $
+# $Id: slurm_percent_usage 4264 2023-12-13 13:19:31Z ltaulell $
 #
 # Abstract
 # Script to monitor slurm global usage (%)
@@ -29,7 +29,7 @@ case $1 in
 
     config)
         echo graph_title "Clusters usage rates"
-        echo graph_vlabel "partitions usage (%)"
+        echo graph_vlabel "Partitions usage (%)"
         echo graph_category Slurm
         echo graph_args "--base 1000 -l 0 --lower-limit 0 --upper-limit 100"
 
@@ -51,7 +51,8 @@ esac
 for i in $(sinfo -h -o "%R")
 # by partitions
 do
-    RUNNING=$(squeue -h -p "${i}" -o "%t %C" -t R | awk 'BEGIN {somme=0} /R/ {somme+=($2)} END {print somme}')
+    # RUNNING=$(squeue -h -p "${i}" -o "%t %C" -t R | awk 'BEGIN {somme=0} /R/ {somme+=($2)} END {print somme}')
+    RUNNING=$(sinfo -h -p "${i}" -e -o '%C' | awk -F'/' 'BEGIN {somme=0} {somme+=($1)} END {print somme}')
     TOTAL=$(sinfo -h -p "${i}" -e -o '%C' | awk -F'/' 'BEGIN {somme=0} {somme+=($4)} END {print somme}')
     UNAVAIL=$(sinfo -h -p "${i}" -e -o '%C' | awk -F'/' 'BEGIN {somme=0} {somme+=($3)} END {print somme}')
     PERCENT=$(((RUNNING * 100) / (TOTAL-UNAVAIL)))
@@ -59,7 +60,8 @@ do
 done
 
 # global
-RUNNING=$(squeue -h -o "%t %C" -t R | awk 'BEGIN {somme=0} /R/ {somme+=($2)} END {print somme}')
+# RUNNING=$(squeue -h -o "%t %C" -t R | awk 'BEGIN {somme=0} /R/ {somme+=($2)} END {print somme}')
+RUNNING=$(sinfo -h -e -o '%C' | awk -F'/' 'BEGIN {somme=0} {somme+=($1)} END {print somme}')
 TOTAL=$(sinfo -h -e -o '%C' | awk -F'/' 'BEGIN {somme=0} {somme+=($4)} END {print somme}')
 UNAVAIL=$(sinfo -h -e -o '%C' | awk -F'/' 'BEGIN {somme=0} {somme+=($3)} END {print somme}')
 PERCENT=$(((RUNNING * 100) / (TOTAL-UNAVAIL)))
