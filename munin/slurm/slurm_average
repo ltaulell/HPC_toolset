@@ -41,13 +41,13 @@ case $1 in
         for i in $(sinfo -h -o "%R")
         # by partitions
         do
-            echo slurm_wait_avg_"${i}".label "${i} average rate (pending)"
-            echo slurm_run_avg_"${i}".label "${i} average rate (running)"
+            echo slurm_wait_avg_"${i}".label "${i} average cores (pending)"
+            echo slurm_run_avg_"${i}".label "${i} average cores (running)"
         done
 
         # global
-        echo slurm_global_wait_avg.label "Global average (pending)"
-        echo slurm_global_run_avg.label "Global average (running)"
+        echo slurm_global_wait_avg.label "Global average cores (pending)"
+        echo slurm_global_run_avg.label "Global average cores (running)"
         echo slurm_global_wait_avg.draw "LINE2"
         echo slurm_global_run_avg.draw "LINE2"
 
