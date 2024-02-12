@@ -1,25 +1,28 @@
 #!/bin/bash
 #
-# PSMN: $Id: get_slurm_cpu.sh 3696 2022-07-05 12:59:50Z ltaulell $
+# PSMN: $Id: get_slurm_cpu.sh 4082 2023-06-19 15:15:41Z ltaulell $
 #
 
 # RUNNING=$(squeue -h -o "%t %C" | awk 'BEGIN {somme=0} /R/ {somme+=$2} END {print somme}')
-RUNNING=$(squeue -h -o "%t %C" | awk 'BEGIN {somme=0} /R/ {somme+=($2/2)} END {print somme}')
+RUNNING=$(squeue -h -o "%t %C" | awk 'BEGIN {somme=0} /R/ {somme+=($2)} END {print somme}')
 PENDING=$(squeue -h -o "%t %C" | awk 'BEGIN {somme=0} /PD/ {somme+=$2} END {print somme}')
 # TOTAL=$(sinfo -h -e -o '%8X %8Y %5D' | awk 'BEGIN {somme=0} {somme+=($1 * $2 * $3)} END {print somme}')
-TOTAL=$(sinfo -h -e -o '%C' | awk -F'/' 'BEGIN {somme=0} {somme+=($4 / 2)} END {print somme}')
-AVAIL=$(sinfo -h -e -o '%C' | awk -F'/' 'BEGIN {somme=0} {somme+=($2 / 2)} END {print somme}')
-UNAVAIL=$(sinfo -h -d -o '%C' | awk -F'/' 'BEGIN {somme=0} {somme+=($4 / 2)} END {print somme}')
+TOTAL=$(sinfo -h -e -o '%C' | awk -F'/' 'BEGIN {somme=0} {somme+=($4)} END {print somme}')
+AVAIL=$(sinfo -h -e -o '%C' | awk -F'/' 'BEGIN {somme=0} {somme+=($2)} END {print somme}')
+UNAVAIL=$(sinfo -h -e -o '%C' | awk -F'/' 'BEGIN {somme=0} {somme+=($3)} END {print somme}')
+NODES=$(sinfo -h --exact --format="%.5D")
 
 PERCENT=$(((RUNNING * 100) / (TOTAL-UNAVAIL)))
 
-echo "Running Cores: ${RUNNING}"
-echo "Pending Cores: ${PENDING}"
-echo "Available    : ${AVAIL}"
-echo "Unavailable  : ${UNAVAIL}"
-echo "Overall Total: ${TOTAL}"
-echo ""
-echo "Overall Use  : ${PERCENT}%"
+printf "Running Cores: %5s\n" ${RUNNING}
+printf "Pending Cores: %5s\n" ${PENDING}
+printf "Available    : %5s\n" ${AVAIL}
+printf "Unavailable  : %5s\n" ${UNAVAIL}
+printf "Overall Total: %5s\n" ${TOTAL}
+printf "\n"
+# %% -> literal '%' symbol
+printf "Overall Use  : %4s%%\n" ${PERCENT}
+printf "Total nodes  : %5s\n" ${NODES}
 
 
 exit 0
@@ -30,6 +33,7 @@ exit 0
 # sinfo -d -o '%C', divisé par %Z -> Alloc/Idle/Other/Total
 # AVAIL :
 # sinfo -e -o '%C', divisé par %Z -> Alloc/Idle/Other/Total
+# slurm.conf (avoid ThreadsPerCore=2, or set ThreadsPerCore=1)
 
 # alloc = awk -F'/' 'BEGIN {somme=0} {somme+=($1 / 2)} END {print somme}'
 # avail = awk -F'/' 'BEGIN {somme=0} {somme+=($2 / 2)} END {print somme}'
