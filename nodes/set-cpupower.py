@@ -11,13 +11,16 @@ import subprocess
 from ClusterShell.NodeSet import NodeSet
 
 """
+Apply CPU governor and min/max frequencies to NodeSet
+
 TODO/FIXME:
-si @comp et @visu doivent être en 'powersave' :
-        # cluster X5
-        case hosts if hosts in NodeSet('x5570comp[1-2]'):
-            # Intel X5570
-            frequencies['min'] = "1600"
-            frequencies['max'] = "2930"
+* lack some hosts
+
+* should use clusters.yml dictionary
+
+* too much interactive -> cron-able
+
+* VERY slow, should be //ized
 
 """
 
