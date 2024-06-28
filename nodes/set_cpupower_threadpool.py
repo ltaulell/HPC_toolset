@@ -5,6 +5,7 @@
 # SPDX-License-Identifier: BSD-2-Clause
 #
 """
+<<<<<<< HEAD
 TODO/FIXME:
 
 - use ThreadPoolExecutor() to //-ize
@@ -14,6 +15,17 @@ TODO/FIXME:
 - handle OK/NOOK (via nodesets?)
 
 https://www.pythontutorial.net/python-concurrency/python-threadpoolexecutor/
+=======
+//ized version of set-cpupower.py using ThreadPoolExecutor
+
+from 33mn using sequential set-cpupower.py to 5mn for 658 nodes.
+
+https://www.pythontutorial.net/python-concurrency/python-threadpoolexecutor/
+
+TODO/FIXME:
+
+* should use clusters.yml dictionary
+>>>>>>> cfa0ea7958a516dc7b07be0b8a7abe2e93eb57a9
 
 """
 
@@ -28,6 +40,10 @@ nodes_ok = NodeSet()
 nodes_ko = NodeSet()
 list_freqs = []
 debug = False
+<<<<<<< HEAD
+=======
+USER = 'root'
+>>>>>>> cfa0ea7958a516dc7b07be0b8a7abe2e93eb57a9
 KEYFILE = ''
 fanout = 1
 timeout = 10
@@ -40,10 +56,17 @@ def apply_governor(freqs):
     cmd = ""
     match freqs['gov']:
         case "ondemand" | "performance":
+<<<<<<< HEAD
             cmd = f"ssh {KEYFILE} root@{freqs['host']} cpupower -c all frequency-set -g {freqs['gov']} --related --min {freqs['min']}MHz --max {freqs['max']}MHz"
 
         case "powersave":
             cmd = f"ssh {KEYFILE} root@{freqs['host']} cpupower -c all frequency-set -g {freqs['gov']} --related --min {freqs['min']}MHz --max {freqs['min']}MHz"
+=======
+            cmd = f"ssh {KEYFILE} {USER}@{freqs['host']} cpupower -c all frequency-set -g {freqs['gov']} --related --min {freqs['min']}MHz --max {freqs['max']}MHz"
+
+        case "powersave":
+            cmd = f"ssh {KEYFILE} {USER}@{freqs['host']} cpupower -c all frequency-set -g {freqs['gov']} --related --min {freqs['min']}MHz --max {freqs['min']}MHz"
+>>>>>>> cfa0ea7958a516dc7b07be0b8a7abe2e93eb57a9
 
     if debug:
         print(cmd)
@@ -84,8 +107,13 @@ def get_args():
 
 def set_freqs(host, gouverneur):
     """
+<<<<<<< HEAD
         set min/max frequencies according to CPU family
         return a dict{'min': int, 'max': int, 'gov': powersave|ondemand|performance}
+=======
+        set min/max frequencies according to NodeSet/CPU family
+        return a dict{'host': host, 'min': int, 'max': int, 'gov': powersave|ondemand|performance}
+>>>>>>> cfa0ea7958a516dc7b07be0b8a7abe2e93eb57a9
         or return False
     """
     frequencies = {}
@@ -99,7 +127,10 @@ def set_freqs(host, gouverneur):
             frequencies['min'] = "1600"
             frequencies['max'] = "2930"
             frequencies['gov'] = gouverneur
+<<<<<<< HEAD
 
+=======
+>>>>>>> cfa0ea7958a516dc7b07be0b8a7abe2e93eb57a9
         #
         # visu et specials
         #
@@ -145,7 +176,10 @@ def set_freqs(host, gouverneur):
             frequencies['gov'] = gouverneur
             print(f"cannot do on {host}")
             return False
+<<<<<<< HEAD
 
+=======
+>>>>>>> cfa0ea7958a516dc7b07be0b8a7abe2e93eb57a9
         #
         # cluster E5
         #
@@ -169,7 +203,10 @@ def set_freqs(host, gouverneur):
             frequencies['min'] = "1200"
             frequencies['max'] = "3200"
             frequencies['gov'] = gouverneur
+<<<<<<< HEAD
 
+=======
+>>>>>>> cfa0ea7958a516dc7b07be0b8a7abe2e93eb57a9
         #
         # cluster E5-GPU
         #
