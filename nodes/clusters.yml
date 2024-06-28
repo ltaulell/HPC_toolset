@@ -1,0 +1,322 @@
+# $Id: clusters.yml 4606 2024-06-26 10:08:40Z ltaulell $
+%YAML 1.1
+---
+# PSMN nodes, nodeset syntax
+X5:
+  x5570comp[1-2]:
+    groupAltName: "@comp"
+    nodeGPUType: ""
+    nodeGPUNumber: 0
+    nodeCPUType: "Intel X5570"
+    nodeCPUCoreNumber: 4
+    nodeCPUNumber: 2
+    nodeCPUFreqMin: 1600
+    nodeCPUFreqMax: 2934
+    nodeRAMSize: 24
+    nodeDiskNumber: 0
+    nodeScratchNumber: 0
+    nodeNumber: 2
+special:
+  r740cral,r740visu,r740cssi:
+    groupAltName: "@visu"
+    nodeGPUType: "Quadro P4000"
+    nodeGPUNumber: 1
+    nodeCPUType: "Intel Xeon Gold 5122"
+    nodeCPUCoreNumber: 4
+    nodeCPUNumber: 2
+    nodeCPUFreqMin: 1200
+    nodeCPUFreqMax: 3600
+    nodeRAMSize: 192
+    nodeDiskNumber: 0
+    nodeScratchNumber: 1
+    nodeNumber: 3
+  r740flix[1-4]:
+    groupAltName: "@visu"
+    nodeGPUType: "T1000 8GB"
+    nodeGPUNumber: 1
+    nodeCPUType: "Intel Xeon Silver 4215R"
+    nodeCPUCoreNumber: 8
+    nodeCPUNumber: 2
+    nodeCPUFreqMin: 1200
+    nodeCPUFreqMax: 3200
+    nodeRAMSize: 384
+    nodeDiskNumber: 0
+    nodeScratchNumber: 1
+    nodeNumber: 4
+  r740gpu[06-09]:
+    groupAltName: "@visu"
+    nodeGPUType: "T1000 8GB"
+    nodeGPUNumber: 1
+    nodeCPUType: "Intel Xeon Silver 4215R"
+    nodeCPUCoreNumber: 8
+    nodeCPUNumber: 2
+    nodeCPUFreqMin: 1200
+    nodeCPUFreqMax: 3200
+    nodeRAMSize: 384
+    nodeDiskNumber: 8
+    nodeScratchNumber: 5
+    nodeNumber: 1
+  r640cral:
+    groupAltName: "@visu"
+    nodeGPUType: "T1000 8GB"
+    nodeGPUNumber: 1
+    nodeCPUType: "Intel Xeon Gold 6148"
+    nodeCPUCoreNumber: 20
+    nodeCPUNumber: 2
+    nodeCPUFreqMin: 1200
+    nodeCPUFreqMax: 2400
+    nodeRAMSize: 192
+    nodeDiskNumber: 0
+    nodeScratchNumber: 2
+    nodeNumber: 1
+  cumulonimbus:
+    groupAltName: "@visu"
+    nodeGPUType: ""
+    nodeGPUNumber: 0
+    nodeCPUType: "Intel Xeon Platinum 8358"
+    nodeCPUCoreNumber: 32
+    nodeCPUNumber: 2
+    nodeCPUFreqMin: 800
+    nodeCPUFreqMax: 2600
+    nodeRAMSize: 4000
+    nodeDiskNumber: 0
+    nodeScratchNumber: 2
+    nodeNumber: 1
+  lensr650:
+    groupAltName: "@visu"
+    nodeGPUType: ""
+    nodeGPUNumber: 0
+    nodeCPUType: "Intel Xeon Gold 6444Y"
+    nodeCPUCoreNumber: 16
+    nodeCPUNumber: 2
+    nodeCPUFreqMin: 800
+    nodeCPUFreqMax: 3601
+    nodeRAMSize: 512
+    nodeDiskNumber: 0
+    nodeScratchNumber: 0
+    nodeNumber: 1
+E5:
+  c8220node[1-4]:
+    groupAltName: "@c82-64"
+    nodeGPUType: ""
+    nodeGPUNumber: 0
+    nodeCPUType: "Intel Xeon E5-2670"
+    nodeCPUCoreNumber: 8
+    nodeCPUNumber: 2
+    nodeCPUFreqMin: 1200
+    nodeCPUFreqMax: 2601
+    nodeRAMSize: 64
+    nodeDiskNumber: 0
+    nodeScratchNumber: 1
+    nodeNumber: 4
+  c8220node[31-34]:
+    groupAltName: "@c82-128"
+    nodeGPUType: ""
+    nodeGPUNumber: 0
+    nodeCPUType: "Intel Xeon E5-2670"
+    nodeCPUCoreNumber: 8
+    nodeCPUNumber: 2
+    nodeCPUFreqMin: 1200
+    nodeCPUFreqMax: 2601
+    nodeRAMSize: 128
+    nodeDiskNumber: 0
+    nodeScratchNumber: 1
+    nodeNumber: 4
+  c8220node[41-56,169-176]:
+    groupAltName: "@c82-256,@photochimie"
+    nodeGPUType: ""
+    nodeGPUNumber: 0
+    nodeCPUType: "Intel Xeon E5-2670"
+    nodeCPUCoreNumber: 8
+    nodeCPUNumber: 2
+    nodeCPUFreqMin: 1200
+    nodeCPUFreqMax: 2601
+    nodeRAMSize: 256
+    nodeDiskNumber: 2
+    nodeScratchNumber: 2
+    nodeNumber: 24
+  c6320node[201-212]:
+    groupAltName: "@c6320-256"
+    nodeGPUType: ""
+    nodeGPUNumber: 0
+    nodeCPUType: "Intel Xeon E5-2697Av4"
+    nodeCPUCoreNumber: 16
+    nodeCPUNumber: 2
+    nodeCPUFreqMin: 1200
+    nodeCPUFreqMax: 2601
+    nodeRAMSize: 256
+    nodeDiskNumber: 0
+    nodeScratchNumber: 1
+    nodeNumber: 12
+  c6320node[1-24]:
+    groupAltName: "@c6320-128"
+    nodeGPUType: ""
+    nodeGPUNumber: 0
+    nodeCPUType: "Intel Xeon E5-2667v4"
+    nodeCPUCoreNumber: 8
+    nodeCPUNumber: 2
+    nodeCPUFreqMin: 1200
+    nodeCPUFreqMax: 3200
+    nodeRAMSize: 128
+    nodeDiskNumber: 0
+    nodeScratchNumber: 1
+    nodeNumber: 24
+  c6320node[101-124]:
+    groupAltName: "@c6320-256"
+    nodeGPUType: ""
+    nodeGPUNumber: 0
+    nodeCPUType: "Intel Xeon E5-2667v4"
+    nodeCPUCoreNumber: 8
+    nodeCPUNumber: 2
+    nodeCPUFreqMin: 1200
+    nodeCPUFreqMax: 3200
+    nodeRAMSize: 256
+    nodeDiskNumber: 0
+    nodeScratchNumber: 1
+    nodeNumber: 24
+Lake:
+  r730gpu[01-19]:
+    groupAltName: "@r730gpu"
+    nodeGPUType: "RTX 2080Ti"
+    nodeGPUNumber: 2
+    nodeCPUType: "Intel Xeon E5-2637v3"
+    nodeCPUCoreNumber: 4
+    nodeCPUNumber: 2
+    nodeCPUFreqMin: 1200
+    nodeCPUFreqMax: 3500
+    nodeRAMSize: 128
+    nodeDiskNumber: 0
+    nodeScratchNumber: 4
+    nodeNumber: 19
+  r730gpu[20-24]:
+    groupAltName: "@r730gpu"
+    nodeGPUType: ""
+    nodeGPUNumber: 0
+    nodeCPUType: "Intel Xeon E5-2637v3"
+    nodeCPUCoreNumber: 4
+    nodeCPUNumber: 2
+    nodeCPUFreqMin: 1200
+    nodeCPUFreqMax: 3500
+    nodeRAMSize: 128
+    nodeDiskNumber: 0
+    nodeScratchNumber: 4
+    nodeNumber: 5
+  c6420node[001-048,171-174]:
+    groupAltName: "@c6420-384"
+    nodeGPUType: ""
+    nodeGPUNumber: 0
+    nodeCPUType: "Intel Xeon Gold 6142"
+    nodeCPUCoreNumber: 16
+    nodeCPUNumber: 2
+    nodeCPUFreqMin: 1200
+    nodeCPUFreqMax: 2600
+    nodeRAMSize: 384
+    nodeDiskNumber: 0
+    nodeScratchNumber: 4
+    nodeNumber: 52
+  c6420node[049-060]:
+    groupAltName: "@c6420-384,@photochimie"
+    nodeGPUType: ""
+    nodeGPUNumber: 0
+    nodeCPUType: "Intel Xeon Gold 6142"
+    nodeCPUCoreNumber: 16
+    nodeCPUNumber: 2
+    nodeCPUFreqMin: 1200
+    nodeCPUFreqMax: 2600
+    nodeRAMSize: 384
+    nodeDiskNumber: 3
+    nodeScratchNumber: 5
+    nodeNumber: 12
+  c6420node[201-204]:
+    groupAltName: "@c6420-96,@themiss"
+    nodeGPUType: ""
+    nodeGPUNumber: 0
+    nodeCPUType: "Intel Xeon Gold 5118"
+    nodeCPUCoreNumber: 12
+    nodeCPUNumber: 2
+    nodeCPUFreqMin: 1000
+    nodeCPUFreqMax: 2300
+    nodeRAMSize: 96
+    nodeDiskNumber: 0
+    nodeScratchNumber: 4
+    nodeNumber: 4
+  xlr170node[001-010,013-072]:
+    groupAltName: "@lakeflix"
+    nodeGPUType: ""
+    nodeGPUNumber: 0
+    nodeCPUType: "Intel Xeon Gold 6242"
+    nodeCPUCoreNumber: 16
+    nodeCPUNumber: 2
+    nodeCPUFreqMin: 1200
+    nodeCPUFreqMax: 2800
+    nodeRAMSize: 384
+    nodeDiskNumber: 0
+    nodeScratchNumber: 4
+    nodeNumber: 70
+  c6420node[061-168]:
+    groupAltName: "@c6420-192"
+    nodeGPUType: ""
+    nodeGPUNumber: 0
+    nodeCPUType: "Intel Xeon Gold 6226R"
+    nodeCPUCoreNumber: 16
+    nodeCPUNumber: 2
+    nodeCPUFreqMin: 1000
+    nodeCPUFreqMax: 2900
+    nodeRAMSize: 192
+    nodeDiskNumber: 0
+    nodeScratchNumber: 4
+    nodeNumber: 108
+  xlr178node[001-106,109-110,119-122]:
+    groupAltName: "@xlr178-192"
+    nodeGPUType: ""
+    nodeGPUNumber: 0
+    nodeCPUType: "Intel Xeon Gold 5218"
+    nodeCPUCoreNumber: 16
+    nodeCPUNumber: 2
+    nodeCPUFreqMin: 1000
+    nodeCPUFreqMax: 2300
+    nodeRAMSize: 192
+    nodeDiskNumber: 0
+    nodeScratchNumber: 4
+    nodeNumber: 112
+  r740bigmem201:
+    groupAltName: ""
+    nodeGPUType: ""
+    nodeGPUNumber: 0
+    nodeCPUType: "Intel Xeon Gold 6226R"
+    nodeCPUCoreNumber: 16
+    nodeCPUNumber: 2
+    nodeCPUFreqMin: 1000
+    nodeCPUFreqMax: 2900
+    nodeRAMSize: 1500
+    nodeDiskNumber: 8
+    nodeScratchNumber: 5
+    nodeNumber: 1
+Epyc:
+  c6525node[001-014]:
+    groupAltName: "@epyc"
+    nodeGPUType: ""
+    nodeGPUNumber: 0
+    nodeCPUType: "AMD EPYC 7702"
+    nodeCPUCoreNumber: 64
+    nodeCPUNumber: 2
+    nodeCPUFreqMin: 1500
+    nodeCPUFreqMax: 2000
+    nodeRAMSize: 512
+    nodeDiskNumber: 0
+    nodeScratchNumber: 4
+    nodeNumber: 14
+Cascade:
+  s92node[01-90,103-150,163-196]:
+    groupAltName: "@cascade,@cascadeflix"
+    nodeGPUType: ""
+    nodeGPUNumber: 0
+    nodeCPUType: "Intel Xeon Platinum 9242"
+    nodeCPUCoreNumber: 48
+    nodeCPUNumber: 2
+    nodeCPUFreqMin: 1000
+    nodeCPUFreqMax: 2300
+    nodeRAMSize: 384
+    nodeDiskNumber: 0
+    nodeScratchNumber: 2
+    nodeNumber: 171
