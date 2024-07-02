@@ -1,21 +1,21 @@
 #!/usr/bin/env python3
 # coding: utf-8
 #
-# $Id: set_cpupower_threadpool.py 4599 2024-06-19 15:06:57Z ltaulell $
+# $Id: set_cpupower_threadpool+ref.py 4624 2024-07-02 14:45:12Z ltaulell $
 # SPDX-License-Identifier: BSD-2-Clause
 #
 """
 https://www.pythontutorial.net/python-concurrency/python-threadpoolexecutor/
+
 TODO/FIXME:
 
-- handle OK/NOOK (via nodesets) check proper handling
-
-- switch to clusters.yml dict?
 
 """
 
 import argparse
 import subprocess
+import yaml
+import sys
 
 from ClusterShell.NodeSet import NodeSet
 from concurrent.futures import ThreadPoolExecutor
@@ -28,6 +28,11 @@ debug = False
 KEYFILE = '-o "IdentitiesOnly=yes" -i /path/to/keyfile'
 fanout = 1
 timeout = 10
+
+# frequencies changes do not apply on these:
+blacklist = NodeSet()
+visu = NodeSet("r740flix[1-4],r740gpu[06-09],r740visu,r740cral,r640cral")
+premium = NodeSet("s92node[61-78],xlr170node[001-010,013-036,037-060]")
 
 
 def apply_governor(freqs):
@@ -74,181 +79,65 @@ def get_args():
     parser.add_argument('-g', '--governor', nargs=1, type=str, choices=['powersave', 'ondemand', 'performance'], help='governor to apply (default: ondemand)', default=['ondemand'])
     parser.add_argument("-f", "--fanout", action="store", default="128", help="Fanout window size (default 128)", type=int)
     parser.add_argument("-t", "--timeout", action="store", default="10", help="Timeout in seconds (default 10)", type=float)
+    parser.add_argument('-r', '--repository', type=str, help='repository file (default: clusters.yml)', default=['clusters.yml'])
     parser.add_argument('nodes', type=str, help='host(s), nodeset syntax')
 
     return parser.parse_args()
 
 
-def set_freqs(host, gouverneur):
+def load_yaml_file(yamlfile):
     """
-        set min/max frequencies according to CPU family
-        return a dict{'min': int, 'max': int, 'gov': powersave|ondemand|performance}
+    load data from a yaml file, using safe_load, return a dict{}.
+
+    yamlfile is mandatory. Throw yaml errors, if any.
+
+    import sys
+    import yaml
+
+    """
+    try:
+        with open(yamlfile, 'r') as fichier:
+            contenu = yaml.safe_load(fichier)
+            return contenu
+    except IOError:
+        print("Unable to open file: {}".format(fichier.name))
+        sys.exit(1)
+    except yaml.YAMLError as erreur:
+        if hasattr(erreur, 'problem_mark'):
+            mark = erreur.problem_mark
+            # print("YAML error position: (%s:%s) in" % (mark.line + 1, mark.column + 1), fichier.name)
+            print('YAML error position: ({}:{}) in {}'.format(mark.line + 1, mark.column + 1, fichier.name))
+        sys.exit(1)
+
+
+def get_nodes_freq(node, gouverneur, debug=False):
+    """
+        get info for node, from cluster repository
+
+        return a dict{'host', str, 'min': int, 'max': int, 'gov': str}
         or return False
     """
+
     frequencies = {}
-    match host:
-        #
-        # cluster X5
-        #
-        case hosts if hosts in NodeSet('x5570comp[1-2]'):
-            # Intel X5570
-            frequencies['host'] = host
-            frequencies['min'] = "1600"
-            frequencies['max'] = "2930"
-            frequencies['gov'] = gouverneur
+    global blacklist
 
-        #
-        # visu et specials
-        #
-        case host if host in NodeSet('lensr650'):
-            # Intel Gold 6444Y
-            frequencies['host'] = host
-            frequencies['min'] = "800"
-            frequencies['max'] = "3601"
-            frequencies['gov'] = gouverneur
+    if node in blacklist:
+        if debug:
+            print(f"{node} in blacklist")
+        return False
+    else:
+        for cluster in NODESREF.keys():
+            for group in NODESREF[cluster].keys():
+                nodeset = NodeSet(group)
+                if node in nodeset:
+                    if debug:
+                        print(f"{node} in {nodeset}, {NODESREF[cluster][group]['groupAltName']}")
+                    frequencies['host'] = node
+                    frequencies['min'] = NODESREF[cluster][group]['nodeCPUFreqMin']  # nodeCPUFreqMin
+                    frequencies['max'] = NODESREF[cluster][group]['nodeCPUFreqMax']  # nodeCPUFreqMax
+                    frequencies['gov'] = gouverneur
 
-        case host if host in NodeSet('r740flix[1-4],r740gpu[06-09]'):
-            # Intel Silver 4215R
-            frequencies['host'] = host
-            frequencies['min'] = "1200"
-            frequencies['max'] = "3200"
-            frequencies['gov'] = gouverneur
-            print(f"cannot do on {host}")
-            return False
-
-        case host if host in NodeSet('r740cssi,r740visu,r740cral'):
-            # Intel Gold 5122
-            frequencies['host'] = host
-            frequencies['min'] = "1200"
-            frequencies['max'] = "3600"
-            frequencies['gov'] = gouverneur
-            print(f"cannot do on {host}")
-            return False
-
-        case host if host in NodeSet('r640cral'):
-            # Intel Gold 6148
-            frequencies['host'] = host
-            frequencies['min'] = "1200"
-            frequencies['max'] = "2400"
-            frequencies['gov'] = gouverneur
-            print(f"cannot do on {host}")
-            return False
-
-        case host if host in NodeSet('cumulonimbus'):
-            # Intel Platinum 8358
-            frequencies['host'] = host
-            frequencies['min'] = "1200"
-            frequencies['max'] = "2600"
-            frequencies['gov'] = gouverneur
-            print(f"cannot do on {host}")
-            return False
-
-        #
-        # cluster E5
-        #
-        case host if host in NodeSet('c8220node[1-48,57-202],c6320node[201-212]'):
-            # Intel E5-2670, Intel E5-2697Av4
-            frequencies['host'] = host
-            frequencies['min'] = "1200"
-            frequencies['max'] = "2601"
-            frequencies['gov'] = gouverneur
-
-        case host if host in NodeSet('c8220node[49-56]'):
-            # Intel E5-2650v2
-            frequencies['host'] = host
-            frequencies['min'] = "1200"
-            frequencies['max'] = "2600"
-            frequencies['gov'] = gouverneur
-
-        case host if host in NodeSet('e5-2667v4comp[1-2],c6320node[1-24,101-124]'):
-            # Intel E5-2667v4
-            frequencies['host'] = host
-            frequencies['min'] = "1200"
-            frequencies['max'] = "3200"
-            frequencies['gov'] = gouverneur
-
-        #
-        # cluster E5-GPU
-        #
-        case host if host in NodeSet('r730gpu[01-24]'):
-            # Intel E5-2637v3
-            frequencies['host'] = host
-            frequencies['min'] = "1200"
-            frequencies['max'] = "3500"
-            frequencies['gov'] = gouverneur
-        #
-        # cluster Lake
-        #
-        case host if host in NodeSet('m6142comp[1-2],c6420node[001-060,171-174]'):
-            # Intel Gold 6142 2.60GHz
-            frequencies['host'] = host
-            frequencies['min'] = "1000"
-            frequencies['max'] = "2600"
-            frequencies['gov'] = gouverneur
-
-        case host if host in NodeSet('cl6226comp[1-2],r740bigmem201,c6420node[061-168]'):
-            # Intel 6226R CPU @ 2.90GHz
-            frequencies['host'] = host
-            frequencies['min'] = "1000"
-            frequencies['max'] = "2900"
-            frequencies['gov'] = gouverneur
-
-        case host if host in NodeSet('cl5218comp[1-2],c6420node[201-204],xlr178node[001-106,109-110,119-122]'):
-            # Intel Gold 5118 2.30GHz & Gold 5218 CPU @ 2.30GHz
-            frequencies['host'] = host
-            frequencies['min'] = "1000"
-            frequencies['max'] = "2300"
-            frequencies['gov'] = gouverneur
-
-        case host if host in NodeSet('cl6242comp[1-2]'):
-            # Gold 6242 CPU @ 2.80GHz
-            frequencies['host'] = host
-            frequencies['min'] = "1200"
-            frequencies['max'] = "2800"
-            frequencies['gov'] = gouverneur
-
-        case host if host in NodeSet('xlr170node[001-010,013-036,037-060,061-072]'):
-            # Gold 6242 CPU @ 2.80GHz
-            # flix ! change governor
-            frequencies['host'] = host
-            frequencies['min'] = "1200"
-            frequencies['max'] = "2800"
-            frequencies['gov'] = "performance"
-            return False
-        #
-        # cluster Epyc
-        #
-        case host if host in NodeSet('c6525node[001-014]'):
-            # AMD EPYC 7702
-            frequencies['host'] = host
-            frequencies['min'] = "1500"
-            frequencies['max'] = "2000"
-            frequencies['gov'] = gouverneur
-        #
-        # cluster Cascade
-        #
-        case host if host in NodeSet('s92node[61-78,163-196]'):
-            # Intel Platinum 9242
-            # flix ! change governor
-            frequencies['host'] = host
-            frequencies['min'] = "1000"
-            frequencies['max'] = "2300"
-            frequencies['gov'] = "performance"
-            return False
-
-        case host if host in NodeSet('s92node[01-60,79-90,103-150]'):
-            # Intel Platinum 9242
-            frequencies['host'] = host
-            frequencies['min'] = "1000"
-            frequencies['max'] = "2300"
-            frequencies['gov'] = gouverneur
-
-        # None of the above
-        case _:
-            print(f"Host not found in Host/CPU tree: {host}")
-            return False
-
-    return frequencies
+                    return frequencies
 
 
 if __name__ == '__main__':
@@ -258,6 +147,14 @@ if __name__ == '__main__':
     if args.debug:
         debug = True
         print(args)
+
+    if args.repository:
+        REFERENTIEL = args.repository[0]
+
+    NODESREF = load_yaml_file(REFERENTIEL)
+
+    blacklist.add(visu)
+    blacklist.add(premium)
 
     fanout = args.fanout
     timeout = args.timeout
@@ -273,7 +170,8 @@ if __name__ == '__main__':
         gov = args.governor[0]
         if debug:
             print(f"{gov}")
-        result = set_freqs(node, gov)
+
+        result = get_nodes_freq(node, gov, debug)
         if result:
             list_freqs.append(result)
         else:
