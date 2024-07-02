@@ -5,15 +5,12 @@
 # SPDX-License-Identifier: BSD-2-Clause
 #
 """
+https://www.pythontutorial.net/python-concurrency/python-threadpoolexecutor/
 TODO/FIXME:
 
-- use ThreadPoolExecutor() to //-ize
+- handle OK/NOOK (via nodesets) check proper handling
 
-- handle timeout
-
-- handle OK/NOOK (via nodesets?)
-
-https://www.pythontutorial.net/python-concurrency/python-threadpoolexecutor/
+- switch to clusters.yml dict?
 
 """
 
@@ -28,7 +25,7 @@ nodes_ok = NodeSet()
 nodes_ko = NodeSet()
 list_freqs = []
 debug = False
-KEYFILE = ''
+KEYFILE = '-o "IdentitiesOnly=yes" -i /path/to/keyfile'
 fanout = 1
 timeout = 10
 
@@ -265,8 +262,8 @@ if __name__ == '__main__':
     fanout = args.fanout
     timeout = args.timeout
 
-    if args.keyfile:
-        KEYFILE = '-o "IdentitiesOnly=yes" -i /home/ltaulell/.ssh/cpupower-ecdsa'
+    if not args.keyfile:
+        KEYFILE = ''
 
     nodes = NodeSet(args.nodes)
     if debug:
