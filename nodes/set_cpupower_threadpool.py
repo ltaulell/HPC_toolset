@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # coding: utf-8
 #
-# $Id: set_cpupower_threadpool+ref.py 4624 2024-07-02 14:45:12Z ltaulell $
+# $Id: set_cpupower_threadpool.py 4779 2025-02-05 08:29:15Z ltaulell $
 # SPDX-License-Identifier: BSD-2-Clause
 #
 """
@@ -31,8 +31,8 @@ timeout = 10
 
 # frequencies changes do not apply on these:
 blacklist = NodeSet()
-visu = NodeSet("r740flix[1-4],r740gpu[06-09],r740visu,r740cral,r640cral")
-premium = NodeSet("s92node[61-78],xlr170node[001-010,013-036,037-060]")
+visu = NodeSet("r740flix[1-4],r740gpu[06-09],r740cssi,r740visu,r740cral,r640cral")
+premium = NodeSet("s92node[61-78,163-196],xlr170node[001-010,013-036,037-060,061-072]")
 
 
 def apply_governor(freqs):
@@ -76,7 +76,7 @@ def get_args():
     parser = argparse.ArgumentParser(description='Set CPU governor (with min/max frequencies)')
     parser.add_argument('-d', '--debug', action='store_true', help='toggle debug')
     parser.add_argument('-k', '--keyfile', action='store_true', help='activate keyfile (default=False)')
-    parser.add_argument('-g', '--governor', nargs=1, type=str, choices=['powersave', 'ondemand', 'performance'], help='governor to apply (default: ondemand)', default=['ondemand'])
+    parser.add_argument('-g', '--governor', nargs=1, type=str, choices=['powersave', 'ondemand', 'performance'], help='governor to apply (default: powersave)', default=['powersave'])
     parser.add_argument("-f", "--fanout", action="store", default="128", help="Fanout window size (default 128)", type=int)
     parser.add_argument("-t", "--timeout", action="store", default="10", help="Timeout in seconds (default 10)", type=float)
     parser.add_argument('-r', '--repository', type=str, help='repository file (default: clusters.yml)', default=['clusters.yml'])
@@ -149,7 +149,8 @@ if __name__ == '__main__':
         print(args)
 
     if args.repository:
-        REFERENTIEL = args.repository[0]
+        # either it's one element (default), either it's many (provided)
+        REFERENTIEL = ''.join(args.repository)
 
     NODESREF = load_yaml_file(REFERENTIEL)
 

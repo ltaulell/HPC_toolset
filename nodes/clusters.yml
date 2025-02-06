@@ -1,4 +1,4 @@
-# $Id: clusters.yml 4606 2024-06-26 10:08:40Z ltaulell $
+# $Id: clusters.yml 4781 2025-02-05 10:57:42Z ltaulell $
 %YAML 1.1
 ---
 # PSMN nodes, nodeset syntax
@@ -69,22 +69,22 @@ special:
     nodeDiskNumber: 0
     nodeScratchNumber: 2
     nodeNumber: 1
-  cumulonimbus:
+  sr650node230:
     groupAltName: "@visu"
-    nodeGPUType: ""
-    nodeGPUNumber: 0
+    nodeGPUType: "T1000 8GB"
+    nodeGPUNumber: 1
     nodeCPUType: "Intel Xeon Platinum 8358"
     nodeCPUCoreNumber: 32
     nodeCPUNumber: 2
     nodeCPUFreqMin: 800
     nodeCPUFreqMax: 2600
     nodeRAMSize: 4000
-    nodeDiskNumber: 0
-    nodeScratchNumber: 2
+    nodeDiskNumber: 8
+    nodeScratchNumber: 3
     nodeNumber: 1
-  lensr650:
+  sr650node231:
     groupAltName: "@visu"
-    nodeGPUType: ""
+    nodeGPUType: "T1000 8GB"
     nodeGPUNumber: 0
     nodeCPUType: "Intel Xeon Gold 6444Y"
     nodeCPUCoreNumber: 16
@@ -104,7 +104,7 @@ E5:
     nodeCPUCoreNumber: 8
     nodeCPUNumber: 2
     nodeCPUFreqMin: 1200
-    nodeCPUFreqMax: 2601
+    nodeCPUFreqMax: 3300
     nodeRAMSize: 64
     nodeDiskNumber: 0
     nodeScratchNumber: 1
@@ -117,7 +117,7 @@ E5:
     nodeCPUCoreNumber: 8
     nodeCPUNumber: 2
     nodeCPUFreqMin: 1200
-    nodeCPUFreqMax: 2601
+    nodeCPUFreqMax: 3300
     nodeRAMSize: 128
     nodeDiskNumber: 0
     nodeScratchNumber: 1
@@ -175,7 +175,7 @@ E5:
     nodeScratchNumber: 1
     nodeNumber: 24
 Lake:
-  r730gpu[01-19]:
+  r730gpu[01-20]:
     groupAltName: "@r730gpu"
     nodeGPUType: "RTX 2080Ti"
     nodeGPUNumber: 2
@@ -188,7 +188,7 @@ Lake:
     nodeDiskNumber: 0
     nodeScratchNumber: 4
     nodeNumber: 19
-  r730gpu[20-24]:
+  r730gpu[21-24]:
     groupAltName: "@r730gpu"
     nodeGPUType: ""
     nodeGPUNumber: 0
@@ -200,7 +200,7 @@ Lake:
     nodeRAMSize: 128
     nodeDiskNumber: 0
     nodeScratchNumber: 4
-    nodeNumber: 5
+    nodeNumber: 4
   c6420node[001-048,171-174]:
     groupAltName: "@c6420-384"
     nodeGPUType: ""
@@ -241,7 +241,7 @@ Lake:
     nodeScratchNumber: 4
     nodeNumber: 4
   xlr170node[001-010,013-072]:
-    groupAltName: "@lakeflix"
+    groupAltName: "@lakepremium"
     nodeGPUType: ""
     nodeGPUNumber: 0
     nodeCPUType: "Intel Xeon Gold 6242"
@@ -308,15 +308,162 @@ Epyc:
     nodeNumber: 14
 Cascade:
   s92node[01-90,103-150,163-196]:
-    groupAltName: "@cascade,@cascadeflix"
+    groupAltName: "@cascade,@cascadepremium"
     nodeGPUType: ""
     nodeGPUNumber: 0
     nodeCPUType: "Intel Xeon Platinum 9242"
     nodeCPUCoreNumber: 48
     nodeCPUNumber: 2
     nodeCPUFreqMin: 1000
-    nodeCPUFreqMax: 2300
+    nodeCPUFreqMax: 3800
     nodeRAMSize: 384
     nodeDiskNumber: 0
     nodeScratchNumber: 2
     nodeNumber: 171
+  s92node[197-208,209-212]:
+    groupAltName: "@cascadegpu"
+    nodeGPUType: "L4"
+    nodeGPUNumber: 1
+    nodeCPUType: "Intel Xeon Platinum 9242"
+    nodeCPUCoreNumber: 48
+    nodeCPUNumber: 2
+    nodeCPUFreqMin: 1000
+    nodeCPUFreqMax: 3800
+    nodeRAMSize: 384
+    nodeDiskNumber: 0
+    nodeScratchNumber: 2
+    nodeNumber: 14
+Genoa:
+  dl365node[20-29]:
+    groupAltName: "@genoapremium"
+    nodeGPUType: ""
+    nodeGPUNumber: 0
+    nodeCPUType: "AMD EPYC 9354"
+    nodeCPUCoreNumber: 32
+    nodeCPUNumber: 2
+    nodeCPUFreqMin: 1500
+    nodeCPUFreqMax: 3800
+    nodeRAMSize: 768
+    nodeDiskNumber: 0
+    nodeScratchNumber: 2
+    nodeNumber: 10
+Emerald:
+  sr630node[30-36]:
+    groupAltName: "@emeraldpremium"
+    nodeGPUType: ""
+    nodeGPUNumber: 0
+    nodeCPUType: "Intel Xeon 8562Y+"
+    nodeCPUCoreNumber: 32
+    nodeCPUNumber: 2
+    nodeCPUFreqMin: 800
+    nodeCPUFreqMax: 4100
+    nodeRAMSize: 512
+    nodeDiskNumber: 0
+    nodeScratchNumber: 2
+    nodeNumber: 7
+  sr630node[37-40]:
+    groupAltName: "@emeraldbigmem"
+    nodeGPUType: ""
+    nodeGPUNumber: 0
+    nodeCPUType: "Intel Xeon 8592+"
+    nodeCPUCoreNumber: 64
+    nodeCPUNumber: 2
+    nodeCPUFreqMin: 800
+    nodeCPUFreqMax: 3900
+    nodeRAMSize: 1024
+    nodeDiskNumber: 0
+    nodeScratchNumber: 2
+    nodeNumber: 4
+# scratch
+gluster:
+  c6420node[225-228]:
+    groupAltName: "@gfsbio"
+    nodeGPUType: ""
+    nodeGPUNumber: 0
+    nodeCPUType: "Intel Xeon Gold 5218"
+    nodeCPUCoreNumber: 16
+    nodeCPUNumber: 2
+    nodeCPUFreqMin: 1000
+    nodeCPUFreqMax: 2300
+    nodeRAMSize: 96
+    nodeDiskNumber: 6
+    nodeScratchNumber: 0
+    nodeNumber: 4
+  c6420node[221-224]:
+    groupAltName: "@gfschimie"
+    nodeGPUType: ""
+    nodeGPUNumber: 0
+    nodeCPUType: "Intel Xeon Gold 5118"
+    nodeCPUCoreNumber: 12
+    nodeCPUNumber: 2
+    nodeCPUFreqMin: 1000
+    nodeCPUFreqMax: 2300
+    nodeRAMSize: 96
+    nodeDiskNumber: 3
+    nodeScratchNumber: 0
+    nodeNumber: 4
+  c6420node[213-216]:
+    groupAltName: "@gfse5n"
+    nodeGPUType: ""
+    nodeGPUNumber: 0
+    nodeCPUType: "Intel Xeon Gold 5118"
+    nodeCPUCoreNumber: 12
+    nodeCPUNumber: 2
+    nodeCPUFreqMin: 1000
+    nodeCPUFreqMax: 2300
+    nodeRAMSize: 96
+    nodeDiskNumber: 3
+    nodeScratchNumber: 0
+    nodeNumber: 4
+  c6420node[209-212]:
+    groupAltName: "@gfslake"
+    nodeGPUType: ""
+    nodeGPUNumber: 0
+    nodeCPUType: "Intel Xeon Gold 5118"
+    nodeCPUCoreNumber: 12
+    nodeCPUNumber: 2
+    nodeCPUFreqMin: 1000
+    nodeCPUFreqMax: 2300
+    nodeRAMSize: 96
+    nodeDiskNumber: 3
+    nodeScratchNumber: 0
+    nodeNumber: 4
+  c6420node[217-220]:
+    groupAltName: "@gfsthemiss"
+    nodeGPUType: ""
+    nodeGPUNumber: 0
+    nodeCPUType: "Intel Xeon Gold 5118"
+    nodeCPUCoreNumber: 12
+    nodeCPUNumber: 2
+    nodeCPUFreqMin: 1000
+    nodeCPUFreqMax: 2300
+    nodeRAMSize: 96
+    nodeDiskNumber: 3
+    nodeScratchNumber: 0
+    nodeNumber: 4
+  r740gluster[229-232]:
+    groupAltName: "@gfscral"
+    nodeGPUType: ""
+    nodeGPUNumber: 0
+    nodeCPUType: "Intel Xeon Silver 4214R"
+    nodeCPUCoreNumber: 12
+    nodeCPUNumber: 2
+    nodeCPUFreqMin: 1000
+    nodeCPUFreqMax: 2400
+    nodeRAMSize: 192
+    nodeDiskNumber: 16
+    nodeScratchNumber: 0
+    nodeNumber: 4
+  r740gluster[234-237]:
+    groupAltName: "@gfscascade"
+    nodeGPUType: ""
+    nodeGPUNumber: 0
+    nodeCPUType: "Intel Xeon Gold 5118"
+    nodeCPUCoreNumber: 12
+    nodeCPUNumber: 2
+    nodeCPUFreqMin: 1000
+    nodeCPUFreqMax: 2300
+    nodeRAMSize: 192
+    nodeDiskNumber: 24
+    nodeScratchNumber: 0
+    nodeNumber: 4
