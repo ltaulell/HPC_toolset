@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # coding: utf-8
 #
-# $Id: set_cpupower_threadpool.py 4779 2025-02-05 08:29:15Z ltaulell $
+# $Id: set_cpupower_threadpool.py 4866 2025-07-17 13:00:10Z ltaulell $
 # SPDX-License-Identifier: BSD-2-Clause
 #
 """
@@ -80,6 +80,7 @@ def get_args():
     parser.add_argument("-f", "--fanout", action="store", default="128", help="Fanout window size (default 128)", type=int)
     parser.add_argument("-t", "--timeout", action="store", default="10", help="Timeout in seconds (default 10)", type=float)
     parser.add_argument('-r', '--repository', type=str, help='repository file (default: clusters.yml)', default=['clusters.yml'])
+    parser.add_argument('--forceapply', action='store_true', help='apply to all nodes, no exceptions.')
     parser.add_argument('nodes', type=str, help='host(s), nodeset syntax')
 
     return parser.parse_args()
@@ -154,8 +155,9 @@ if __name__ == '__main__':
 
     NODESREF = load_yaml_file(REFERENTIEL)
 
-    blacklist.add(visu)
-    blacklist.add(premium)
+    if not args.forceapply:
+        blacklist.add(visu)
+        blacklist.add(premium)
 
     fanout = args.fanout
     timeout = args.timeout
