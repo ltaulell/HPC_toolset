@@ -1,4 +1,4 @@
-# $Id: clusters.yml 4781 2025-02-05 10:57:42Z ltaulell $
+# $Id: clusters.yml 4794 2025-02-20 09:36:08Z ltaulell $
 %YAML 1.1
 ---
 # PSMN nodes, nodeset syntax
@@ -240,6 +240,19 @@ Lake:
     nodeDiskNumber: 0
     nodeScratchNumber: 4
     nodeNumber: 4
+  c6420node[205-208]:
+    groupAltName: "@c6420-96,@themiss"
+    nodeGPUType: ""
+    nodeGPUNumber: 0
+    nodeCPUType: "Intel Xeon Gold 5118"
+    nodeCPUCoreNumber: 12
+    nodeCPUNumber: 2
+    nodeCPUFreqMin: 1000
+    nodeCPUFreqMax: 2300
+    nodeRAMSize: 96
+    nodeDiskNumber: 3
+    nodeScratchNumber: 5
+    nodeNumber: 4
   xlr170node[001-010,013-072]:
     groupAltName: "@lakepremium"
     nodeGPUType: ""
@@ -266,7 +279,7 @@ Lake:
     nodeDiskNumber: 0
     nodeScratchNumber: 4
     nodeNumber: 108
-  xlr178node[001-106,109-110,119-122]:
+  xlr178node[001-106,109-110]:
     groupAltName: "@xlr178-192"
     nodeGPUType: ""
     nodeGPUNumber: 0
@@ -278,7 +291,20 @@ Lake:
     nodeRAMSize: 192
     nodeDiskNumber: 0
     nodeScratchNumber: 4
-    nodeNumber: 112
+    nodeNumber: 108
+  xlr178node[119-122]:
+    groupAltName: "@xlr178-96"
+    nodeGPUType: ""
+    nodeGPUNumber: 0
+    nodeCPUType: "Intel Xeon Gold 5218"
+    nodeCPUCoreNumber: 16
+    nodeCPUNumber: 2
+    nodeCPUFreqMin: 1000
+    nodeCPUFreqMax: 2300
+    nodeRAMSize: 96
+    nodeDiskNumber: 0
+    nodeScratchNumber: 4
+    nodeNumber: 4
   r740bigmem201:
     groupAltName: ""
     nodeGPUType: ""
