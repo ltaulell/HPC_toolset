@@ -1,0 +1,222 @@
+
+Doc à Manu:
+http://www.cbp.ens-lyon.fr/doku.php?id=developpement:productions:sidus4trixie
+
+
+sur root@vm-nodes
+mkdir -p /data/hosts/node13
+
+export HTTP=http://www.cbp.ens-lyon.fr/sidus/trixie
+export SIDUS="/data/hosts/node13"
+alias sidus="DEBIAN_FRONTEND=noninteractive chroot ${SIDUS} $@"
+export ARCH="amd64"
+
+**MODIF PSMN**
+    export TOOLS="~/Code/tools4psmn/"
+    vi /etc/exports, add node13 nfs3 export
+    exportfs -rv
+**END**
+
+debootstrap --arch $ARCH --components='main,contrib,non-free,non-free-firmware' trixie $SIDUS http://mirror.ens-lyon.fr/debian
+
+scp $TOOLS/debian/node13/root/policy-rc.d root@vm-nodes:/data/hosts/node13/usr/sbin/policy-rc.d
+chmod +x node13/usr/sbin/policy-rc.d
+
+sidus mount -t proc none /proc
+sidus mount -t sysfs sys /sys
+mount --bind /dev/pts ${SIDUS}/dev/pts
+
+sidus passwd
+
+**MODIF PSMN**
+    sidus touch /root/master.node13
+    # depuis workstation
+    rsync --recursive --verbose --exclude '.svn*' -e ssh
+        $TOOLS/debian/serveurs/root/
+        root@vm-nodes:/data/hosts/node13/root/
+    cp ../node13/root/.ssh/authorized_keys root/.ssh/authorized_keys
+
+**END**
+
+vi "${SIDUS}"/etc/apt/sources.list
+
+sidus apt-get update
+
+**MODIF PSMN**
+
+sidus apt-get -y install aptitude dselect dracut dracut-core dracut-network isc-dhcp-common isc-dhcp-client openssh-server locales bridge-utils pcp sysstat iftop htop iotop lsof tshark mbw strace smartmontools sdparm dbench lm-sensors iozone3 psmisc console-setup less vim unscd nslcd nfs-common net-tools hwloc time linux-perf tasksel ssh ntpsec-ntpdate util-linux-extra systemd-timesyncd man-db manpages-fr libnss-mdns
+
+sidus apt-get -y install firmware-linux-nonfree firmware-linux firmware-bnx2 firmware-bnx2x amd64-microcode intel-microcode stressapptest screen tmux bash-completion members lshw hardinfo hwloc-nox lmod pciutils usbutils haveged ethtool rsync gnupg tree linux-cpupower
+
+**END**
+
+(install initramfs, désinstalle dracut)
+
+sidus apt-get -y install dracut linux-image-${ARCH} linux-headers-${ARCH}
+
+sidus apt-get autoremove
+
+mv ${SIDUS}/etc/locale.gen ${SIDUS}/etc/locale.gen.orig
+#mv ${SIDUS}/etc/timezone ${SIDUS}/etc/timezone.orig (!!)
+mv ${SIDUS}/etc/default/keyboard ${SIDUS}/etc/default/keyboard.orig
+cp /etc/locale.gen ${SIDUS}/etc/locale.gen
+cp $TOOLS/debian/node13/etc/locale.conf ${SIDUS}/etc/locale.conf
+cp $TOOLS/debian/node13/etc/timezone ${SIDUS}/etc/timezone
+cp /etc/default/keyboard ${SIDUS}/etc/default/keyboard
+sidus locale-gen
+# sidus dpkg-reconfigure tzdata  NON!
+# sidus timedatectl set-timezone "Europe/Paris" -> postbootinit
+sidus dpkg-reconfigure locales
+sidus apt-get purge -y vim-tiny open-iscsi iscsiuio libopeniscsiusr
+
+===============================
+PSMN: **avoid desktop for now**
+===============================
+
+mkdir ${SIDUS}/usr/lib/dracut/modules.d/95sidus
+wget -O ${SIDUS}/usr/lib/dracut/modules.d/95sidus/module-setup.sh ${HTTP}/module-setup.sh
+wget -O ${SIDUS}/usr/lib/dracut/modules.d/95sidus/sidus-mount.sh ${HTTP}/sidus-mount.sh
+chmod u=rwx,g=rx,o=rx ${SIDUS}/usr/lib/dracut/modules.d/95sidus/*.sh
+
+sidus dpkg-reconfigure dracut
+
+ls /boot/ | grep initrd | tail -1 | while read INITRD ; do sidus lsinitrd /boot/$INITRD | egrep '(sidus|overlay)'; done  ->  \o/ !!
+
+sidus rm /etc/hostname
+
+**MODIF PSMN**
+
+    <- $TOOLS/debian/node13/etc/network/interfaces
+    <- $TOOLS/debian/node13/etc/sysctl.d/gc.conf
+    <- $TOOLS/debian/node13/security/limits.d/sidus.conf
+
+sidus apt-get install nfs-common
+
+    <- $TOOLS/debian/node13/etc/default/nfs-common
+    <- $TOOLS/debian/node13/etc/idmapd.conf
+    <- $TOOLS/debian/node13/etc/fstab
+
+${SIDUS}/etc/motd (figlet -f big -> PSMN, figlet -f banner -> 13)
+
+rc.local *mode minimal*
+echo -e '#!/bin/sh -e\n\n# mode minimal\n\nexit 0' > ${SIDUS}/etc/rc.local
+sidus chmod +x /etc/rc.local
+$TOOLS/debian/node13/etc/systemd/system/rc-local.service
+sidus systemctl enable rc-local
+
+faire un boot à blanc avant ldap        ->      OK
+scp boot/initrd.img-6.12.43+deb13-amd64 root@pxe:/srv/tftp/sidus/
+scp boot/vmlinuz-6.12.43+deb13-amd64 root@pxe:/srv/tftp/sidus/
+@pxe :  chmod go+r initrd.img-6.12.43+deb13-amd64
+        modifs sidus13.cfg
+
+    TESTS avec e5-2667v4comp2, 10.80.63.252
+    /etc/hosts
+    hostnamectl set-hostname e5-2667v4comp2 (forceage)
+    rajout à $TOOLS/debian/node13/root/psmn.d/psmn-postbootinit.sh (le dhcp-host ne fonctionne plus)
+    grep/get infos sidus@CBP : host nvidia4oil
+
+voir sidus13_ldap.txt      ->    OK (/etc/nsswitch.conf !!)
+
+    <- $TOOLS/debian/node13/root/psmn.d
+    <- $TOOLS/debian/node13/etc/rc.local
+    <- $TOOLS/debian/node13/etc/security/group.conf
+    <- $TOOLS/debian/node13/etc/systemd/timesyncd.conf
+    sidus systemctl enable systemd-timesyncd.service
+    <- $TOOLS/debian/node13/usr/lib/systemd/network/99-default.link
+
+add : "$(ip -4 -o addr show | grep 140.77 | awk '{ print "ip addr change "$4" dev "$2" valid_lft 1073741824 preferred_lft 1073741824" }')" dans $TOOLS/debian/node13/root/psmn.d/network-up.sh
+
+(sidus apt-get purge mlocate)
+(rm /etc/updatedb.conf)
+
+    # gestion aliases et emails
+    /etc/mailname <- $TOOLS/debian/node13/etc/mailname "sidus13"
+    sidus apt-get install msmtp-mta bsd-mailx
+    <- $TOOLS/debian/node13/etc/msmtprc
+    <- $TOOLS/debian/node13/etc/aliases
+
+**END**
+
+sidus dpkg-reconfigure dracut, scp du vmlinuz/initrd et reboot du node de test
+
+===============================
+PSMN: desktop
+
+(seulement quand l'auth / automount fonctionne)
+
+sidus apt-get install nvidia-driver nvidia-xconfig #nvidia-cuda-toolkit
+sidus tasksel install xfce-desktop
+sidus apt-get purge -y modemmanager gdm3 gnome-session gnome-terminal vim-tiny pipewire pulseaudio cups sudo colord laptop-detect wpasupplicant
+sidus apt-get autoremove
+
+sidus apt-get install x2goserver
+
+sidus apt-get clean
+
+# virtualgl
+sidus apt-get install bc numlockx libegl1-mesa-dev mesa-utils
+[ depuis https://virtualgl.org/ -> 
+wget --content-disposition "https://packagecloud.io/dcommander/virtualgl/packages/any/any/virtualgl_3.1.3-20250409_amd64.deb/download.deb?distro_version_id=35" ]
+
+sidus dpkg -i /applis/PSMN/Staff/Downloads/VirtualGL/virtualgl_3.1.3-20250409_amd64.deb
+
+# /!\ script de démarrage nvidia + config vglrun
+https://virtualgl.org/Documentation/HeadlessNV
+    <- $TOOLS/debian/node13/root/psmn.d/nvidia-up.sh (vérifié, OK)
+
+# pour les scratch locaux :
+sidus apt-get install zfsutils-linux zfs-dkms
+
+sidus apt-get purge -y modemmanager wpasupplicant
+sidus apt-get autoremove
+
+sidus systemctl disable apparmor
+sidus systemctl disable ModemManager (! supprimé)
+sidus systemctl disable NetworkManager
+
+activer total node13/root/psmn.d/psmn-postbootinit.sh
+
+PSMN fin desktop
+===============================
+
+sidus apt-get dist-upgrade :
+    *PROBLÈME* avec nvidia-kernel-dkms
+    Autoinstall of module nvidia-current/550.163.01 for kernel 6.12.48+deb13-amd64 (x86_64)
+    Building module(s)...(bad exit status: 2)
+    Failed command:
+    env NV_VERBOSE=1 make -j4 modules KERNEL_UNAME=6.12.48+deb13-amd64
+
+sidus apt-get remove nvidia-kernel-dkms
+sidus apt-get dist-upgrade (new kernel)
+sidus apt-get install nvidia-kernel-dkms
+
+install minimum HPC packages:
+ibutils ibverbs-utils infiniband-diags libibmad-dev libibumad-dev git subversion python3-pip python3-venv cmake 
+build-essential gfortran git subversion python3-pip python3-venv swig zlib1g-dev libopenmpi-dev openmpi-bin pigz diceware apg shellcheck
+
+-> wiki todo:sidus13-packages
+
+rm -f /usr/bin/nohup
+chmod ugo-sx /usr/bin/sudo*
+
+new refresh.sh
+#!/bin/bash
+# mount -o remount /
+echo 3 > /proc/sys/vm/drop_caches
+sync
+
+
+sidus dpkg-reconfigure dracut, scp du vmlinuz/initrd 
+@pxe:
+scp root@vm-nodes:/data/hosts/node13/boot/vmlinuz-6.12.48+deb13-amd64 /srv/tftp/sidus/
+scp root@vm-nodes:/data/hosts/node13/boot/initrd.img-6.12.48+deb13-amd64 /srv/tftp/sidus/
+check les links, les droits sur initrd et reboot du node de test
+
+KERNEL sidus/vmlinuz-Sidus13-amd64
+APPEND user_namespace.enable=1 console=tty1 initrd=sidus/initrd.img-Sidus13-amd64 rd.shell sidus=overlay ip=dhcp root=nfs:172.16.1.61:/data/hosts/node13:vers=3,ro,rsize=1048576,wsize=1048576,tcp,nolock,noatime net.ifnames=0 edd=off modprobe.blacklist=nouveau,nvidia,acpi_pad iomem=relaxed kernel.unprivileged_userns_clone=1 ipv6.disable=1 sky2.disable_msi=1 bnx2.disable_msi=1 kernel.dmesg_restrict=0 cgroup_enable=memory swapaccount=1 systemd.unified_cgroup_hierarchy=0 
+
+ignore_rlimit_data = VScode fonctionne mieux, donc non !
+
+
+
